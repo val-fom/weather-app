@@ -3,7 +3,7 @@
 class WeatherApp {
 	constructor() {
 		this.key = '40c8d4e755a53b1d45a970fc3769eeeb';
-		this.apiURL = 'http://api.openweathermap.org/data/2.5/weather';
+		this.apiURL = 'https://api.openweathermap.org/data/2.5/weather';
 
 		this.units = 'metric';
 
@@ -12,15 +12,31 @@ class WeatherApp {
 
 		this.form = document.forms['searchForm'];
 
+		this.url = new URL(window.location.href);
+
+	}
+
+	getCityFromUrl() {
+		if (this.url.search.startsWith('?q=')) {
+			this.city = this.url.search.slice(3);
+			this.sendXhr();
+		}
 	}
 
 	init() {
+		this.getCityFromUrl();
+
 		let self = this;
 		this.form.onsubmit = () => {
 			this.city = this.form.elements.city.value;
 			self.sendXhr();
 			return false;
 		}
+	}
+
+	pushUrl() {
+		let self = this;
+		window.history.pushState( null, null, `?q=${this.city}`);
 	}
 
 	sendXhr() {
@@ -40,9 +56,10 @@ class WeatherApp {
 			self.response = JSON.parse(response);
 
 			self.city = self.response.name;
-
+			self.pushUrl();
 		};
 		xhr.send();
+		console.log(this);
 	}
 
 }

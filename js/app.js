@@ -2,48 +2,79 @@
 
 class WeatherApp {
 	constructor() {
-		this.key = '40c8d4e755a53b1d45a970fc3769eeeb';
+		this.key = '40c8d4e755a53b1d45a970fc3769eeeb'; // secret key)
 		this.apiURL = 'https://api.openweathermap.org/data/2.5/weather';
 
-		this.units = 'metric';
+		this.units = 'metric'; // default
 
 		this.city = null;
 		this.response = null;
 
 		this.form = document.forms['searchForm'];
 
-		this.url = new URL(window.location.href);
+		this.searchHistory = [];
+		this.favouriteCities = [];
 
 	}
 
 	getCityFromUrl() {
-		if (this.url.search.startsWith('?q=')) {
-			this.city = this.url.search.slice(3);
-			this.sendXhr();
+		let url = new URL(window.location.href);
+		if (url.search.startsWith('?q=')) {
+			this.city = url.search.slice(3);
+		}
+	}
+
+	// Search History
+	addCityToSearchHistory(city) {
+		let searchHistory = this.searchHistory;
+		if (searchHistory.includes(city)) return;
+		searchHistory.push(city);
+		localStorage.searchHistory = JSON.stringify(searchHistory);
+	}
+
+	getSearchHistory() {
+		if (!localStorage.searchHistory) return;
+		this.searchHistory = JSON.parse(localStorage.searchHistory);
+	}
+
+	// Favourite Cities
+	addCityToFavouriteCities(city) {
+		let favouriteCities = this.favouriteCities;
+		if (favouriteCities.includes(city)) return;
+		favouriteCities.push(city);
+		localStorage.favouriteCities = JSON.stringify(favouriteCities);
+	}
+
+	getFavouriteCities() {
+		if (!localStorage.favouriteCities) return;
+		this.favouriteCities = JSON.parse(localStorage.favouriteCities);
+	}
+
+	addFormSubmitListener(form) {
+		form.onsubmit = () => {
+			this.city = this.form.elements.cityName.value;
+			this.getWeather();
+			return false;
 		}
 	}
 
 	init() {
 		this.getCityFromUrl();
-
-		let self = this;
-		this.form.onsubmit = () => {
-			this.city = this.form.elements.city.value;
-			self.sendXhr();
-			return false;
-		}
+		if (this.city) this.getWeather();
+		this.getSearchHistory();
+		this.getFavouriteCities();
+		this.addFormSubmitListener(this.form);
 	}
 
-	pushUrl() {
-		let self = this;
+	updateUrl(city) {
 		window.history.pushState( null, null, `?q=${this.city}`);
 	}
 
-	sendXhr() {
+	getWeather() {
 		let self = this;
 		let xhr = new XMLHttpRequest();
-
 		xhr.open('GET', `${this.apiURL}?q=${this.city}&APPID=${this.key}&units=${this.units}`);
+
 		xhr.onreadystatechange = function() {
 			if (this.readyState != 4) return;
 
@@ -56,7 +87,8 @@ class WeatherApp {
 			self.response = JSON.parse(response);
 
 			self.city = self.response.name;
-			self.pushUrl();
+			self.addCityToSearchHistory(self.city);
+			self.updateUrl(self.city);
 		};
 		xhr.send();
 		console.log(this);

@@ -94,7 +94,6 @@ a:hover {
 
 .weather-wrapper-temp {
 	width: 40%;
-	border-bottom: 1px solid #333;
   line-height: 2.5em;
   font-size: 1.8em;
 }
@@ -112,11 +111,12 @@ a:hover {
 .weather-wrapper-image {
 	width: 40%;
 	box-sizing: border-box;
+	border-bottom: 1px solid #333;
 	padding: 0;
 	margin: 0;
 	text-align: center;
 }
 
 .weather-wrapper-image img {
-	 width: 75%;
+	display: inline-block;
 }

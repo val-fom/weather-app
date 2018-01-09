@@ -11,7 +11,6 @@ body, html {
 section, header {
 	width: 300px;
 	margin: auto;
-	padding-top: 30px;
 }
 
 form {
@@ -36,7 +35,7 @@ input:focus {
 	box-shadow: 0px 0px 10px 0px #444;
 }
 
-ul {
+ul#search-list {
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -45,7 +44,7 @@ ul {
 	position: relative;
 }
 
-ul:before {
+ul#search-list:before {
 	content:'';
 	text-align: right;
 	width: 10%;
@@ -73,4 +72,51 @@ a:link, a:visited, a:active {
 
 a:hover {
 	text-decoration: underline;
+}
+
+.weather-wrapper {
+	whidth: 100%;
+	border: 1px solid #333;
+	font-size: 16px;
+	border-radius: 6px;
+	box-shadow: 0px 0px 10px 0px #ccc;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.weather-wrapper-city {
+	width: 60%;
+	border-bottom: 1px solid #333;
+	line-height: 3em;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.weather-wrapper-temp {
+	width: 40%;
+	border-bottom: 1px solid #333;
+  line-height: 2.5em;
+  font-size: 1.8em;
+}
+
+.weather-wrapper-list {
+	width: 60%;
+	list-style: none;
+	box-sizing: border-box;
+	padding: 0.4em;
+	margin: 0;
+	text-align: left;
+	font-size: 0.9em;
+}
+
+.weather-wrapper-image {
+	width: 40%;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+
+.weather-wrapper-image img {
+	 width: 75%;
 }

@@ -131,8 +131,10 @@ class WeatherApp {
 				<li>humidity: ${response.main.humidity}\%</li>
 				<li>wind: <span class="wind-direction"></span>${response.wind.speed}m/s</li>
 		`;
-		this.weatherWrapper.querySelector('.weather-wrapper-image').innerHTML = `
-			<img src="http://openweathermap.org/img/w/${response.weather[0].icon}.png" alt="${response.weather[0].description}">
+		let timeOfDay = '';
+		if (response.weather[0].icon.endsWith('n')) timeOfDay = '-night';
+		this.weatherWrapper.querySelector('.weather-wrapper-icon').innerHTML = `
+			<i class="wi wi-owm${timeOfDay}-${response.weather[0].id}" alt="${response.weather[0].description}"></i>
 		`;
 	};
 

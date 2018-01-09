@@ -93,17 +93,22 @@ class WeatherApp {
 			self.city = self.response.name;
 			self.addCityToSearchHistory(self.city);
 			self.updateUrl(self.city);
+			self.populateSearchList();
 		};
 		xhr.send();
 		console.log(this);
 	}
 
 	populateSearchList() {
-		this.searchHistory.forEach( (cityName) => {
+		// clear list
+		this.searchList.innerHTML = '';
+		// add cities from searchHistory
+		for (var i = this.searchHistory.length - 1; i >= 0; i--) {
+			let cityName = this.searchHistory[i];
 			let cityLi = document.createElement( 'li' );
-			cityLi.innerHTML = cityName;
+			cityLi.innerHTML = `<a href="?q=${cityName}">${cityName}</a>`;
 			this.searchList.appendChild( cityLi );
-		});
+		}
 	}
 
 	populateFavouriteList() {

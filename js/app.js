@@ -10,9 +10,9 @@ class WeatherApp {
 		this.city = null;
 		this.response = null;
 
-		this.form = document.querySelector('#searchForm');
-		this.searchList = document.querySelector('#searchList');
-		this.favouriteList = document.querySelector('#favouriteList');
+		this.searchForm = document.querySelector('#search-form');
+		this.searchList = document.querySelector('#search-list');
+		this.favouriteList = document.querySelector('#favourite-list');
 
 		this.searchHistory = [];
 		this.favouriteCities = [];
@@ -65,7 +65,7 @@ class WeatherApp {
 		if (this.city) this.getWeather();
 		this.getSearchHistory();
 		this.getFavouriteCities();
-		this.addFormSubmitHandler(this.form, this.getWeather);
+		this.addFormSubmitHandler(this.searchForm, this.getWeather);
 		this.populateSearchList();
 		this.populateFavouriteList();
 	}

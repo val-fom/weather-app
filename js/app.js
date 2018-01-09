@@ -50,10 +50,10 @@ class WeatherApp {
 		this.favouriteCities = JSON.parse(localStorage.favouriteCities);
 	}
 
-	addFormSubmitListener(form) {
+	addFormSubmitHandler(form, handler) {
 		form.onsubmit = () => {
-			this.city = this.form.elements.cityName.value;
-			this.getWeather();
+			this.city = form.elements.cityName.value;
+			handler.call(this);
 			return false;
 		}
 	}
@@ -63,7 +63,7 @@ class WeatherApp {
 		if (this.city) this.getWeather();
 		this.getSearchHistory();
 		this.getFavouriteCities();
-		this.addFormSubmitListener(this.form);
+		this.addFormSubmitHandler(this.form, this.getWeather);
 	}
 
 	updateUrl(city) {

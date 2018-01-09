@@ -10,7 +10,9 @@ class WeatherApp {
 		this.city = null;
 		this.response = null;
 
-		this.form = document.forms['searchForm'];
+		this.form = document.querySelector('#searchForm');
+		this.searchList = document.querySelector('#searchList');
+		this.favouriteList = document.querySelector('#favouriteList');
 
 		this.searchHistory = [];
 		this.favouriteCities = [];
@@ -64,6 +66,8 @@ class WeatherApp {
 		this.getSearchHistory();
 		this.getFavouriteCities();
 		this.addFormSubmitHandler(this.form, this.getWeather);
+		this.populateSearchList();
+		this.populateFavouriteList();
 	}
 
 	updateUrl(city) {
@@ -92,6 +96,22 @@ class WeatherApp {
 		};
 		xhr.send();
 		console.log(this);
+	}
+
+	populateSearchList() {
+		this.searchHistory.forEach( (cityName) => {
+			let cityLi = document.createElement( 'li' );
+			cityLi.innerHTML = cityName;
+			this.searchList.appendChild( cityLi );
+		});
+	}
+
+	populateFavouriteList() {
+		this.favouriteCities.forEach( (cityName) => {
+			let cityLi = document.createElement( 'li' );
+			cityLi.innerHTML = cityName;
+			this.searchList.appendChild( cityLi );
+		});
 	}
 
 }

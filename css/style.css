@@ -8,7 +8,7 @@ body, html {
 	color: #222;
 }
 
-section {
+section, header {
 	width: 300px;
 	margin: auto;
 	padding-top: 50px;

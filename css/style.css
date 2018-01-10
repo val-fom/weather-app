@@ -136,9 +136,23 @@ ul#favourite-list {
 	cursor: pointer;
 }
 
-#add-button:hover {
+#add-button:hover, #swap-units-button:hover {
 	text-decoration: none;
 	box-shadow: inset 0px 0px 8px 0px #aaa;
+}
+
+#swap-units-button {
+	position: absolute;
+	right: 0px;
+	bottom: 0;
+	 padding: 0 0.2rem;
+	line-height: 1rem;
+	display: block;
+	border-top: 1px solid #333;
+	border-left: 1px solid #333;
+	border-top-left-radius: 6px;
+	transition: 0.2s;
+	cursor: pointer;
 }
 
 .weather-wrapper-city {

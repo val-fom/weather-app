@@ -87,8 +87,13 @@ class WeatherApp {
 		};
 	}
 
-	updateUrl(city) {
+	updateUrl() {
 		window.history.pushState( null, null, `?q=${this.city}`);
+	}
+
+	addCityTitle() {
+		let newTitle = `Weather App - ${this.city}`;
+		if (document.title !== newTitle) document.title = newTitle;
 	}
 
 	getWeather() {
@@ -109,7 +114,8 @@ class WeatherApp {
 
 			self.city = self.response.name;
 			self.addCityToSearchHistory(self.city);
-			self.updateUrl(self.city);
+			self.updateUrl();
+			self.addCityTitle();
 			self.populateSearchList();
 			self.drawWeather(self.response);
 			self.toggleUnits();

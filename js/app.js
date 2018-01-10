@@ -14,6 +14,9 @@ class WeatherApp {
 		this.searchList = document.querySelector('#search-list');
 		this.favouriteList = document.querySelector('#favourite-list');
 		this.weatherWrapper = document.querySelector('.weather-wrapper');
+		this.clearHistoryButton = document.querySelector('#clear-history');
+		this.clearFavouritesButton = document.querySelector('#clear-favourites');
+		this.addFavouriteCityButton = document.querySelector('#add-button');
 
 		this.searchHistory = [];
 		this.favouriteCities = [];
@@ -69,6 +72,12 @@ class WeatherApp {
 		this.addFormSubmitHandler(this.searchForm, this.getWeather);
 		this.populateSearchList();
 		this.populateFavouriteList();
+		this.clearHistoryButton.onclick = () => { this.clearHistory() };
+		this.clearFavouritesButton.onclick = () => { this.clearFavourites() };
+		this.addFavouriteCityButton.onclick = () => {
+			this.addCityToFavouriteCities(this.city);
+			this.populateFavouriteList();
+		};
 	}
 
 	updateUrl(city) {
@@ -114,11 +123,15 @@ class WeatherApp {
 	}
 
 	populateFavouriteList() {
-		this.favouriteCities.forEach( (cityName) => {
+		// clear list
+		this.favouriteList.innerHTML = '';
+		// add cities from favouriteCities
+		for (var i = this.favouriteCities.length - 1; i >= 0; i--) {
+			let cityName = this.favouriteCities[i];
 			let cityLi = document.createElement( 'li' );
-			cityLi.innerHTML = cityName;
-			this.searchList.appendChild( cityLi );
-		});
+			cityLi.innerHTML = `<a href="?q=${cityName}">${cityName}</a>`;
+			this.favouriteList.appendChild( cityLi );
+		}
 	}
 
 	drawWeather(response) {
@@ -136,7 +149,19 @@ class WeatherApp {
 		this.weatherWrapper.querySelector('.weather-wrapper-icon').innerHTML = `
 			<i class="wi wi-owm${timeOfDay}-${response.weather[0].id}" alt="${response.weather[0].description}"></i>
 		`;
-	};
+	}
+
+	clearHistory() {
+		this.searchHistory.length = 0;
+		this.searchList.innerHTML = "";
+		localStorage.searchHistory = "[]";
+	}
+
+	clearFavourites() {
+		this.favouriteCities.length = 0;
+		this.favouriteList.innerHTML = "";
+		localStorage.favouriteCities = "[]";
+	}
 
 }
 

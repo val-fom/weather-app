@@ -5,7 +5,9 @@ class WeatherApp {
 		this.key = '40c8d4e755a53b1d45a970fc3769eeeb'; // secret key)
 		this.apiURL = 'https://api.openweathermap.org/data/2.5/weather';
 
-		this.units = 'metric'; // default
+		this.units = (() => {
+					return (localStorage.units) ? localStorage.units : 'metric'; //default
+				})();
 
 		this.city = null;
 		this.response = null;
@@ -17,6 +19,7 @@ class WeatherApp {
 		this.clearHistoryButton = document.querySelector('#clear-history');
 		this.clearFavouritesButton = document.querySelector('#clear-favourites');
 		this.addFavouriteCityButton = document.querySelector('#add-button');
+		this.swapUnitsButton = document.querySelector('#swap-units-button');
 
 		this.searchHistory = [];
 		this.favouriteCities = [];
@@ -77,6 +80,10 @@ class WeatherApp {
 		this.addFavouriteCityButton.onclick = () => {
 			this.addCityToFavouriteCities(this.city);
 			this.populateFavouriteList();
+		};
+		this.swapUnitsButton.onclick = () => {
+			this.swapUnits();
+			this.getWeather();
 		};
 	}
 
@@ -163,6 +170,14 @@ class WeatherApp {
 		localStorage.favouriteCities = "[]";
 	}
 
+	swapUnits() {
+		if (this.units === 'metric') {
+			this.units = 'imperial';
+		} else {
+			this.units = 'metric';
+		}
+		localStorage.units = this.units;
+	}
 }
 
 let weatherApp = new WeatherApp();

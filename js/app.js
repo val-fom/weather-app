@@ -112,6 +112,7 @@ class WeatherApp {
 			self.updateUrl(self.city);
 			self.populateSearchList();
 			self.drawWeather(self.response);
+			self.toggleUnits();
 		};
 		xhr.send();
 		console.log(this);
@@ -177,6 +178,17 @@ class WeatherApp {
 			this.units = 'metric';
 		}
 		localStorage.units = this.units;
+	}
+
+	toggleUnits() {
+		let unitsSymbols = this.swapUnitsButton.querySelectorAll('span');
+		if (this.units === 'metric') {
+			unitsSymbols[0].style.color = '#222';
+			unitsSymbols[1].style.color = '#999';
+		} else {
+			unitsSymbols[1].style.color = '#222';
+			unitsSymbols[0].style.color = '#999';
+		}
 	}
 }
 

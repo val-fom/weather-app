@@ -149,14 +149,15 @@ class WeatherApp {
 	}
 
 	drawWeather(response) {
+		let windSpeedUnit = ( () => { return (this.units === 'metric') ? 'm/s' : 'mi/h' ;})();
 		this.weatherWrapper.querySelector('.weather-wrapper-city').innerHTML = `${response.name}`;
 		this.weatherWrapper.querySelector('.weather-wrapper-temp').innerHTML = `${response.main.temp.toFixed(1)}&deg;`;
 		this.weatherWrapper.querySelector('.weather-wrapper-list').innerHTML = `
 				<li>temp(max): ${response.main.temp_max}&deg;</li>
 				<li>temp(min): ${response.main.temp_min}&deg;</li>
-				<li>pressure: ${Math.round(response.main.pressure)}hPa</li>
+				<li>wind: <span class="wind-direction"></span>${response.wind.speed.toFixed(1)} ${windSpeedUnit}</li>
 				<li>humidity: ${response.main.humidity}\%</li>
-				<li>wind: <span class="wind-direction"></span>${response.wind.speed}m/s</li>
+				<li>pressure: ${Math.round(response.main.pressure)} hPa</li>
 		`;
 		let timeOfDay = '';
 		if (response.weather[0].icon.endsWith('n')) timeOfDay = '-night';

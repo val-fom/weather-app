@@ -161,7 +161,7 @@ class WeatherApp {
 		this.weatherWrapper.querySelector('.weather-wrapper-list').innerHTML = `
 				<li>temp(max): ${response.main.temp_max}&deg;</li>
 				<li>temp(min): ${response.main.temp_min}&deg;</li>
-				<li>wind: <span class="wind-direction"></span>${response.wind.speed.toFixed(1)} ${windSpeedUnit}</li>
+				<li>wind: <span class="wi wi-wind towards-${response.wind.deg.toFixed(0)}-deg"></span>${response.wind.speed.toFixed(1)} ${windSpeedUnit}</li>
 				<li>humidity: ${response.main.humidity}\%</li>
 				<li>pressure: ${Math.round(response.main.pressure)} hPa</li>
 		`;

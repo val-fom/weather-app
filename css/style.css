@@ -89,33 +89,44 @@ menu {
 	margin: auto;
 	padding: 0;
 	display: flex;
+	background-color: white;
+	border: 1px solid #222;
+	border-bottom: none;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	box-sizing: border-box;
 }
 
 ul#favourite-list {
 	height: 1.5rem;
+	width: 100%;
 	margin: 0;
 	padding: 0;
 	list-style: none;
 	display: flex;
+	align-items: stretch; /**/
 	overflow: hidden;
 	position: relative;
 }
 
 #favourite-list li {
 	font-size: 0.8rem;
-	margin: 0.3rem;
+	line-height: 1.5rem;
 	white-space: nowrap;
+	flex-grow: 1;
+	border-right: 1px solid #333;
 }
 
-#favourite-list a {
-	padding: 0.3rem;
+#favourite-list li:last-child {
+	border-right: none;
 }
 
 .weather-wrapper {
 	min-height: 170px;
 	border: 1px solid #333;
 	font-size: 16px;
-	border-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
 	box-shadow: 0px 0px 10px 0px #ccc;
 	display: flex;
 	flex-wrap: wrap;

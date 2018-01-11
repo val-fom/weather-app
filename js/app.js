@@ -137,6 +137,7 @@ class WeatherApp {
 	}
 
 	populateFavouriteList() {
+		if (this.favouriteCities.length === 0) return;
 		// clear list
 		this.favouriteList.innerHTML = '';
 		// add cities from favouriteCities
@@ -174,7 +175,7 @@ class WeatherApp {
 
 	clearFavourites() {
 		this.favouriteCities.length = 0;
-		this.favouriteList.innerHTML = "";
+		this.favouriteList.innerHTML = "<li>click + to add the city to your favorites</li>";
 		localStorage.favouriteCities = "[]";
 	}
 

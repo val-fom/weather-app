@@ -50,6 +50,10 @@ class WeatherApp {
 	addCityToFavouriteCities(city) {
 		let favouriteCities = this.favouriteCities;
 		if (favouriteCities.includes(city)) return;
+		if (favouriteCities.length === 4) {
+			alert('Too many cities');
+			return;
+		}
 		favouriteCities.push(city);
 		localStorage.favouriteCities = JSON.stringify(favouriteCities);
 	}
@@ -143,8 +147,9 @@ class WeatherApp {
 		// add cities from favouriteCities
 		for (var i = this.favouriteCities.length - 1; i >= 0; i--) {
 			let cityName = this.favouriteCities[i];
-			let cityLi = document.createElement( 'li' );
-			cityLi.innerHTML = `<a href="?q=${cityName}">${cityName}</a>`;
+			let cityLi = document.createElement( 'a' );
+			cityLi.innerHTML = `${cityName}`;
+			cityLi.href = `?q=${cityName}`;
 			this.favouriteList.appendChild( cityLi );
 		}
 	}
@@ -175,7 +180,7 @@ class WeatherApp {
 
 	clearFavourites() {
 		this.favouriteCities.length = 0;
-		this.favouriteList.innerHTML = "<li>click + to add the city to your favorites</li>";
+		this.favouriteList.innerHTML = "<span>click + to add the city to your favorites</span>";
 		localStorage.favouriteCities = "[]";
 	}
 

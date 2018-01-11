@@ -165,11 +165,16 @@ class WeatherApp {
 				<li>humidity: ${response.main.humidity}\%</li>
 				<li>pressure: ${Math.round(response.main.pressure)} hPa</li>
 		`;
-		let timeOfDay = '';
-		if (response.weather[0].icon.endsWith('n')) timeOfDay = '-night';
-		this.weatherWrapper.querySelector('.weather-wrapper-icon').innerHTML = `
-			<i class="wi wi-owm${timeOfDay}-${response.weather[0].id}" alt="${response.weather[0].description}"></i>
-		`;
+
+		this.weatherWrapper.querySelector('.weather-wrapper-icon').innerHTML = '';
+		for (var i = response.weather.length - 1; i >= 0; i--) {
+			let timeOfDay = ''; // to set -day or -night icon type
+			if (response.weather[i].icon.endsWith('n')) timeOfDay = '-night';
+			let weatherIcon = document.createElement('i');
+			weatherIcon.className = `wi wi-owm${timeOfDay}-${response.weather[i].id}`;
+			weatherIcon.title = `${response.weather[i].description}`;
+			this.weatherWrapper.querySelector('.weather-wrapper-icon').appendChild(weatherIcon);
+		}
 	}
 
 	clearHistory() {

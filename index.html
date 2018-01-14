@@ -21,21 +21,21 @@
 		<div id="favourite-list"><span>click + to add the city to your favorites</span></div>
 	</menu>
 	<section>
-		<div class="weather-wrapper">
+		<div class="forecast-wrapper">
 			<a id="add-button">+</a>
-			<a id="swap-units-button">
-				<span>C&deg;</span>/<span>F&deg;</span>
-			</a>
-			<h2 class="weather-wrapper-city"></h2>
-			<div class="weather-wrapper-icon"></div>
-			<ul class="weather-wrapper-list">
-				<li>temp(max):</li>
-				<li>temp(min):</li>
-				<li>wind:</li>
-				<li>humidity:</li>
-				<li>pressure:</li>
-			</ul>
-			<div class="weather-wrapper-temp"></div>
+			<a id="swap-units-button"><span>C&deg;</span>/<span>F&deg;</span></a>
+			<div class="current-weather-wrapper">
+				<h2 class="current-weather-city"></h2>
+				<div class="current-weather-icon"></div>
+				<div class="current-weather-temp"></div>
+			</div>
+			<div class="forecast-list">
+				<div class="forecast-list-three-hour">
+					<div class="time">time</div>
+					<div class="icon">icon(s)</div>
+					<div class="temp">temp:</div>
+				</div>
+			</div>
 		</div>
 	</section>
 	<footer>

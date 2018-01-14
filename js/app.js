@@ -38,6 +38,10 @@ class WeatherApp {
 	// Search History
 	addCityToSearchHistory(city) {
 		let searchHistory = this.searchHistory;
+		let index = searchHistory.indexOf(city);
+		if (index >= 0) {
+			searchHistory.splice(index, 1);
+		}
 		if (searchHistory.includes(city)) return;
 		searchHistory.push(city);
 		localStorage.searchHistory = JSON.stringify(searchHistory);

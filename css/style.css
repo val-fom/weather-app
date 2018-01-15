@@ -133,7 +133,7 @@ menu {
 }
 
 .forecast-wrapper {
-	min-height: 170px;
+	/*min-height: 170px;*/
 	border: 1px solid #333;
 	font-size: 16px;
 	border-bottom-left-radius: 6px;
@@ -182,7 +182,7 @@ menu {
 .current-weather-wrapper {
 	width: 100%;
 	display: flex;
-	border-bottom: 1px solid #333;
+	/*border-bottom: 1px solid #333;*/
 }
 
 .current-weather-city {
@@ -212,20 +212,35 @@ menu {
 
 .forecast-list {
 	width: 100%;
-	height: 6rem;
+	height: 5rem;
 	box-sizing: border-box;
 	list-style: none;
-	padding: 0.4rem;
+	/*padding: 0.4rem;*/
 	margin: 0;
 	text-align: left;
 	font-size: 0.9rem;
 	display: flex;
 	flex-wrap: wrap;
+	max-height: 0;
+	/*opacity: 0;*/
+	overflow: hidden;
+	transition: max-height 0.4s ease 0s;
+}
+
+.show-forecast {
+	max-height: 100px;
+	/*opacity: 1;*/
 }
 
 .forecast-list-three-hour {
 	text-align: center;
 	flex-grow: 1;
+	/*max-height: inherit;*/
+}
+
+.forecast-list-three-hour div {
+	/*max-height: inherit;*/
+	/*overflow: hidden;*/
 }
 
 /* #clear-history and c#lear-favourites buttons*/

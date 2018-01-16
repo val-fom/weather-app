@@ -96,7 +96,11 @@ class WeatherApp {
 			this.getWeather();
 		};
 
-		this.getForecast();
+		let self = this;
+		this.forecastWrapper.onclick = function() { 
+			if (!self.responseForecast) self.getForecast();
+			this.querySelector('.forecast-list').classList.toggle('show-forecast');
+		};
 	}
 
 	updateUrl() {
@@ -220,7 +224,7 @@ class WeatherApp {
 			threeHourForecast.innerHTML = `
 				<div class="time">${hours}</div>
 				<div class="icon"></div>
-				<div class="temp-max">${response.list[i].main.temp.toFixed(0)}</div>
+				<div class="temp">${response.list[i].main.temp.toFixed(0)}</div>
 			`;
 			this.drawWeathericons(response.list[i].weather, threeHourForecast.querySelector('.icon'));
 			forecastList.appendChild(threeHourForecast);

@@ -94,12 +94,13 @@ class WeatherApp {
 		this.swapUnitsButton.onclick = () => {
 			this.swapUnits();
 			this.getWeather();
+			this.getForecast();
 		};
 
-		let self = this;
-		this.forecastWrapper.onclick = function() { 
-			if (!self.responseForecast) self.getForecast();
-			this.querySelector('.forecast-list').classList.toggle('show-forecast');
+		let currentWeatherWrapper = this.forecastWrapper.querySelector('.current-weather-wrapper');
+		currentWeatherWrapper.onclick = () => { 
+			if (!self.responseForecast) this.getForecast();
+			this.forecastWrapper.querySelector('.forecast-list').classList.toggle('show-forecast');
 		};
 	}
 
@@ -253,13 +254,10 @@ class WeatherApp {
 	}
 
 	toggleUnits() {
-		let unitsSymbols = this.swapUnitsButton.querySelectorAll('span');
 		if (this.units === 'metric') {
-			unitsSymbols[0].style.color = '#222';
-			unitsSymbols[1].style.color = '#999';
+			this.swapUnitsButton.innerHTML = '&deg;C';
 		} else {
-			unitsSymbols[1].style.color = '#222';
-			unitsSymbols[0].style.color = '#999';
+			this.swapUnitsButton.innerHTML = '&deg;F';
 		}
 	}
 }

@@ -115,8 +115,11 @@ class WeatherApp {
 
 	getWeather() {
 		let self = this;
+		let fullUrl = this.apiURL + 'weather?q=' + this.city +
+				'&APPID=' + this.key + '&units=' + this.units + this.count;
+
 		let xhr = new XMLHttpRequest();
-		xhr.open('GET', `${this.apiURL}weather?q=${this.city}&APPID=${this.key}&units=${this.units}${this.count}`);
+		xhr.open('GET', fullUrl);
 
 		xhr.onreadystatechange = function() {
 			if (this.readyState != 4) return;

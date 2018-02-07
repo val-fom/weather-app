@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack",
     "production": "NODE_ENV=production webpack",
-    "watch": "npm run dev -- --watch"
+    "watch": "webpack-dev-server"
   },
   "babel": {
     "presets": [
@@ -38,6 +38,7 @@
     "weather-icons": "^1.3.2",
     "weather-icons-sass": "^2.0.10",
     "weathericons": "^2.1.0",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
   }
 }

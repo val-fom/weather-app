@@ -10,8 +10,8 @@ module.exports = {
 
 	entry: {
 		app: [
-		'./src/main.js',
-		'./src/main.scss'
+		'./src/app.js',
+		'./src/app.scss'
 		]
 	},
 
@@ -70,12 +70,12 @@ module.exports = {
 		template: 'src/index.html'
 	}),
 
-	new CopyWebpackPlugin([
-	{
-		from: 'assets',
-		to: ''
-	}
-	])
+	// new CopyWebpackPlugin([
+	// {
+	// 	from: 'assets',
+	// 	to: ''
+	// }
+	// ])
 
 	]
 };

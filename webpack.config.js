@@ -8,7 +8,7 @@ var inProduction = (process.env.NODE_ENV === 'production');
 module.exports = {
 	entry: {
 		app: [
-			'./src/app.js',
+			'./src/main.js',
 			'./src/app.scss'
 		]
 	},

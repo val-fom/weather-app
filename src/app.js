@@ -2,22 +2,24 @@
 
 class WeatherApp {
 	constructor() {
-		this.key = '40c8d4e755a53b1d45a970fc3769eeeb'; // secret key)
-		this.count = '&cnt=' + 8;
-		this.apiURL = 'https://api.openweathermap.org/data/2.5/';
+		this.key = '40c8d4e755a53b1d45a970fc3769eeeb'; // secret key) //
+		this.count = '&cnt=' + 8; //
+		this.apiURL = 'https://api.openweathermap.org/data/2.5/'; ///
 
 		this.units = (() => {
-					return (localStorage.units) ? localStorage.units : 'metric'; //default
-				})();
+			return (localStorage.units) ? localStorage.units : 'metric'; //default
+		})(); //+-
 
-		this.city = null;
-		this.response = null;
-		this.responseForecast = null;
+		this.city = null; //
+		this.response = null; //
+		this.responseForecast = null; //
 
 		this.searchForm = document.querySelector('#search-form');
 		this.searchList = document.querySelector('#search-list');
 		this.favouriteList = document.querySelector('#favourite-list');
+
 		this.forecastWrapper = document.querySelector('.forecast-wrapper');
+
 		this.clearHistoryButton = document.querySelector('#clear-history');
 		this.clearFavouritesButton = document.querySelector('#clear-favourites');
 		this.addFavouriteCityButton = document.querySelector('#add-button');
@@ -98,14 +100,14 @@ class WeatherApp {
 		};
 
 		let currentWeatherWrapper = this.forecastWrapper.querySelector('.current-weather-wrapper');
-		currentWeatherWrapper.onclick = () => { 
+		currentWeatherWrapper.onclick = () => {
 			if (!self.responseForecast) this.getForecast();
 			this.forecastWrapper.querySelector('.forecast-list').classList.toggle('show-forecast');
 		};
 	}
 
 	updateUrl() {
-		window.history.pushState( null, null, `?q=${this.city}`);
+		window.history.pushState(null, null, `?q=${this.city}`);
 	}
 
 	addCityTitle() {
@@ -116,21 +118,21 @@ class WeatherApp {
 	getWeather() {
 		let self = this;
 		let fullUrl = this.apiURL + 'weather?q=' + this.city +
-				'&APPID=' + this.key + '&units=' + this.units + this.count;
+			'&APPID=' + this.key + '&units=' + this.units + this.count; //
 
-		let xhr = new XMLHttpRequest();
-		xhr.open('GET', fullUrl);
+		let xhr = new XMLHttpRequest(); //
+		xhr.open('GET', fullUrl); //
 
 		xhr.onreadystatechange = function() {
 			if (this.readyState != 4) return;
 
 			if (this.status != 200) {
-				alert( 'error: ' + (this.status ? this.statusText : 'request failed') );
+				alert('error: ' + (this.status ? this.statusText : 'request failed'));
 				return;
 			}
 
-			let response = this.responseText;
-			self.response = JSON.parse(response);
+			let response = this.responseText; //
+			self.response = JSON.parse(response); //+-
 
 			self.city = self.response.name;
 			self.addCityToSearchHistory(self.city);
@@ -153,7 +155,7 @@ class WeatherApp {
 			if (this.readyState != 4) return;
 
 			if (this.status != 200) {
-				alert( 'error: ' + (this.status ? this.statusText : 'request failed') );
+				alert('error: ' + (this.status ? this.statusText : 'request failed'));
 				return;
 			}
 
@@ -172,9 +174,9 @@ class WeatherApp {
 		// add cities from searchHistory
 		for (var i = this.searchHistory.length - 1; i >= 0; i--) {
 			let cityName = this.searchHistory[i];
-			let cityLi = document.createElement( 'li' );
+			let cityLi = document.createElement('li');
 			cityLi.innerHTML = `<a href="?q=${cityName}">${cityName}</a>`;
-			this.searchList.appendChild( cityLi );
+			this.searchList.appendChild(cityLi);
 		}
 	}
 
@@ -185,10 +187,10 @@ class WeatherApp {
 		// add cities from favouriteCities
 		for (var i = this.favouriteCities.length - 1; i >= 0; i--) {
 			let cityName = this.favouriteCities[i];
-			let cityLi = document.createElement( 'a' );
+			let cityLi = document.createElement('a');
 			cityLi.innerHTML = `${cityName}`;
 			cityLi.href = `?q=${cityName}`;
-			this.favouriteList.appendChild( cityLi );
+			this.favouriteList.appendChild(cityLi);
 		}
 	}
 
@@ -196,8 +198,8 @@ class WeatherApp {
 		for (var i = source.length - 1; i >= 0; i--) {
 			// source[i] /// weather
 			let timeOfDay = ''; // to set -day or -night icon type
-			if ( source[i].icon.endsWith('n') ) timeOfDay = '-night';
-			if ( source[i].icon.endsWith('d') ) timeOfDay = '-day';
+			if (source[i].icon.endsWith('n')) timeOfDay = '-night';
+			if (source[i].icon.endsWith('d')) timeOfDay = '-day';
 			let weatherIcon = document.createElement('i');
 			weatherIcon.className = `wi wi-owm${timeOfDay}-${source[i].id}`;
 			weatherIcon.title = `${source[i].main}: ${source[i].description}`;
@@ -216,7 +218,7 @@ class WeatherApp {
 	}
 
 	drawForecast(response) {
-// 		let windSpeedUnit = ( () => { return (this.units === 'metric') ? 'm/s' : 'mi/h' ;})();
+		// 		let windSpeedUnit = ( () => { return (this.units === 'metric') ? 'm/s' : 'mi/h' ;})();
 		let forecastList = this.forecastWrapper.querySelector('.forecast-list');
 		forecastList.innerHTML = '';
 		for (var i = 0; i < response.list.length; i++) {

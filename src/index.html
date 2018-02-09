@@ -12,10 +12,10 @@
 			<input type="text" name="cityName"
 				placeholder="type city name and press enter">
 		</form>
-		<ul id="search-list"></ul>
+		<ul id="history"></ul>
 	</header>
 	<menu>
-		<div id="favourite-list">
+		<div id="favourites">
 			<span>click + to add the city to your favorites</span>
 		</div>
 	</menu>
@@ -23,12 +23,12 @@
 		<div class="forecast-wrapper">
 			<a id="add-button">+</a>
 			<a id="swap-units-button"></a>
-			<div class="current-weather-wrapper">
+			<div class="current-weather-wrapper" id="weather">
 				<h2 class="current-weather-city"></h2>
 				<div class="current-weather-icon"></div>
 				<div class="current-weather-temp"></div>
 			</div>
-			<div class="forecast-list">
+			<div class="forecast-list" id="forecast">
 				<div class="forecast-list-three-hour">
 					<div class="time"></div>
 					<div class="icon"></div>

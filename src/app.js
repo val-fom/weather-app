@@ -15,7 +15,7 @@ class WeatherApp {
 		this.responseForecast = null; //
 
 		this.searchForm = document.querySelector('#search-form');
-		this.searchList = document.querySelector('#search-list');
+		this.searchList = document.querySelector('#history');
 		this.favouriteList = document.querySelector('#favourite-list');
 
 		this.forecastWrapper = document.querySelector('.forecast-wrapper');

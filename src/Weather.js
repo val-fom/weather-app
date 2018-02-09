@@ -1,4 +1,4 @@
-import { get } from './api'
+import { get } from './service/api.service.js'
 
 //
 import { WEATHER_KYIV } from '../sample/weather_kyiv.js'

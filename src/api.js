@@ -1,4 +1,4 @@
-const KEY = '40c8d4e755a53b1d45a970fc3769eeeb';
+// const KEY = '40c8d4e755a53b1d45a970fc3769eeeb';
 const BASE_API_URL = 'https://api.openweathermap.org/data/2.5/';
 const count = '&cnt=' + 8; // 24/3 hour forecast
 

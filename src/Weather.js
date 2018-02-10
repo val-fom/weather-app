@@ -1,4 +1,4 @@
-import { get } from './service/api.service.js'
+import { get } from './service/api.js'
 
 export class Weather {
 	constructor(city) {

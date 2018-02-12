@@ -225,7 +225,7 @@ menu {
 	font-size: 0.9rem;
 	display: flex;
 	flex-wrap: wrap;
-	max-height: 0;
+	// max-height: 0; ///////////
 	/*opacity: 0;*/
 	overflow: hidden;
 	transition: max-height 0.4s ease 0s;

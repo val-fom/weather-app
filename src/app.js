@@ -2,17 +2,17 @@
 
 class WeatherApp {
 	constructor() {
-		this.key = '40c8d4e755a53b1d45a970fc3769eeeb'; // secret key) //
-		this.count = '&cnt=' + 8; //
-		this.apiURL = 'https://api.openweathermap.org/data/2.5/'; ///
+		// this.key = '40c8d4e755a53b1d45a970fc3769eeeb'; // secret key) //
+		// this.count = '&cnt=' + 8; //
+		// this.apiURL = 'https://api.openweathermap.org/data/2.5/'; ///
 
 		this.units = (() => {
 			return (localStorage.units) ? localStorage.units : 'metric'; //default
 		})(); //+-
 
-		this.city = null; //
-		this.response = null; //
-		this.responseForecast = null; //
+		// this.city = null; //
+		// this.response = null; //
+		// this.responseForecast = null; //
 
 		this.searchForm = document.querySelector('#search-form');
 		this.searchList = document.querySelector('#history');
@@ -194,28 +194,28 @@ class WeatherApp {
 		}
 	}
 
-	drawWeathericons(source, sink) {
-		for (var i = source.length - 1; i >= 0; i--) {
-			// source[i] /// weather
-			let timeOfDay = ''; // to set -day or -night icon type
-			if (source[i].icon.endsWith('n')) timeOfDay = '-night';
-			if (source[i].icon.endsWith('d')) timeOfDay = '-day';
-			let weatherIcon = document.createElement('i');
-			weatherIcon.className = `wi wi-owm${timeOfDay}-${source[i].id}`;
-			weatherIcon.title = `${source[i].main}: ${source[i].description}`;
-			sink.appendChild(weatherIcon);
-		}
-	}
+	// drawWeathericons(source, sink) {
+	// 	for (var i = source.length - 1; i >= 0; i--) {
+	// 		// source[i] /// weather
+	// 		let timeOfDay = ''; // to set -day or -night icon type
+	// 		if (source[i].icon.endsWith('n')) timeOfDay = '-night';
+	// 		if (source[i].icon.endsWith('d')) timeOfDay = '-day';
+	// 		let weatherIcon = document.createElement('i');
+	// 		weatherIcon.className = `wi wi-owm${timeOfDay}-${source[i].id}`;
+	// 		weatherIcon.title = `${source[i].main}: ${source[i].description}`;
+	// 		sink.appendChild(weatherIcon);
+	// 	}
+	// }
 
-	drawWeather(response) {
-		// current-weather
-		this.forecastWrapper.querySelector('.current-weather-city').innerHTML = `${response.name}`;
-		this.forecastWrapper.querySelector('.current-weather-temp').innerHTML = `${response.main.temp.toFixed(0)}&deg;`;
-		this.forecastWrapper.querySelector('.current-weather-icon').innerHTML = '';
+	// drawWeather(response) {
+	// 	// current-weather
+	// 	this.forecastWrapper.querySelector('.current-weather-city').innerHTML = `${response.name}`;
+	// 	this.forecastWrapper.querySelector('.current-weather-temp').innerHTML = `${response.main.temp.toFixed(0)}&deg;`;
+	// 	this.forecastWrapper.querySelector('.current-weather-icon').innerHTML = '';
 
-		let self = this;
-		this.drawWeathericons(response.weather, self.forecastWrapper.querySelector('.current-weather-icon'));
-	}
+	// 	let self = this;
+	// 	this.drawWeathericons(response.weather, self.forecastWrapper.querySelector('.current-weather-icon'));
+	// }
 
 	drawForecast(response) {
 		// 		let windSpeedUnit = ( () => { return (this.units === 'metric') ? 'm/s' : 'mi/h' ;})();

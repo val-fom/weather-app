@@ -30,12 +30,12 @@ class WeatherApp {
 
 	}
 
-	getCityFromUrl() {
-		let url = new URL(window.location.href);
-		if (url.search.startsWith('?q=')) {
-			this.city = url.search.slice(3);
-		}
-	}
+	// getCityFromUrl() {
+	// 	let url = new URL(window.location.href);
+	// 	if (url.search.startsWith('?q=')) {
+	// 		this.city = url.search.slice(3);
+	// 	}
+	// }
 
 	// Search History
 	addCityToSearchHistory(city) {
@@ -80,8 +80,8 @@ class WeatherApp {
 	}
 
 	init() {
-		this.getCityFromUrl();
-		if (this.city) this.getWeather();
+		// this.getCityFromUrl();
+		// if (this.city) this.getWeather();
 		this.getSearchHistory();
 		this.getFavouriteCities();
 		this.addFormSubmitHandler(this.searchForm, this.getWeather);
@@ -106,40 +106,40 @@ class WeatherApp {
 		};
 	}
 
-	updateUrl() {
-		window.history.pushState(null, null, `?q=${this.city}`);
-	}
+	// updateUrl() {
+	// 	window.history.pushState(null, null, `?q=${this.city}`);
+	// }
 
-	addCityTitle() {
-		let newTitle = `Weather App - ${this.city}`;
-		if (document.title !== newTitle) document.title = newTitle;
-	}
+	// addCityTitle() {
+	// 	let newTitle = `Weather App - ${this.city}`;
+	// 	if (document.title !== newTitle) document.title = newTitle;
+	// }
 
 	getWeather() {
-		let self = this;
-		let fullUrl = this.apiURL + 'weather?q=' + this.city +
-			'&APPID=' + this.key + '&units=' + this.units + this.count; //
+		// let self = this;
+		// let fullUrl = this.apiURL + 'weather?q=' + this.city +
+		// 	'&APPID=' + this.key + '&units=' + this.units + this.count; //
 
-		let xhr = new XMLHttpRequest(); //
-		xhr.open('GET', fullUrl); //
+		// let xhr = new XMLHttpRequest(); //
+		// xhr.open('GET', fullUrl); //
 
-		xhr.onreadystatechange = function() {
-			if (this.readyState != 4) return;
+		// xhr.onreadystatechange = function() {
+		// 	if (this.readyState != 4) return;
 
-			if (this.status != 200) {
-				alert('error: ' + (this.status ? this.statusText : 'request failed'));
-				return;
-			}
+		// 	if (this.status != 200) {
+		// 		alert('error: ' + (this.status ? this.statusText : 'request failed'));
+		// 		return;
+		// 	}
 
-			let response = this.responseText; //
-			self.response = JSON.parse(response); //+-
+		// 	let response = this.responseText; //
+		// 	self.response = JSON.parse(response); //+-
 
-			self.city = self.response.name;
+		// 	self.city = self.response.name;
 			self.addCityToSearchHistory(self.city);
-			self.updateUrl();
-			self.addCityTitle();
+			// self.updateUrl();
+			// self.addCityTitle();
 			self.populateSearchList();
-			self.drawWeather(self.response);
+			// self.drawWeather(self.response);
 			self.toggleUnits();
 		};
 		xhr.send();
@@ -217,25 +217,25 @@ class WeatherApp {
 	// 	this.drawWeathericons(response.weather, self.forecastWrapper.querySelector('.current-weather-icon'));
 	// }
 
-	drawForecast(response) {
-		// 		let windSpeedUnit = ( () => { return (this.units === 'metric') ? 'm/s' : 'mi/h' ;})();
-		let forecastList = this.forecastWrapper.querySelector('.forecast-list');
-		forecastList.innerHTML = '';
-		for (var i = 0; i < response.list.length; i++) {
-			let date = new Date(response.list[i].dt * 1000);
-			let hours = date.getHours();
-			if (hours < 10) hours = '0' + hours;
-			let threeHourForecast = document.createElement('div');
-			threeHourForecast.className = 'forecast-list-three-hour';
-			threeHourForecast.innerHTML = `
-				<div class="time">${hours}</div>
-				<div class="icon"></div>
-				<div class="temp">${response.list[i].main.temp.toFixed(0)}</div>
-			`;
-			this.drawWeathericons(response.list[i].weather, threeHourForecast.querySelector('.icon'));
-			forecastList.appendChild(threeHourForecast);
-		}
-	}
+	// drawForecast(response) {
+	// 	// 		let windSpeedUnit = ( () => { return (this.units === 'metric') ? 'm/s' : 'mi/h' ;})();
+	// 	let forecastList = this.forecastWrapper.querySelector('.forecast-list');
+	// 	forecastList.innerHTML = '';
+	// 	for (var i = 0; i < response.list.length; i++) {
+	// 		let date = new Date(response.list[i].dt * 1000);
+	// 		let hours = date.getHours();
+	// 		if (hours < 10) hours = '0' + hours;
+	// 		let threeHourForecast = document.createElement('div');
+	// 		threeHourForecast.className = 'forecast-list-three-hour';
+	// 		threeHourForecast.innerHTML = `
+	// 			<div class="time">${hours}</div>
+	// 			<div class="icon"></div>
+	// 			<div class="temp">${response.list[i].main.temp.toFixed(0)}</div>
+	// 		`;
+	// 		this.drawWeathericons(response.list[i].weather, threeHourForecast.querySelector('.icon'));
+	// 		forecastList.appendChild(threeHourForecast);
+	// 	}
+	// }
 
 	clearHistory() {
 		this.searchHistory.length = 0;

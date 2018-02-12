@@ -10,6 +10,17 @@ export class Weather {
 		this.responseForecast = null;
 	}
 
+	init() {
+		this._getCityFromUrl();
+		return this.getWeather('weather').then(() => {
+			this._updateUrl();
+			this._setCityTitle()
+			console.log(this);
+		}).catch(error => {
+			console.error(error);
+		});
+	}
+
 	getWeather(apiType) {
 		let conf = this.config;
 		return get(apiType, conf.units, conf.city)
@@ -23,6 +34,22 @@ export class Weather {
 			.catch(error => {
 				console.error(error);
 			});
+	}
+
+	_getCityFromUrl() {
+		let url = new URL(window.location.href);
+		if (url.search.startsWith('?q=')) {
+			this.config.city = url.search.slice(3);
+		}
+	}
+
+	_updateUrl() {
+		window.history.pushState(null, null, `?q=${this.config.city}`);
+	}
+
+	_setCityTitle() {
+		let newTitle = `Weather App - ${this.config.city}`;
+		if (document.title !== newTitle) document.title = newTitle;
 	}
 
 }

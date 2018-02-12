@@ -7,9 +7,10 @@ export const WEATHER_APP = new Weather();
 const weatherComponent = new WeatherComponent();
 const forecastComponent = new ForecastComponent();
 
-WEATHER_APP.getWeather('weather').then(() => {
+WEATHER_APP.init().then(() => {
 	weatherComponent.init();
-})
+});
+
 WEATHER_APP.getWeather('forecast').then(() => {
 	forecastComponent.init();
 })

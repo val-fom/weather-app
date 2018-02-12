@@ -13,7 +13,7 @@ export class Weather {
 
 	getWeather() {
 		let conf = this.config;
-		get(conf.apiType, conf.units, conf.city)
+		return get(conf.apiType, conf.units, conf.city)
 			.then(data => {
 				if (conf.apiType === 'weather') {
 					this.responseWeather = data;
@@ -25,7 +25,5 @@ export class Weather {
 				console.error(error);
 			});
 	}
-
-
 
 }

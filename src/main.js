@@ -1,7 +1,15 @@
-import {Weather} from './weather.js'
+import { Weather } from './weather.js'
+import { WeatherComponent } from './component/weather.component.js'
+import { ForecastComponent } from './component/forecast.component.js'
 
-let weather = new Weather();
+export const WEATHER_APP = new Weather();
 
-weather.getWeather();
+const weatherComponent = new WeatherComponent();
+const forecastComponent = new ForecastComponent();
 
-console.log(weather);
+WEATHER_APP.getWeather('weather').then(() => {
+	weatherComponent.init();
+})
+WEATHER_APP.getWeather('forecast').then(() => {
+	forecastComponent.init();
+})

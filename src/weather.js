@@ -3,21 +3,20 @@ import { get } from './service/api.js'
 export class Weather {
 	constructor(city) {
 		this.config = {
-			apiType: 'weather',
 			units: 'metric', //default
 			city: 'kyiv' //default
 		}
-		this.responseWeather = {};
-		this.responseForecast = {};
+		this.responseWeather = null;
+		this.responseForecast = null;
 	}
 
-	getWeather() {
+	getWeather(apiType) {
 		let conf = this.config;
-		return get(conf.apiType, conf.units, conf.city)
+		return get(apiType, conf.units, conf.city)
 			.then(data => {
-				if (conf.apiType === 'weather') {
+				if (apiType === 'weather') {
 					this.responseWeather = data;
-				} else if (conf.apiType === 'forecast') {
+				} else if (apiType === 'forecast') {
 					this.responseForecast = data;
 				}
 			})

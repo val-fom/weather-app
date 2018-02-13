@@ -1,15 +1,13 @@
 import { Component } from '../component.js'
-import { WEATHER_APP } from '../main.js'
 
 export class WeatherComponent extends Component {
 	constructor() {
 		super()
 	}
 
-	init() {
+	init(response) {
 		console.log("WeatherComponent", "Init");
-		const response = WEATHER_APP.responseWeather;
-		const node = document.querySelector('#weather');
+		const node = document.querySelector('#weather-outlet');
 		node.innerHTML = '';
 		const icons = this._getIcons(response.weather);
 		let html = `

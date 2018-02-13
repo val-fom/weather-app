@@ -8,6 +8,10 @@ export class Weather {
 		}
 		this.responseWeather = null;
 		this.responseForecast = null;
+		this.searchHistory = ["Chop", "New York", "Misto Kyyiv", "Odessa",
+			"Lviv", "Yalta", "San Diego", "Minsk", "Kyiv", "Simferopol"
+		];
+		this.favouriteCities = [];
 	}
 
 	init() {

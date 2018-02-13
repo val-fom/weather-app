@@ -38,21 +38,21 @@ class WeatherApp {
 	// }
 
 	// Search History
-	addCityToSearchHistory(city) {
-		let searchHistory = this.searchHistory;
-		let index = searchHistory.indexOf(city);
-		if (index >= 0) {
-			searchHistory.splice(index, 1);
-		}
-		if (searchHistory.includes(city)) return;
-		searchHistory.push(city);
-		localStorage.searchHistory = JSON.stringify(searchHistory);
-	}
+	// addCityToSearchHistory(city) {
+	// 	let searchHistory = this.searchHistory;
+	// 	let index = searchHistory.indexOf(city);
+	// 	if (index >= 0) {
+	// 		searchHistory.splice(index, 1);
+	// 	}
+	// 	if (searchHistory.includes(city)) return;
+	// 	searchHistory.push(city);
+	// 	localStorage.searchHistory = JSON.stringify(searchHistory);
+	// }
 
-	getSearchHistory() {
-		if (!localStorage.searchHistory) return;
-		this.searchHistory = JSON.parse(localStorage.searchHistory);
-	}
+	// getSearchHistory() {
+	// 	if (!localStorage.searchHistory) return;
+	// 	this.searchHistory = JSON.parse(localStorage.searchHistory);
+	// }
 
 	// Favourite Cities
 	addCityToFavouriteCities(city) {
@@ -168,17 +168,17 @@ class WeatherApp {
 		console.log(this);
 	}
 
-	populateSearchList() {
-		// clear list
-		this.searchList.innerHTML = '';
-		// add cities from searchHistory
-		for (var i = this.searchHistory.length - 1; i >= 0; i--) {
-			let cityName = this.searchHistory[i];
-			let cityLi = document.createElement('li');
-			cityLi.innerHTML = `<a href="?q=${cityName}">${cityName}</a>`;
-			this.searchList.appendChild(cityLi);
-		}
-	}
+	// populateSearchList() {
+	// 	// clear list
+	// 	this.searchList.innerHTML = '';
+	// 	// add cities from searchHistory
+	// 	for (var i = this.searchHistory.length - 1; i >= 0; i--) {
+	// 		let cityName = this.searchHistory[i];
+	// 		let cityLi = document.createElement('li');
+	// 		cityLi.innerHTML = `<a href="?q=${cityName}">${cityName}</a>`;
+	// 		this.searchList.appendChild(cityLi);
+	// 	}
+	// }
 
 	populateFavouriteList() {
 		if (this.favouriteCities.length === 0) return;
@@ -237,11 +237,11 @@ class WeatherApp {
 	// 	}
 	// }
 
-	clearHistory() {
-		this.searchHistory.length = 0;
-		this.searchList.innerHTML = "";
-		localStorage.searchHistory = "[]";
-	}
+	// clearHistory() {
+	// 	this.searchHistory.length = 0;
+	// 	this.searchList.innerHTML = "";
+	// 	localStorage.searchHistory = "[]";
+	// }
 
 	clearFavourites() {
 		this.favouriteCities.length = 0;

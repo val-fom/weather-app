@@ -12,11 +12,7 @@ export class Weather {
 
 	init() {
 		this._getCityFromUrl();
-		return this.getWeather('weather').then(() => {
-			this._updateUrl();
-			this._setCityTitle()
-			console.log(this);
-		}).catch(error => {
+		return this.getWeather('weather').then(() => {}).catch(error => {
 			console.error(error);
 		});
 	}
@@ -30,6 +26,9 @@ export class Weather {
 				} else if (apiType === 'forecast') {
 					this.responseForecast = data;
 				}
+				this._setCityConfig();
+				this._updateUrl();
+				this._setCityTitle();
 			})
 			.catch(error => {
 				console.error(error);
@@ -44,7 +43,13 @@ export class Weather {
 	}
 
 	_updateUrl() {
-		window.history.pushState(null, null, `?q=${this.config.city}`);
+		window.history.pushState(null, null,
+			`?q=${this.config.city}`);
+	}
+
+	_setCityConfig() {
+		this.config.city = this.responseWeather.name +
+			',' + this.responseWeather.sys.country;
 	}
 
 	_setCityTitle() {

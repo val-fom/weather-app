@@ -14,3 +14,17 @@ WEATHER_APP.init().then(() => {
 WEATHER_APP.getWeather('forecast').then(() => {
 	forecastComponent.init();
 })
+
+const form = document.querySelector('#search-form');
+const input = form.querySelector('input');
+form.onsubmit = (e) => {
+	WEATHER_APP.config.city = form.elements.cityName.value;
+	WEATHER_APP.getWeather('weather').then(() => {
+		weatherComponent.init();
+		input.value = WEATHER_APP.config.city;
+	})
+	WEATHER_APP.getWeather('forecast').then(() => {
+		forecastComponent.init();
+	})
+	return false;
+};

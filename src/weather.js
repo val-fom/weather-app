@@ -8,35 +8,35 @@ export class Weather {
 		}
 		this.responseWeather = null;
 		this.responseForecast = null;
-		this.searchHistory = ["Chop", "New York", "Misto Kyyiv", "Odessa",
-			"Lviv", "Yalta", "San Diego", "Minsk", "Kyiv", "Simferopol"
-		];
+		this.searchHistory = [];
 		this.favouriteCities = [];
 	}
 
 	init() {
 		this._getCityFromUrl();
-		return this.getWeather('weather').then(() => {}).catch(error => {
-			console.error(error);
-		});
-	}
-
-	getWeather(apiType) {
-		let conf = this.config;
-		return get(apiType, conf.units, conf.city)
-			.then(data => {
-				if (apiType === 'weather') {
-					this.responseWeather = data;
-				} else if (apiType === 'forecast') {
-					this.responseForecast = data;
-				}
-				this._setCityConfig();
-				this._updateUrl();
-				this._setCityTitle();
+		return this.getWeather('weather')
+			.then(() => {
+				
 			})
 			.catch(error => {
 				console.error(error);
 			});
+	}
+
+	getWeather(apiType, city) {
+		let conf = this.config;
+		if (!city) city = conf.city;
+		return get(apiType, conf.units, city)
+			.then(data => {
+				if (apiType === 'weather') {
+					this.responseWeather = data;
+					this._setCityConfig();
+					this._updateUrl();
+					this._setCityTitle();
+				} else if (apiType === 'forecast') {
+					this.responseForecast = data;
+				}
+			})
 	}
 
 	_getCityFromUrl() {

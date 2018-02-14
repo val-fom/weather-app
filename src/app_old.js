@@ -14,8 +14,8 @@ class WeatherApp {
 		// this.response = null; //
 		// this.responseForecast = null; //
 
-		this.searchForm = document.querySelector('#search-form');
-		this.searchList = document.querySelector('#history');
+		// this.searchForm = document.querySelector('#search-form');
+		// this.searchList = document.querySelector('#history');
 		this.favouriteList = document.querySelector('#favourite-list');
 
 		this.forecastWrapper = document.querySelector('.forecast-wrapper');
@@ -25,8 +25,8 @@ class WeatherApp {
 		this.addFavouriteCityButton = document.querySelector('#add-button');
 		this.swapUnitsButton = document.querySelector('#swap-units-button');
 
-		this.searchHistory = [];
-		this.favouriteCities = [];
+		// this.searchHistory = [];
+		// this.favouriteCities = [];
 
 	}
 
@@ -71,13 +71,13 @@ class WeatherApp {
 		this.favouriteCities = JSON.parse(localStorage.favouriteCities);
 	}
 
-	addFormSubmitHandler(form, handler) {
-		form.onsubmit = () => {
-			this.city = form.elements.cityName.value;
-			handler.call(this);
-			return false;
-		}
-	}
+	// addFormSubmitHandler(form, handler) {
+	// 	form.onsubmit = () => {
+	// 		this.city = form.elements.cityName.value;
+	// 		handler.call(this);
+	// 		return false;
+	// 	}
+	// }
 
 	init() {
 		// this.getCityFromUrl();
@@ -146,27 +146,27 @@ class WeatherApp {
 		console.log(this);
 	}
 
-	getForecast() {
-		let self = this;
-		let xhr = new XMLHttpRequest();
-		xhr.open('GET', `${this.apiURL}forecast?q=${this.city}&APPID=${this.key}&units=${this.units}${this.count}`);
+	// getForecast() {
+	// 	let self = this;
+	// 	let xhr = new XMLHttpRequest();
+	// 	xhr.open('GET', `${this.apiURL}forecast?q=${this.city}&APPID=${this.key}&units=${this.units}${this.count}`);
 
-		xhr.onreadystatechange = function() {
-			if (this.readyState != 4) return;
+	// 	xhr.onreadystatechange = function() {
+	// 		if (this.readyState != 4) return;
 
-			if (this.status != 200) {
-				alert('error: ' + (this.status ? this.statusText : 'request failed'));
-				return;
-			}
+	// 		if (this.status != 200) {
+	// 			alert('error: ' + (this.status ? this.statusText : 'request failed'));
+	// 			return;
+	// 		}
 
-			let response = this.responseText;
-			self.responseForecast = JSON.parse(response);
+	// 		let response = this.responseText;
+	// 		self.responseForecast = JSON.parse(response);
 
-			self.drawForecast(self.responseForecast);
-		};
-		xhr.send();
-		console.log(this);
-	}
+	// 		self.drawForecast(self.responseForecast);
+	// 	};
+	// 	xhr.send();
+	// 	console.log(this);
+	// }
 
 	// populateSearchList() {
 	// 	// clear list

@@ -7,7 +7,7 @@ export class ForecastComponent extends Component {
 	}
 
 	init() {
-		console.log("ForecastComponent", "Init");
+		// console.log("ForecastComponent", "Init");
 		const response = WEATHER_APP.responseForecast;
 		const node = document.querySelector('#forecast-outlet');
 		node.innerHTML = '';

@@ -5,36 +5,48 @@ export class HistoryComponent {
 		this.data = conf.data;
 		this._outlet = conf.outlet;
 		this._template = conf.template;
-		this._key = conf.localStorageKey
+		this._key = conf.localStorageKey;
+		this._clearButton = conf.clearButton;
+
+		this._outlet.onclick = (event) => {
+			WEATHER_APP.getWeather('weather', event.target.innerHTML)
+				.then(() => {
+					weatherComponent.init(WEATHER_APP.responseWeather)
+				})
+		}
+		this._clearButton.onclick = () => this.clear();
 	}
 
-	render() {
+	_render() {
+		this._outlet.innerHTML = '';
 		const node = document.importNode(this._template.content, true);
-		this.data.forEach((item) => {
+		for (var i = this.data.length - 1; i >= 0; i--) {
 			const li = node.cloneNode(true);
 			const a = li.querySelector('a');
-			a.innerHTML = item;
+			a.innerHTML = this.data[i];
 			a.onclick = () => false;
 			this._outlet.appendChild(li);
-		});
+		}
 	}
 
 	add(item) {
 		let index = this.data.indexOf(item);
 		if (index >= 0) this.data.splice(index, 1);
-		if (this.data.includes(item)) return;
 		this.data.push(item);
 		localStorage[this._key] = JSON.stringify(this.data);
+		this._render();
 	}
 
-	// getSearchHistory() {
-	// 	if (!localStorage.searchHistory) return;
-	// 	this.searchHistory = JSON.parse(localStorage.searchHistory);
-	// }
+	get() {
+		if (!localStorage[this._key]) return;
+		this.data = JSON.parse(localStorage[this._key]);
+		this._render();
+	}
 
-	// clearHistory() {
-	// 	this.searchHistory.length = 0;
-	// 	this.searchList.innerHTML = "";
-	// 	localStorage.searchHistory = "[]";
-	// }
+	clear() {
+		this.data.length = 0;
+		localStorage[this._key] = "[]";
+		this._render();
+	}
+
 }

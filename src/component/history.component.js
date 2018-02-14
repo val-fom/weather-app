@@ -1,8 +1,6 @@
-import { WEATHER_APP } from '../main.js'
-
 export class HistoryComponent {
 	constructor(conf) {
-		this.data = conf.data;
+		this.data = [];
 		this.outlet = conf.outlet;
 		this._template = conf.template;
 		this._key = conf.localStorageKey;
@@ -31,7 +29,7 @@ export class HistoryComponent {
 		this._render();
 	}
 
-	get() {
+	init() {
 		if (!localStorage[this._key]) return;
 		this.data = JSON.parse(localStorage[this._key]);
 		this._render();

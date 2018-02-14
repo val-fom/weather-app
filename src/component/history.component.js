@@ -3,29 +3,23 @@ import { WEATHER_APP } from '../main.js'
 export class HistoryComponent {
 	constructor(conf) {
 		this.data = conf.data;
-		this._outlet = conf.outlet;
+		this.outlet = conf.outlet;
 		this._template = conf.template;
 		this._key = conf.localStorageKey;
 		this._clearButton = conf.clearButton;
 
-		this._outlet.onclick = (event) => {
-			WEATHER_APP.getWeather('weather', event.target.innerHTML)
-				.then(() => {
-					weatherComponent.init(WEATHER_APP.responseWeather)
-				})
-		}
 		this._clearButton.onclick = () => this.clear();
 	}
 
 	_render() {
-		this._outlet.innerHTML = '';
+		this.outlet.innerHTML = '';
 		const node = document.importNode(this._template.content, true);
 		for (var i = this.data.length - 1; i >= 0; i--) {
 			const li = node.cloneNode(true);
 			const a = li.querySelector('a');
 			a.innerHTML = this.data[i];
 			a.onclick = () => false;
-			this._outlet.appendChild(li);
+			this.outlet.appendChild(li);
 		}
 	}
 

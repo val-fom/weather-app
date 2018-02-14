@@ -34,7 +34,6 @@ form.onsubmit = () => {
 			weatherComponent.init(WEATHER_APP.responseWeather);
 			input.value = WEATHER_APP.config.city;
 			history.add(WEATHER_APP.config.city);
-			console.log(WEATHER_APP);
 		}, (error) => {
 			input.style.background = '#ffd3d3';
 			input.oninput = () => input.removeAttribute("style");
@@ -46,4 +45,17 @@ form.onsubmit = () => {
 		});
 	return false;
 };
+
+history.outlet.onclick = (event) => {
+	WEATHER_APP.getWeather('weather', event.target.innerHTML)
+		.then(() => {
+			weatherComponent.init(WEATHER_APP.responseWeather)
+		})
+		.then(() => {
+			WEATHER_APP.getWeather('forecast')
+				.then(() => {
+					forecastComponent.init();
+				})
+		})
+}
 /*---------*/

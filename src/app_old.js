@@ -16,13 +16,13 @@ class WeatherApp {
 
 		// this.searchForm = document.querySelector('#search-form');
 		// this.searchList = document.querySelector('#history');
-		this.favouriteList = document.querySelector('#favourite-list');
+		// this.favouriteList = document.querySelector('#favourite-list');
 
-		this.forecastWrapper = document.querySelector('.forecast-wrapper');
+		// this.forecastWrapper = document.querySelector('.forecast-wrapper');
 
-		this.clearHistoryButton = document.querySelector('#clear-history');
-		this.clearFavouritesButton = document.querySelector('#clear-favourites');
-		this.addFavouriteCityButton = document.querySelector('#add-button');
+		// this.clearHistoryButton = document.querySelector('#clear-history');
+		// this.clearFavouritesButton = document.querySelector('#clear-favourites');
+		// this.addFavouriteCityButton = document.querySelector('#add-button');
 		this.swapUnitsButton = document.querySelector('#swap-units-button');
 
 		// this.searchHistory = [];
@@ -55,21 +55,21 @@ class WeatherApp {
 	// }
 
 	// Favourite Cities
-	addCityToFavouriteCities(city) {
-		let favouriteCities = this.favouriteCities;
-		if (favouriteCities.includes(city)) return;
-		if (favouriteCities.length === 4) {
-			alert('Too many cities');
-			return;
-		}
-		favouriteCities.push(city);
-		localStorage.favouriteCities = JSON.stringify(favouriteCities);
-	}
+	// addCityToFavouriteCities(city) {
+	// 	let favouriteCities = this.favouriteCities;
+	// 	if (favouriteCities.includes(city)) return;
+	// 	if (favouriteCities.length === 4) {
+	// 		alert('Too many cities');
+	// 		return;
+	// 	}
+	// 	favouriteCities.push(city);
+	// 	localStorage.favouriteCities = JSON.stringify(favouriteCities);
+	// }
 
-	getFavouriteCities() {
-		if (!localStorage.favouriteCities) return;
-		this.favouriteCities = JSON.parse(localStorage.favouriteCities);
-	}
+	// getFavouriteCities() {
+	// 	if (!localStorage.favouriteCities) return;
+	// 	this.favouriteCities = JSON.parse(localStorage.favouriteCities);
+	// }
 
 	// addFormSubmitHandler(form, handler) {
 	// 	form.onsubmit = () => {
@@ -82,17 +82,17 @@ class WeatherApp {
 	init() {
 		// this.getCityFromUrl();
 		// if (this.city) this.getWeather();
-		this.getSearchHistory();
-		this.getFavouriteCities();
-		this.addFormSubmitHandler(this.searchForm, this.getWeather);
-		this.populateSearchList();
-		this.populateFavouriteList();
-		this.clearHistoryButton.onclick = () => { this.clearHistory() };
-		this.clearFavouritesButton.onclick = () => { this.clearFavourites() };
-		this.addFavouriteCityButton.onclick = () => {
-			this.addCityToFavouriteCities(this.city);
-			this.populateFavouriteList();
-		};
+		// this.getSearchHistory();
+		// this.getFavouriteCities();
+		// this.addFormSubmitHandler(this.searchForm, this.getWeather);
+		// this.populateSearchList();
+		// this.populateFavouriteList();
+		// this.clearHistoryButton.onclick = () => { this.clearHistory() };
+		// this.clearFavouritesButton.onclick = () => { this.clearFavourites() };
+		// this.addFavouriteCityButton.onclick = () => {
+			// this.addCityToFavouriteCities(this.city);
+			// this.populateFavouriteList();
+		// };
 		this.swapUnitsButton.onclick = () => {
 			this.swapUnits();
 			this.getWeather();
@@ -135,15 +135,15 @@ class WeatherApp {
 		// 	self.response = JSON.parse(response); //+-
 
 		// 	self.city = self.response.name;
-			self.addCityToSearchHistory(self.city);
+			// self.addCityToSearchHistory(self.city);
 			// self.updateUrl();
 			// self.addCityTitle();
-			self.populateSearchList();
+			// self.populateSearchList();
 			// self.drawWeather(self.response);
 			self.toggleUnits();
-		};
-		xhr.send();
-		console.log(this);
+		// };
+		// xhr.send();
+		// console.log(this);
 	}
 
 	// getForecast() {
@@ -180,19 +180,19 @@ class WeatherApp {
 	// 	}
 	// }
 
-	populateFavouriteList() {
-		if (this.favouriteCities.length === 0) return;
-		// clear list
-		this.favouriteList.innerHTML = '';
-		// add cities from favouriteCities
-		for (var i = this.favouriteCities.length - 1; i >= 0; i--) {
-			let cityName = this.favouriteCities[i];
-			let cityLi = document.createElement('a');
-			cityLi.innerHTML = `${cityName}`;
-			cityLi.href = `?q=${cityName}`;
-			this.favouriteList.appendChild(cityLi);
-		}
-	}
+	// populateFavouriteList() {
+	// 	if (this.favouriteCities.length === 0) return;
+	// 	// clear list
+	// 	this.favouriteList.innerHTML = '';
+	// 	// add cities from favouriteCities
+	// 	for (var i = this.favouriteCities.length - 1; i >= 0; i--) {
+	// 		let cityName = this.favouriteCities[i];
+	// 		let cityLi = document.createElement('a');
+	// 		cityLi.innerHTML = `${cityName}`;
+	// 		cityLi.href = `?q=${cityName}`;
+	// 		this.favouriteList.appendChild(cityLi);
+	// 	}
+	// }
 
 	// drawWeathericons(source, sink) {
 	// 	for (var i = source.length - 1; i >= 0; i--) {
@@ -243,11 +243,11 @@ class WeatherApp {
 	// 	localStorage.searchHistory = "[]";
 	// }
 
-	clearFavourites() {
-		this.favouriteCities.length = 0;
-		this.favouriteList.innerHTML = "<span>click + to add the city to your favorites</span>";
-		localStorage.favouriteCities = "[]";
-	}
+	// clearFavourites() {
+	// 	this.favouriteCities.length = 0;
+	// 	this.favouriteList.innerHTML = "<span>click + to add the city to your favorites</span>";
+	// 	localStorage.favouriteCities = "[]";
+	// }
 
 	swapUnits() {
 		if (this.units === 'metric') {

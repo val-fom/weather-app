@@ -8,19 +8,12 @@ export class Weather {
 		}
 		this.responseWeather = null;
 		this.responseForecast = null;
-		this.searchHistory = [];
-		this.favouriteCities = [];
 	}
 
-	init() {
+	init(city) {
 		this._getCityFromUrl();
-		return this.getWeather('weather')
-			.then(() => {
-				
-			})
-			.catch(error => {
-				console.error(error);
-			});
+		return this.getWeather('weather', city)
+			.then(() => this.getWeather('forecast'))
 	}
 
 	getWeather(apiType, city) {

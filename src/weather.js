@@ -49,17 +49,4 @@ export class Weather {
 		if (document.title !== newTitle) document.title = newTitle;
 	}
 
-	swapUnits() {
-		if (this.units === 'metric') {
-			this.units = 'imperial';
-		} else {
-			this.units = 'metric';
-		}
-		localStorage.units = this.units;
-	}
-
-	toggleUnits(elem) {
-		elem.textContent = (this.units === 'metric') ? '\xB0C' : '\xB0F';
-	}
-
 }

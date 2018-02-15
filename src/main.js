@@ -2,8 +2,8 @@ import { Weather } from './weather.js'
 import { WeatherComponent } from './component/weather.component.js'
 import { ForecastComponent } from './component/forecast.component.js'
 import { ListComponent } from './component/list.component.js'
+import { UnitsComponent } from './component/units.component.js'
 
-const WEATHER_APP = new Weather();
 
 const weatherComponent = new WeatherComponent({
 	outlet: document.querySelector('#weather-outlet'),
@@ -30,7 +30,14 @@ const favourites = new ListComponent({
 	clearButton: document.querySelector('#clear-favourites'),
 });
 favourites.init();
-
+////////////////////
+const units = new UnitsComponent({
+	localStorageKey: 'units',
+	toggleButton: document.querySelector('#swap-units-button')
+});
+units.init();
+////////////////////
+const WEATHER_APP = new Weather();
 WEATHER_APP.init()
 	.then(() => {
 		weatherComponent.init(WEATHER_APP.responseWeather);
@@ -78,19 +85,20 @@ addButton.onclick = () => {
 	favourites.add(WEATHER_APP.city)
 }
 
-const swapUnitsButton = document.querySelector('#swap-units-button');
-swapUnitsButton.onclick = () => {
-	WEATHER_APP.swapUnits();
-	WEATHER_APP.toggleUnits(swapUnitsButton);
-	WEATHER_APP.init()
-		.then(() => {
-			weatherComponent.init(WEATHER_APP.responseWeather);
-			forecastComponent.init(WEATHER_APP.responseForecast);
-		});
-}
+// const swapUnitsButton = document.querySelector('#swap-units-button');
+// swapUnitsButton.onclick = () => {
+// 	WEATHER_APP.swapUnits();
+// 	WEATHER_APP.toggleUnits(swapUnitsButton);
+// 	WEATHER_APP.init()
+// 		.then(() => {
+// 			weatherComponent.init(WEATHER_APP.responseWeather);
+// 			forecastComponent.init(WEATHER_APP.responseForecast);
+// 		});
+// }
 
-console.log(WEATHER_APP);
-console.log(weatherComponent);
-console.log(forecastComponent);
-console.log(history);
-console.log(favourites);
+// console.log(WEATHER_APP);
+// console.log(weatherComponent);
+// console.log(forecastComponent);
+// console.log(history);
+// console.log(favourites);
+// console.log(units);

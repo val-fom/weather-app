@@ -1,30 +1,32 @@
 import { Component } from '../component.js'
-import { WEATHER_APP } from '../main.js'
 
 export class ForecastComponent extends Component {
-	constructor() {
+	constructor(conf) {
 		super()
+		this.outlet = conf.outlet;
+		this._template = conf.template;
 	}
 
-	init() {
+	init(response) {
 		// console.log("ForecastComponent", "Init");
-		const response = WEATHER_APP.responseForecast;
-		const node = document.querySelector('#forecast-outlet');
-		node.innerHTML = '';
-		let html = '';
+		this.outlet.innerHTML = '';
+		const node = document.importNode(this._template.content, true);
 		for (var i = 0; i < response.list.length; i++) {
 			const hours = this._getHours(response.list[i].dt);
 			const icons = this._getIcons(response.list[i].weather);
-			html += `
-				<div class="forecast-list-three-hour">
-					<div class="time">${hours}</div>
-					<div class="icon">${icons}</div>
-					<div class="temp">` + 
-						`${response.list[i].main.temp.toFixed(0)}</div>
-				</div>
-			`;
+			const threeHourForecast = node.cloneNode(true);
+
+			const time = threeHourForecast.querySelector('.time');
+			time.textContent = `${hours}`;
+
+			const icon = threeHourForecast.querySelector('.icon');
+			icon.insertAdjacentHTML('beforeend', icons);
+
+			const temp = threeHourForecast.querySelector('.temp');
+			temp.textContent = `${response.list[i].main.temp.toFixed(0)}`;
+
+			this.outlet.appendChild(threeHourForecast);
 		}
-		node.insertAdjacentHTML('beforeend', html);
 	}
 
 	_getHours(dt) {

@@ -1,25 +1,27 @@
 import { Component } from '../component.js'
-import { WEATHER_APP } from '../main.js'
 
 export class WeatherComponent extends Component {
-	constructor() {
+	constructor(conf) {
 		super()
+		this.outlet = conf.outlet;
+		this._template = conf.template;
 	}
 
-	init() {
+	init(response) {
 		// console.log("WeatherComponent", "Init");
-		const response = WEATHER_APP.responseWeather;
-		const node = document.querySelector('#weather-outlet');
-		node.innerHTML = '';
+		this.outlet.innerHTML = '';
+		const node = document.importNode(this._template.content, true);
 		const icons = this._getIcons(response.weather);
-		let html = `
-			<h2 class="current-weather-city">${response.name},${response.sys.country}</h2>
-			<div class="current-weather-icon">${icons}</div>
-			<div class="current-weather-temp">` + 
-				`${response.main.temp.toFixed(0)}&deg;</div>
-		`;
-		node.insertAdjacentHTML('beforeend', html);
+
+		const city = node.querySelector('[class$="city"]');
+		city.textContent = `${response.name},${response.sys.country}`;
+
+		const icon = node.querySelector('[class$="icon"]');
+		icon.insertAdjacentHTML('beforeend', icons);
+
+		const temp = node.querySelector('[class$="temp"]');
+		temp.textContent = `${response.main.temp.toFixed(0)}\xB0`;
+
+		this.outlet.appendChild(node);
 	}
-
-
 }

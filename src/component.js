@@ -1,6 +1,5 @@
 export class Component {
 	constructor() {
-
 	}
 
 	_getIcons(source) {

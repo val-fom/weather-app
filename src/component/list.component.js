@@ -1,4 +1,4 @@
-export class HistoryComponent {
+export class ListComponent {
 	constructor(conf) {
 		this.data = [];
 		this.outlet = conf.outlet;

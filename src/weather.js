@@ -2,24 +2,20 @@ import { get } from './service/api.js'
 
 export class Weather {
 	constructor(city) {
-		this.config = {
-			units: 'metric', //default
-			city: 'kyiv' //default
-		}
+		this.units = (localStorage.units || 'metric');
+		this.city = (this._getCityFromUrl() || 'kyiv');
 		this.responseWeather = null;
 		this.responseForecast = null;
 	}
 
 	init(city) {
-		this._getCityFromUrl();
-		return this.getWeather('weather', city)
-			.then(() => this.getWeather('forecast'))
+		return this._getWeather('weather', city)
+			.then(() => this._getWeather('forecast'))
 	}
 
-	getWeather(apiType, city) {
-		let conf = this.config;
-		if (!city) city = conf.city;
-		return get(apiType, conf.units, city)
+	_getWeather(apiType, city) {
+		if (!city) city = this.city;
+		return get(apiType, this.units, city)
 			.then(data => {
 				if (apiType === 'weather') {
 					this.responseWeather = data;
@@ -35,23 +31,35 @@ export class Weather {
 	_getCityFromUrl() {
 		let url = new URL(window.location.href);
 		if (url.search.startsWith('?q=')) {
-			this.config.city = url.search.slice(3);
+			return url.search.slice(3);
 		}
 	}
 
 	_updateUrl() {
-		window.history.pushState(null, null,
-			`?q=${this.config.city}`);
+		window.history.pushState(null, null, `?q=${this.city}`);
 	}
 
 	_setCityConfig() {
-		this.config.city = this.responseWeather.name +
+		this.city = this.responseWeather.name +
 			',' + this.responseWeather.sys.country;
 	}
 
 	_setCityTitle() {
-		let newTitle = `Weather App - ${this.config.city}`;
+		let newTitle = `Weather App - ${this.city}`;
 		if (document.title !== newTitle) document.title = newTitle;
+	}
+
+	swapUnits() {
+		if (this.units === 'metric') {
+			this.units = 'imperial';
+		} else {
+			this.units = 'metric';
+		}
+		localStorage.units = this.units;
+	}
+
+	toggleUnits(elem) {
+		elem.textContent = (this.units === 'metric') ? '\xB0C' : '\xB0F';
 	}
 
 }

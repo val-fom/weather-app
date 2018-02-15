@@ -23,7 +23,7 @@ export class ForecastComponent extends Component {
 			icon.insertAdjacentHTML('beforeend', icons);
 
 			const temp = threeHourForecast.querySelector('.temp');
-			temp.textContent = `${response.list[i].main.temp.toFixed(0)}`;
+			temp.textContent = `${response.list[i].main.temp.toFixed(0)}\xB0`;
 
 			this.outlet.appendChild(threeHourForecast);
 		}

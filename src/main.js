@@ -3,7 +3,7 @@ import { WeatherComponent } from './component/weather.component.js'
 import { ForecastComponent } from './component/forecast.component.js'
 import { ListComponent } from './component/list.component.js'
 
-export const WEATHER_APP = new Weather();
+const WEATHER_APP = new Weather();
 
 const weatherComponent = new WeatherComponent({
 	outlet: document.querySelector('#weather-outlet'),
@@ -44,8 +44,8 @@ form.onsubmit = () => {
 		.then(() => {
 			weatherComponent.init(WEATHER_APP.responseWeather);
 			forecastComponent.init(WEATHER_APP.responseForecast);
-			input.value = WEATHER_APP.config.city;
-			history.add(WEATHER_APP.config.city);
+			input.value = WEATHER_APP.city;
+			history.add(WEATHER_APP.city);
 
 		}, (error) => {
 			input.style.background = '#ffd3d3';
@@ -58,24 +58,35 @@ form.onsubmit = () => {
 history.outlet.onclick = (event) => {
 	if (event.target.tagName !== 'A') return;
 	WEATHER_APP.init(event.target.innerHTML)
-	.then(() => {
-		weatherComponent.init(WEATHER_APP.responseWeather);
-		forecastComponent.init(WEATHER_APP.responseForecast);
-	});
+		.then(() => {
+			weatherComponent.init(WEATHER_APP.responseWeather);
+			forecastComponent.init(WEATHER_APP.responseForecast);
+		});
 }
 
 favourites.outlet.onclick = (event) => {
 	if (event.target.tagName !== 'A') return;
 	WEATHER_APP.init(event.target.innerHTML)
-	.then(() => {
-		weatherComponent.init(WEATHER_APP.responseWeather);
-		forecastComponent.init(WEATHER_APP.responseForecast);
-	});
+		.then(() => {
+			weatherComponent.init(WEATHER_APP.responseWeather);
+			forecastComponent.init(WEATHER_APP.responseForecast);
+		});
 }
 
 const addButton = document.querySelector('#add-button')
-addButton.onclick = (event) => {
-	favourites.add(WEATHER_APP.config.city)
+addButton.onclick = () => {
+	favourites.add(WEATHER_APP.city)
+}
+
+const swapUnitsButton = document.querySelector('#swap-units-button');
+swapUnitsButton.onclick = () => {
+	WEATHER_APP.swapUnits();
+	WEATHER_APP.toggleUnits(swapUnitsButton);
+	WEATHER_APP.init()
+		.then(() => {
+			weatherComponent.init(WEATHER_APP.responseWeather);
+			forecastComponent.init(WEATHER_APP.responseForecast);
+		});
 }
 
 console.log(WEATHER_APP);

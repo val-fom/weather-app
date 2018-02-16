@@ -2,14 +2,13 @@ import { Component } from '../component.js'
 
 export class ForecastComponent extends Component {
 	constructor(conf) {
-		super()
-		this.outlet = conf.outlet;
+		super();
+		this._outlet = conf.outlet;
 		this._template = conf.template;
 	}
 
 	init(response) {
-		// console.log("ForecastComponent", "Init");
-		this.outlet.innerHTML = '';
+		this._outlet.innerHTML = '';
 		const node = document.importNode(this._template.content, true);
 		for (var i = 0; i < response.list.length; i++) {
 			const hours = this._getHours(response.list[i].dt);
@@ -25,7 +24,7 @@ export class ForecastComponent extends Component {
 			const temp = threeHourForecast.querySelector('.temp');
 			temp.textContent = `${response.list[i].main.temp.toFixed(0)}\xB0`;
 
-			this.outlet.appendChild(threeHourForecast);
+			this._outlet.appendChild(threeHourForecast);
 		}
 	}
 
@@ -33,6 +32,4 @@ export class ForecastComponent extends Component {
 		const date = new Date(dt * 1000);
 		return date.getHours().toString().padStart(2, '0');
 	}
-
-
 }

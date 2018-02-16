@@ -48,5 +48,4 @@ export class Weather {
 		let newTitle = `Weather App - ${this.city}`;
 		if (document.title !== newTitle) document.title = newTitle;
 	}
-
 }

@@ -1,7 +1,4 @@
 export class Component {
-	constructor() {
-	}
-
 	_getIcons(source) {
 		let icons = '';
 		for (var i = source.length - 1; i >= 0; i--) {
@@ -14,5 +11,13 @@ export class Component {
 				`title="${source[i].main}: ${source[i].description}"></i>`;
 		}
 		return icons;
+	}
+
+	_requestUpdate(city) {
+		const event = new CustomEvent('needUpdate', {
+			bubbles: true,
+			detail: { city: city }
+		});
+		this._outlet.dispatchEvent(event);
 	}
 }

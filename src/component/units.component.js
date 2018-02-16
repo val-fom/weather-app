@@ -1,5 +1,8 @@
-export class UnitsComponent {
+import { Component } from '../component.js'
+
+export class UnitsComponent extends Component {
 	constructor(conf) {
+		super();
 		this.value = (localStorage.units || 'metric');
 		this._key = conf.localStorageKey;
 		this._toggleButton = conf.toggleButton;
@@ -21,11 +24,6 @@ export class UnitsComponent {
 		this.value = (this.value === 'metric') ? 'imperial' : 'metric';
 		localStorage[this._key] = this.value;
 		this._render();
-		this._onToggle();
-	}
-
-	_onToggle() {
-		const event = new Event('needUpdate', { bubbles: true });
-		this._outlet.dispatchEvent(event);
+		this._requestUpdate();
 	}
 }

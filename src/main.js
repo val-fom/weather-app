@@ -4,7 +4,6 @@ import { ForecastComponent } from './component/forecast.component.js'
 import { ListComponent } from './component/list.component.js'
 import { UnitsComponent } from './component/units.component.js'
 
-
 const weatherComponent = new WeatherComponent({
 	outlet: document.querySelector('#weather-outlet'),
 	template: document.querySelector('#weather-outlet > template')
@@ -38,65 +37,36 @@ export const units = new UnitsComponent({
 units.init();
 
 const WEATHER_APP = new Weather();
-WEATHER_APP.init()
-	.then(() => {
-		weatherComponent.init(WEATHER_APP.responseWeather);
-		forecastComponent.init(WEATHER_APP.responseForecast);
-	});
+const update = (city) => {
+	return WEATHER_APP.init(city)
+		.then(() => {
+			weatherComponent.init(WEATHER_APP.responseWeather);
+			forecastComponent.init(WEATHER_APP.responseForecast);
+		});
+}
+
+update();
+
+document.addEventListener('needUpdate', (event) => {
+	update(event.detail.city);
+});
 
 const form = document.querySelector('#search-form');
 const input = form.querySelector('input');
 form.onsubmit = () => {
-	WEATHER_APP.init(form.elements.cityName.value)
+	update(form.elements.cityName.value)
 		.then(() => {
-			weatherComponent.init(WEATHER_APP.responseWeather);
-			forecastComponent.init(WEATHER_APP.responseForecast);
 			input.value = WEATHER_APP.city;
 			history.add(WEATHER_APP.city);
-
 		}, (error) => {
 			input.style.background = '#ffd3d3';
 			input.oninput = () => input.removeAttribute("style");
 			console.error(error);
-		});
+		})
 	return false;
 };
 
-history.outlet.onclick = (event) => {
-	if (event.target.tagName !== 'A') return;
-	WEATHER_APP.init(event.target.innerHTML)
-		.then(() => {
-			weatherComponent.init(WEATHER_APP.responseWeather);
-			forecastComponent.init(WEATHER_APP.responseForecast);
-		});
-}
-
-favourites.outlet.onclick = (event) => {
-	if (event.target.tagName !== 'A') return;
-	WEATHER_APP.init(event.target.innerHTML)
-		.then(() => {
-			weatherComponent.init(WEATHER_APP.responseWeather);
-			forecastComponent.init(WEATHER_APP.responseForecast);
-		});
-}
-
-const addButton = document.querySelector('#add-button')
+const addButton = document.querySelector('#add-button');
 addButton.onclick = () => {
-	favourites.add(WEATHER_APP.city)
+	favourites.add(WEATHER_APP.city);
 }
-
-const update = () => {
-	WEATHER_APP.init()
-		.then(() => {
-			weatherComponent.init(WEATHER_APP.responseWeather);
-			forecastComponent.init(WEATHER_APP.responseForecast);
-		});
-}
-document.addEventListener('needUpdate', update);
-
-console.log(WEATHER_APP);
-console.log(weatherComponent);
-console.log(forecastComponent);
-console.log(history);
-console.log(favourites);
-console.log(units);

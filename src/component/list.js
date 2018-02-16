@@ -1,6 +1,6 @@
 import { Component } from '../component.js'
 
-export class ListComponent extends Component {
+export class List extends Component {
 	constructor(conf) {
 		super();
 		this._list = [];

@@ -1,6 +1,6 @@
 import { Component } from '../component.js'
 
-export class WeatherComponent extends Component {
+export class Weather extends Component {
 	constructor(conf) {
 		super();
 		this._outlet = conf.outlet;

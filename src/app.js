@@ -1,14 +1,14 @@
-import { get } from './service/api.js'
+import { get } from './api.js'
 import { units } from './main.js'
 
-export class Weather {
+export class App {
 	constructor(city) {
 		this.city = (this._getCityFromUrl() || 'kyiv');
 		this.responseWeather = null;
 		this.responseForecast = null;
 	}
 
-	init(city) {
+	getAll(city) {
 		return this._getWeather('weather', city)
 			.then(() => this._getWeather('forecast'))
 	}

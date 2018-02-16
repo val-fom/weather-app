@@ -1,6 +1,6 @@
 import { Component } from '../component.js'
 
-export class UnitsComponent extends Component {
+export class Units extends Component {
 	constructor(conf) {
 		super();
 		this.value = (localStorage.units || 'metric');

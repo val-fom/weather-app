@@ -85,6 +85,15 @@ addButton.onclick = () => {
 	favourites.add(WEATHER_APP.city)
 }
 
+const update = () => {
+	WEATHER_APP.init()
+		.then(() => {
+			weatherComponent.init(WEATHER_APP.responseWeather);
+			forecastComponent.init(WEATHER_APP.responseForecast);
+		});
+}
+document.addEventListener('needUpdate', update);
+
 console.log(WEATHER_APP);
 console.log(weatherComponent);
 console.log(forecastComponent);

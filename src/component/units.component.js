@@ -15,13 +15,17 @@ export class UnitsComponent {
 	init() {
 		this.value = (localStorage[this._key] || 'metric')
 		this._render();
-		console.log('UnitsComponent', 'init');
 	}
 
 	toggle() {
 		this.value = (this.value === 'metric') ? 'imperial' : 'metric';
 		localStorage[this._key] = this.value;
 		this._render();
-		console.log('UnitsComponent', 'toggle');
+		this._onToggle();
+	}
+
+	_onToggle() {
+		const event = new Event('needUpdate', { bubbles: true });
+		this._outlet.dispatchEvent(event);
 	}
 }

@@ -1,8 +1,8 @@
 import { get } from './service/api.js'
+import { units } from './main.js'
 
 export class Weather {
 	constructor(city) {
-		this.units = (localStorage.units || 'metric');
 		this.city = (this._getCityFromUrl() || 'kyiv');
 		this.responseWeather = null;
 		this.responseForecast = null;
@@ -15,7 +15,7 @@ export class Weather {
 
 	_getWeather(apiType, city) {
 		if (!city) city = this.city;
-		return get(apiType, this.units, city)
+		return get(apiType, units.value, city)
 			.then(data => {
 				if (apiType === 'weather') {
 					this.responseWeather = data;

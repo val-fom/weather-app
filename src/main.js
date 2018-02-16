@@ -30,13 +30,13 @@ const favourites = new ListComponent({
 	clearButton: document.querySelector('#clear-favourites'),
 });
 favourites.init();
-////////////////////
-const units = new UnitsComponent({
+
+export const units = new UnitsComponent({
 	localStorageKey: 'units',
 	toggleButton: document.querySelector('#swap-units-button')
 });
 units.init();
-////////////////////
+
 const WEATHER_APP = new Weather();
 WEATHER_APP.init()
 	.then(() => {
@@ -85,20 +85,9 @@ addButton.onclick = () => {
 	favourites.add(WEATHER_APP.city)
 }
 
-// const swapUnitsButton = document.querySelector('#swap-units-button');
-// swapUnitsButton.onclick = () => {
-// 	WEATHER_APP.swapUnits();
-// 	WEATHER_APP.toggleUnits(swapUnitsButton);
-// 	WEATHER_APP.init()
-// 		.then(() => {
-// 			weatherComponent.init(WEATHER_APP.responseWeather);
-// 			forecastComponent.init(WEATHER_APP.responseForecast);
-// 		});
-// }
-
-// console.log(WEATHER_APP);
-// console.log(weatherComponent);
-// console.log(forecastComponent);
-// console.log(history);
-// console.log(favourites);
-// console.log(units);
+console.log(WEATHER_APP);
+console.log(weatherComponent);
+console.log(forecastComponent);
+console.log(history);
+console.log(favourites);
+console.log(units);

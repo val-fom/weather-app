@@ -7,34 +7,34 @@ import { Units } from './component/units.js'
 // almost all of this code should be in init.js
 
 const weather = new Weather({
-	outlet: document.querySelector('#weather-outlet'),
-	template: document.querySelector('#weather-outlet > template')
+	outlet: document.querySelector('[data-weather]'),
+	template: document.querySelector('[data-weather] > template')
 });
 
 const forecast = new Forecast({
-	outlet: document.querySelector('#forecast-outlet'),
-	template: document.querySelector('#forecast-outlet > template')
+	outlet: document.querySelector('[data-forecast]'),
+	template: document.querySelector('[data-forecast] > template')
 });
 
 const history = new List({
-	outlet: document.querySelector('#history-outlet'),
-	template: document.querySelector('#history-outlet > template'),
+	outlet: document.querySelector('[data-history]'),
+	template: document.querySelector('[data-history] > template'),
 	localStorageKey: 'history',
-	clearButton: document.querySelector('#clear-history')
+	clearButton: document.querySelector('[data-history-clear]')
 });
 history.init();
 
 const favourites = new List({
-	outlet: document.querySelector('#favourites-outlet'),
-	template: document.querySelector('#favourites-outlet > template'),
+	outlet: document.querySelector('[data-favourites]'),
+	template: document.querySelector('[data-favourites] > template'),
 	localStorageKey: 'favourites',
-	clearButton: document.querySelector('#clear-favourites'),
+	clearButton: document.querySelector('[data-favourites-clear]'),
 });
 favourites.init();
 
 export const units = new Units({
 	localStorageKey: 'units',
-	toggleButton: document.querySelector('#swap-units-button')
+	toggleButton: document.querySelector('[data-units-toggle]')
 });
 units.init();
 
@@ -55,7 +55,7 @@ update();
 
 // should move it somewhere
 // to separete component
-const form = document.querySelector('#search-form');
+const form = document.querySelector('[data-search]');
 const input = form.querySelector('input');
 form.onsubmit = () => {
 	update(form.elements.cityName.value)
@@ -70,10 +70,10 @@ form.onsubmit = () => {
 	return false;
 };
 // to list component
-const addButton = document.querySelector('#add-button');
+const addButton = document.querySelector('[data-favourites-add]');
 addButton.onclick = () => {
 	favourites.add(WEATHER_APP.city);
 }
 
-const rootNode = document.body.addButton;
-console.log(rootNode);
+// const rootNode = document.body;
+// console.log(rootNode);

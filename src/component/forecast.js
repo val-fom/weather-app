@@ -15,13 +15,13 @@ export class Forecast extends Component {
 			const icons = this._getIcons(response.list[i].weather);
 			const threeHourForecast = node.cloneNode(true);
 
-			const time = threeHourForecast.querySelector('.time');
-			time.textContent = `${hours}`;
+			const time = threeHourForecast.querySelector('[data-time]');
+			time.textContent = hours;
 
-			const icon = threeHourForecast.querySelector('.icon');
+			const icon = threeHourForecast.querySelector('[data-icon]');
 			icon.insertAdjacentHTML('beforeend', icons);
 
-			const temp = threeHourForecast.querySelector('.temp');
+			const temp = threeHourForecast.querySelector('[data-temp]');
 			temp.textContent = `${response.list[i].main.temp.toFixed(0)}\xB0`;
 
 			this._outlet.appendChild(threeHourForecast);

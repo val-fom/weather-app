@@ -1,47 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
-	<title>Weather app</title>
+	<title>Weather App</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 <link href="app.css" rel="stylesheet"></head>
+
 <body>
-	<header>
-		<h1>Weather App</h1>
-		<form id="search-form" action="">
-			<input type="text" name="cityName"
+	<header class="header">
+		<h1 class="header__heading">Weather App</h1>
+		<form class="search" id="search-form" data-search>
+			<input required class="search__input" type="text" name="cityName"
 				placeholder="type city name and press enter">
 		</form>
-		<ul id="search-list"></ul>
+		<ul class="history" data-history>
+			<!-- js will put content here -->
+			<template>
+				<li class="history__city">
+					<a href="#"></a>
+				</li>
+			</template>
+		</ul>
+		<ul class="favorites" data-favourites>
+			<!-- js will put content here -->
+			<template>
+				<li class="button favorites__city">
+					<a href="#"></a>
+				</li>
+			</template>
+		</ul>
 	</header>
-	<menu>
-		<div id="favourite-list">
-			<span>click + to add the city to your favorites</span>
-		</div>
-	</menu>
-	<section>
-		<div class="forecast-wrapper">
-			<a id="add-button">+</a>
-			<a id="swap-units-button"></a>
-			<div class="current-weather-wrapper">
-				<h2 class="current-weather-city"></h2>
-				<div class="current-weather-icon"></div>
-				<div class="current-weather-temp"></div>
+	<section class>
+		<div class="weather-wrapper">
+			<button class="button weather-wrapper__button-add" id="add-button" data-favourites-add>+</button>
+			<button class="button weather-wrapper__button-units" id="swap-units-button" data-units-toggle></button>
+			<div class="weather" id="weather-outlet" data-weather>
+				<!-- js will put content here -->
+				<template>
+					<h2 class="weather__city" data-city></h2>
+					<div class="weather__icon" data-icon></div>
+					<div class="weather__temp" data-temp></div>
+				</template>
 			</div>
-			<div class="forecast-list">
-				<div class="forecast-list-three-hour">
-					<div class="time"></div>
-					<div class="icon"></div>
-					<div class="temp"></div>
-				</div>
+			<div class="forecast" data-forecast>
+				<!-- js will put content here -->
+				<template>
+					<article class="forecast__three-hour">
+						<h4 class="forecast__time" data-time></h4>
+						<div class="forecast__icon" data-icon></div>
+						<div class="forecast__temp" data-temp></div>
+					</article>
+				</template>
 			</div>
 		</div>
 	</section>
-	<footer>
+	<section>
 		<div class="button-wrapper">
-			<a id="clear-history">clear history</a>
-			<a id="clear-favourites">clear favourites</a>
+			<button class="button button-wrapper__button" data-history-clear>clear history</button>
+			<button class="button button-wrapper__button" data-favourites-clear>clear favourites</button>
 		</div>
-	</footer>
+	</section>
 <script type="text/javascript" src="app.js"></script></body>
+
 </html>

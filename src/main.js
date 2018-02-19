@@ -1,10 +1,15 @@
-import { App } from './app.js'
+import App from './App.js'
+
+const app = new App(document.getElementById('root'));
+
+app.render();
+
+//****************** OLD *********************
+import { App1 } from './app1.js'
 import { Weather } from './component/weather.js'
 import { Forecast } from './component/forecast.js'
 import { List } from './component/list.js'
 import { Units } from './component/units.js'
-
-// almost all of this code should be in init.js
 
 const weather = new Weather({
 	outlet: document.querySelector('[data-weather]'),
@@ -38,7 +43,7 @@ export const units = new Units({
 });
 units.init();
 
-const WEATHER_APP = new App();
+const WEATHER_APP = new App1();
 const update = (city) => {
 	return WEATHER_APP.getAll(city)
 		.then(() => {
@@ -58,8 +63,8 @@ update();
 const form = document.querySelector('[data-search]');
 const input = form.querySelector('input');
 form.onsubmit = () => {
-	update(form.elements.cityName.value)
-	// update(form.elements.cityName.value.trim())
+	update(form.elements.search.value)
+	// update(form.elements.search.value.trim())
 		.then(() => {
 			input.value = WEATHER_APP.city;
 			history.add(WEATHER_APP.city);

@@ -1,7 +1,7 @@
 import { get } from './api.js'
 import { units } from './main.js'
 
-export class App {
+export class App1 {
 	constructor(city) {
 		this.city = (this._getCityFromUrl() || 'kyiv');
 		this.responseWeather = null;

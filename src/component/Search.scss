@@ -1,0 +1,28 @@
+.search__container {
+	width: 300px;
+	margin: auto;
+}
+
+.search__input {
+	z-index: 1;
+	width: 100%;
+	padding: 4px;
+	border: 1px solid #333;
+	font-size: 16px;
+	border-radius: 6px;
+	box-shadow: 0px 0px 10px 0px #ccc;
+	font-family: inherit;
+	transition: 0.3s;
+	text-align: center;
+}
+
+.search__input:focus {
+	outline: none;
+	box-shadow: 0px 0px 10px 0px #444;
+}
+
+.search__input::-webkit-input-placeholder {
+	color: #999;
+	font-size: 0.7rem;
+	text-align: center;
+}

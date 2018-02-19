@@ -8,35 +8,36 @@
 </head>
 
 <body>
-	<div class="root"></div>
-	<header class="header">
+	<div id="root"></div>
+	<!-- *********** OLD *********** -->
+	<!-- <header class="header">
 		<h1 class="header__heading">Weather App</h1>
-		<form class="search" id="search-form" data-search>
-			<input required class="search__input" type="text" name="cityName"
-				placeholder="type city name and press enter">
-		</form>
-		<ul class="history" data-history>
-			<!-- js will put content here -->
-			<template>
-				<li class="history__city">
-					<a href="#"></a>
-				</li>
-			</template>
-		</ul>
-		<ul class="favorites" data-favourites>
-			<!-- js will put content here -->
-			<template>
-				<li class="button favorites__city">
-					<a href="#"></a>
-				</li>
-			</template>
-		</ul>
-	</header>
-	<section class>
+	</header> -->
+	<!-- <form class="search" data-search>
+		<input required class="search__input" type="text" name="search"
+			placeholder="type city name and press enter">
+	</form> -->
+	<!-- <ul class="history" data-history> -->
+		<!-- js will put content here -->
+		<!-- <template> -->
+			<!-- <li class="history__city"> -->
+				<!-- <a href="#"></a> -->
+			<!-- </li> -->
+		<!-- </template> -->
+	<!-- </ul> -->
+	<!-- <ul class="favorites" data-favourites> -->
+		<!-- js will put content here -->
+		<!-- <template> -->
+			<!-- <li class="button favorites__city"> -->
+				<!-- <a href="#"></a> -->
+			<!-- </li> -->
+		<!-- </template> -->
+	<!-- </ul> -->
+	<section>
 		<div class="weather-wrapper">
-			<button class="button weather-wrapper__button-add" id="add-button" data-favourites-add>+</button>
-			<button class="button weather-wrapper__button-units" id="swap-units-button" data-units-toggle></button>
-			<div class="weather" id="weather-outlet" data-weather>
+			<button class="button weather-wrapper__button-add" data-favourites-add>+</button>
+			<button class="button weather-wrapper__button-units" data-units-toggle></button>
+			<div class="weather" data-weather>
 				<!-- js will put content here -->
 				<template>
 					<h2 class="weather__city" data-city></h2>

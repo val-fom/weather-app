@@ -33,124 +33,124 @@ section, header {
 	flex-direction: column;
 }
 
-.header__heading {
-	font-size: 2rem;
-	font-weight: bold;
-	margin: 2rem 0;
-}
+// .header__heading {
+// 	font-size: 2rem;
+// 	font-weight: bold;
+// 	margin: 2rem 0;
+// }
 
-.search {
-	display: flex;
-	width:100%;
-}
+// .search {
+// 	display: flex;
+// 	width:100%;
+// }
 
-.search__input {
-	z-index: 1;
-	width: 100%;
-	padding: 4px;
-	border: 1px solid #333;
-	font-size: 16px;
-	border-radius: 6px;
-	box-shadow: 0px 0px 10px 0px #ccc;
-	font-family: inherit;
-	transition: 0.3s;
-	text-align: center;
-}
+// .search__input {
+// 	z-index: 1;
+// 	width: 100%;
+// 	padding: 4px;
+// 	border: 1px solid #333;
+// 	font-size: 16px;
+// 	border-radius: 6px;
+// 	box-shadow: 0px 0px 10px 0px #ccc;
+// 	font-family: inherit;
+// 	transition: 0.3s;
+// 	text-align: center;
+// }
 
-.search__input:focus {
-	outline: none;
-	box-shadow: 0px 0px 10px 0px #444;
-}
+// .search__input:focus {
+// 	outline: none;
+// 	box-shadow: 0px 0px 10px 0px #444;
+// }
 
-.search__input::-webkit-input-placeholder {
-	color: #999;
-	font-size: 0.7rem;
-	text-align: center;
-}
+// .search__input::-webkit-input-placeholder {
+// 	color: #999;
+// 	font-size: 0.7rem;
+// 	text-align: center;
+// }
 
-.history {
-	height: 1.5rem;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	display: flex;
-	overflow: hidden;
-	position: relative;
-	&::before {
-		content: '';
-		width: 10%;
-		height: 100%;
-		position: absolute;
-		right: 0;
-		top: 0;
-		cursor: pointer;
-		pointer-events: none;
-		background: linear-gradient(90deg, rgba(255,255,255,0.001), 30%, white);
-	}
-}
+// .history {
+// 	height: 1.5rem;
+// 	margin: 0;
+// 	padding: 0;
+// 	list-style: none;
+// 	display: flex;
+// 	overflow: hidden;
+// 	position: relative;
+// 	&::before {
+// 		content: '';
+// 		width: 10%;
+// 		height: 100%;
+// 		position: absolute;
+// 		right: 0;
+// 		top: 0;
+// 		cursor: pointer;
+// 		pointer-events: none;
+// 		background: linear-gradient(90deg, rgba(255,255,255,0.001), 30%, white);
+// 	}
+// }
 
-.history__city {
-	font-size: 0.8rem;
-	margin: 0.3rem;
-	white-space: nowrap;
-}
+// .history__city {
+// 	font-size: 0.8rem;
+// 	margin: 0.3rem;
+// 	white-space: nowrap;
+// }
 
-.history__city > a {
-	padding: 0.3rem;
-	cursor: pointer;
-	line-height: 1.2em;
-	&:hover {
-		text-decoration: underline;
-	}
-}
+// .history__city > a {
+// 	padding: 0.3rem;
+// 	cursor: pointer;
+// 	line-height: 1.2em;
+// 	&:hover {
+// 		text-decoration: underline;
+// 	}
+// }
 
-.favorites {
-	width: 100%;
-	height: 1.5rem;
-	list-style: none;
-	align-items: stretch; /**/
-	position: relative;
-	display: flex;
-	background-color: white;
-	border: 1px solid #222;
-	border-bottom: none;
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
-	overflow: hidden;
-	&::before {
-		content: 'click + to add the city to your favorites';
-		width: 100%;
-		color: #999;
-		font-size: 0.7rem;
-		line-height: 1.5rem;
-		text-align: center;
-		white-space: nowrap;
-		position: absolute;
-	}
-}
+// .favorites {
+// 	width: 100%;
+// 	height: 1.5rem;
+// 	list-style: none;
+// 	align-items: stretch; /**/
+// 	position: relative;
+// 	display: flex;
+// 	background-color: white;
+// 	border: 1px solid #222;
+// 	border-bottom: none;
+// 	border-top-left-radius: 6px;
+// 	border-top-right-radius: 6px;
+// 	overflow: hidden;
+// 	&::before {
+// 		content: 'click + to add the city to your favorites';
+// 		width: 100%;
+// 		color: #999;
+// 		font-size: 0.7rem;
+// 		line-height: 1.5rem;
+// 		text-align: center;
+// 		white-space: nowrap;
+// 		position: absolute;
+// 	}
+// }
 
-.favorites__city {
-	font-size: 0.8rem;
-	line-height: 1.5rem;
-	white-space: nowrap;
-	flex-grow: 1;
-	border-right: 1px solid #333;
-	transition: 0.2s;
-	position: relative;
-	background: white;
-	&:last-child {
-		border-right: none;
-	}
-}
+// .favorites__city {
+// 	font-size: 0.8rem;
+// 	line-height: 1.5rem;
+// 	white-space: nowrap;
+// 	flex-grow: 1;
+// 	border-right: 1px solid #333;
+// 	transition: 0.2s;
+// 	position: relative;
+// 	background: white;
+// 	&:last-child {
+// 		border-right: none;
+// 	}
+// }
 
-.favorites__city > a {
-	display: block;
-	transition: 0.2s;
-	cursor: pointer;
-	&:hover {
-		text-decoration: none;
-	}
-}
+// .favorites__city > a {
+// 	display: block;
+// 	transition: 0.2s;
+// 	cursor: pointer;
+// 	&:hover {
+// 		text-decoration: none;
+// 	}
+// }
 
 .weather-wrapper {
 	border: 1px solid #333;

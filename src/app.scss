@@ -1,28 +1,50 @@
+@import 'reset';
 @import '~weather-icons-sass/css/weather-icons.css';
+
+html {
+	box-sizing: border-box;
+	min-width: 320px;
+	font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+a:link, a:visited, a:active {
+	text-decoration: none;
+	color: inherit;
+}
 
 body, html {
 	height: 100%;
 	width: 100%;
 	text-align: center;
-	margin: 0;
 	font-family: 'Roboto Mono', monospace;
-	font-size: 16px;
 	color: #222;
-	border: 1px solid transparent;
-	box-sizing: border-box;
 }
 
 section, header {
 	width: 300px;
 	margin: auto;
+	display: flex;
+	flex-direction: column;
 }
 
-form {
+.header__heading {
+	font-size: 2rem;
+	font-weight: bold;
+	margin: 2rem 0;
+}
+
+.search {
 	display: flex;
 	width:100%;
 }
 
-input {
+.search__input {
 	z-index: 1;
 	width: 100%;
 	padding: 4px;
@@ -35,18 +57,18 @@ input {
 	text-align: center;
 }
 
-input:focus {
+.search__input:focus {
 	outline: none;
 	box-shadow: 0px 0px 10px 0px #444;
 }
 
-input::-webkit-input-placeholder {
+.search__input::-webkit-input-placeholder {
 	color: #999;
 	font-size: 0.7rem;
 	text-align: center;
 }
 
-ul#search-list {
+.history {
 	height: 1.5rem;
 	margin: 0;
 	padding: 0;
@@ -54,73 +76,60 @@ ul#search-list {
 	display: flex;
 	overflow: hidden;
 	position: relative;
+	&::before {
+		content: '';
+		width: 10%;
+		height: 100%;
+		position: absolute;
+		right: 0;
+		top: 0;
+		cursor: pointer;
+		pointer-events: none;
+		background: linear-gradient(90deg, rgba(255,255,255,0.001), 30%, white);
+	}
 }
 
-#search-list:before {
-	content: '';
-	width: 10%;
-	height: 100%;
-	position: absolute;
-	right: 0;
-	top: 0;
-	cursor: pointer;
-	background: linear-gradient(90deg, rgba(255,255,255,0.001), 30%, white);
-}
-
-#search-list li {
+.history__city {
 	font-size: 0.8rem;
 	margin: 0.3rem;
 	white-space: nowrap;
 }
 
-#search-list a {
+.history__city > a {
 	padding: 0.3rem;
+	cursor: pointer;
+	line-height: 1.2em;
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
-a:link, a:visited, a:active {
-	text-decoration: none;
-	color: inherit;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-menu {
-	width: 300px;
-	margin: auto;
-	padding: 0;
+.favorites {
+	width: 100%;
+	height: 1.5rem;
+	list-style: none;
+	align-items: stretch; /**/
+	position: relative;
 	display: flex;
 	background-color: white;
 	border: 1px solid #222;
 	border-bottom: none;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
-	box-sizing: border-box;
-}
-
-#favourite-list {
-	height: 1.5rem;
-	width: 100%;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	display: flex;
-	align-items: stretch; /**/
 	overflow: hidden;
-	position: relative;
+	&::before {
+		content: 'click + to add the city to your favorites';
+		width: 100%;
+		color: #999;
+		font-size: 0.7rem;
+		line-height: 1.5rem;
+		text-align: center;
+		white-space: nowrap;
+		position: absolute;
+	}
 }
 
-#favourite-list span {
-	width: 100%;
-	color: #999;
-	font-size: 0.7rem;
-	line-height: 1.5rem;
-	text-align: center;	
-	white-space: nowrap;
-}
-
-#favourite-list a {
+.favorites__city {
 	font-size: 0.8rem;
 	line-height: 1.5rem;
 	white-space: nowrap;
@@ -128,32 +137,40 @@ menu {
 	border-right: 1px solid #333;
 	transition: 0.2s;
 	position: relative;
+	background: white;
+	&:last-child {
+		border-right: none;
+	}
 }
 
-#favourite-list a:last-child {
-	border-right: none;
+.favorites__city > a {
+	display: block;
+	transition: 0.2s;
+	cursor: pointer;
+	&:hover {
+		text-decoration: none;
+	}
 }
 
-.forecast-wrapper {
-	/*min-height: 170px;*/
+.weather-wrapper {
 	border: 1px solid #333;
-	font-size: 16px;
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	box-shadow: 0px 0px 10px 0px #ccc;
-	display: flex;
-	flex-wrap: wrap;
-	align-content: flex-start;
 	position: relative;
 }
 
-#add-button {
+.button:hover {
+	box-shadow: inset 0px 0px 8px 0px #aaa;
+}
+
+.weather-wrapper__button-add {
 	position: absolute;
 	left: 0px;
 	top: 0;
 	width: 1rem;
+	height: 1rem;
 	line-height: 1rem;
-	display: block;
 	border-bottom: 1px solid #333;
 	border-right: 1px solid #333;
 	border-bottom-right-radius: 6px;
@@ -161,21 +178,15 @@ menu {
 	cursor: pointer;
 }
 
-#add-button:hover, #swap-units-button:hover, #favourite-list a:hover {
-	text-decoration: none;
-	box-shadow: inset 0px 0px 8px 0px #aaa;
-}
-
-#swap-units-button {
+.weather-wrapper__button-units {
 	background-color: white;
-	width: 1rem;
+	// width: 1rem;
 	height: 1rem;
 	position: absolute;
 	right: 0px;
 	bottom: 0;
 	padding: 0 0.2rem;
 	line-height: 1rem;
-	display: block;
 	border-top: 1px solid #333;
 	border-left: 1px solid #333;
 	border-radius: 6px 0 6px 0;
@@ -183,68 +194,49 @@ menu {
 	cursor: pointer;
 }
 
-.current-weather-wrapper {
+.weather {
 	width: 100%;
 	display: flex;
-	/*border-bottom: 1px solid #333;*/
 }
 
-.current-weather-city {
-	height: 4rem;
-	box-sizing: border-box;
+.weather__city,
+.weather__icon,
+.weather__temp {
 	line-height: 4rem;
-	margin: 0;
 	flex-grow: 1;
 }
 
-.current-weather-icon {
-	height: 4rem;
-	box-sizing: border-box;
+.weather__city {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin: 0;
+}
+
+.weather__icon {
 	text-align: center;
 	font-size: 2rem;
-	line-height: 4rem;
-	flex-grow: 1;
 }
 
-.current-weather-temp {
-	height: 4rem;
-	box-sizing: border-box;
-	line-height: 4rem;
+.weather__temp {
 	font-size: 2rem;
-	flex-grow: 1;
 }
 
-.forecast-list {
+.forecast {
 	width: 100%;
 	height: 5rem;
-	box-sizing: border-box;
 	list-style: none;
-	/*padding: 0.4rem;*/
 	margin: 0;
 	text-align: left;
 	font-size: 0.9rem;
 	display: flex;
 	flex-wrap: wrap;
-	max-height: 0;
-	/*opacity: 0;*/
 	overflow: hidden;
 	transition: max-height 0.4s ease 0s;
 }
 
-.show-forecast {
-	max-height: 100px;
-	/*opacity: 1;*/
-}
-
-.forecast-list-three-hour {
+.forecast__three-hour {
 	text-align: center;
 	flex-grow: 1;
-	/*max-height: inherit;*/
-}
-
-.forecast-list-three-hour div {
-	/*max-height: inherit;*/
-	/*overflow: hidden;*/
 }
 
 /* #clear-history and c#lear-favourites buttons*/
@@ -255,26 +247,20 @@ menu {
 	margin-right: auto;
 	display: flex;
 	border: 1px solid #333;
-	box-sizing: border-box;
 	border-radius: 6px;
 }
 
-.button-wrapper a {
+.button-wrapper__button {
 	padding: 0.2rem;
-	margin: 0;
-	display: block;
 	width: 50%;
 	font-size: 0.9rem;
 	white-space: nowrap;
 	cursor: pointer;
 	transition: 0.2s;
+	line-height: 1.2em;
+	&:first-child {
+		border-right: 1px solid #333;
+	}
 }
 
-.button-wrapper a:hover {
-	text-decoration: none;
-	box-shadow: inset 0px 0px 8px 0px #aaa;
-}
 
-.button-wrapper a:first-child {
-	border-right: 1px solid #333;
-}

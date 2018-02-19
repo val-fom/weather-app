@@ -59,6 +59,7 @@ const form = document.querySelector('[data-search]');
 const input = form.querySelector('input');
 form.onsubmit = () => {
 	update(form.elements.cityName.value)
+	// update(form.elements.cityName.value.trim())
 		.then(() => {
 			input.value = WEATHER_APP.city;
 			history.add(WEATHER_APP.city);
@@ -77,3 +78,5 @@ addButton.onclick = () => {
 
 // const rootNode = document.body;
 // console.log(rootNode);
+
+console.log(WEATHER_APP);

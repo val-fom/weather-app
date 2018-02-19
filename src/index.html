@@ -11,26 +11,30 @@
 	<header class="header">
 		<h1 class="header__heading">Weather App</h1>
 		<form class="search" id="search-form" data-search>
-			<input class="search__input" type="text" name="cityName"
+			<input required class="search__input" type="text" name="cityName"
 				placeholder="type city name and press enter">
 		</form>
 		<ul class="history" data-history>
 			<!-- js will put content here -->
 			<template>
-				<li class="history__city"><a href="#" class="history__a"></a></li>
+				<li class="history__city">
+					<a href="#"></a>
+				</li>
 			</template>
 		</ul>
-		<ul class="favorites" id="favourites-outlet" data-favourites>
+		<ul class="favorites" data-favourites>
 			<!-- js will put content here -->
 			<template>
-				<li class="favorites__city"><a href="#"></a></li>
+				<li class="button favorites__city">
+					<a href="#"></a>
+				</li>
 			</template>
 		</ul>
 	</header>
 	<section class>
 		<div class="weather-wrapper">
 			<a class="button weather-wrapper__button-add" id="add-button" data-favourites-add>+</a>
-			<a class="button weather-wrapper__button-units-toggle" id="swap-units-button" data-units-toggle></a>
+			<a class="button weather-wrapper__button-units" id="swap-units-button" data-units-toggle></a>
 			<div class="weather" id="weather-outlet" data-weather>
 				<!-- js will put content here -->
 				<template>
@@ -39,13 +43,13 @@
 					<div class="weather__temp" data-temp></div>
 				</template>
 			</div>
-			<div class="forecast-list" id="forecast-outlet" data-forecast>
+			<div class="forecast" data-forecast>
 				<!-- js will put content here -->
 				<template>
-					<article class="forecast-list-three-hour">
-						<h4 class="time" data-time></h4>
-						<div class="icon" data-icon></div>
-						<div class="temp" data-temp></div>
+					<article class="forecast__three-hour">
+						<h4 class="forecast__time" data-time></h4>
+						<div class="forecast__icon" data-icon></div>
+						<div class="forecast__temp" data-temp></div>
 					</article>
 				</template>
 			</div>

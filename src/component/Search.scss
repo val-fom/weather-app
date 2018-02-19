@@ -26,3 +26,7 @@
 	font-size: 0.7rem;
 	text-align: center;
 }
+
+[data-is-valid="false"] {
+	background-color: #ffd3d3;
+}

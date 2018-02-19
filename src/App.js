@@ -1,7 +1,9 @@
+import { getAll } from './api'
 import Header from './component/Header'
 import Search from './component/Search'
 import History from './component/History'
 import Favourites from './component/Favourites'
+
 
 export default class App {
 	constructor(host) {
@@ -10,10 +12,20 @@ export default class App {
 			forecast: null
 		}
 		this.host = host;
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.host.addEventListener('submit', this.handleSubmit);
+
 		this.header = new Header();
 		this.search = new Search();
 		this.history = new History();
 		this.favourites = new Favourites();
+	}
+
+	handleSubmit(ev) {
+		const city = ev.target.elements.search.value.trim();
+		if (this.search.state.isValid) {
+			const response = getAll(city).then(console.log);
+		}
 	}
 
 	render() {

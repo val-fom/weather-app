@@ -62,19 +62,19 @@ update();
 // to separete component
 const form = document.querySelector('[data-search]');
 const input = form.querySelector('input');
-form.onsubmit = () => {
+/*form.onsubmit = () => {
 	update(form.elements.search.value)
 	// update(form.elements.search.value.trim())
 		.then(() => {
 			input.value = WEATHER_APP.city;
 			history.add(WEATHER_APP.city);
 		}, (error) => {
-			input.style.background = '#ffd3d3';
-			input.oninput = () => input.removeAttribute("style");
-			console.error(error);
+			// input.style.background = '#ffd3d3';
+			// input.oninput = () => input.removeAttribute("style");
+			// console.error(error);
 		})
 	return false;
-};
+};*/
 // to list component
 const addButton = document.querySelector('[data-favourites-add]');
 addButton.onclick = () => {

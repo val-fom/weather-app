@@ -5,11 +5,17 @@ const count = '&cnt=' + 8; // 24/3 hour forecast
 export const get = (apiType, units, city) => {
 	const url = BASE_API_URL + apiType + '?q=' + city +
 		'&APPID=' + KEY + '&units=' + units + count; // json place holder vvvvv
-	// let url = 'https://my-json-server.typicode.com/val-fom/weather-app/weather';
+// let url = 'https://my-json-server.typicode.com/val-fom/weather-app/weather';
 	return fetch(url).then(response => {
 		if (response.ok) {
 			return response.json();
 		}
-		throw new Error('api response was not ok.')
+		throw new Error(response.statusText);
 	});
 };
+
+const getWeather = city => get('weather', 'metric', city);
+const getForecast = city => get('forecast', 'metric', city);
+
+export const getAll = city =>
+	Promise.all([getWeather(city), getForecast(city)]);

@@ -9,11 +9,12 @@ export default class App {
 	constructor(host) {
 		this.state = {
 			weather: null,
-			forecast: null
+			forecast: null,
+			city: null
 		}
 		this.host = host;
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.host.addEventListener('submit', this.handleSubmit);
+		this.handleSearch = this.handleSearch.bind(this);
+		this.host.addEventListener('search', this.handleSearch);
 
 		this.header = new Header();
 		this.search = new Search();
@@ -21,11 +22,23 @@ export default class App {
 		this.favourites = new Favourites();
 	}
 
-	handleSubmit(ev) {
-		const city = ev.target.elements.search.value.trim();
-		if (this.search.state.isValid) {
-			const response = getAll(city).then(console.log);
-		}
+	handleSearch(ev) {
+		const city = ev.detail.city;
+		const response = getAll(city)
+			.then(res => {
+				this.updateState({ 
+					weather: res[0],
+					forecast: res[1],
+					city: `${res[0].name},${res[0].sys.country}`
+				});
+				this.search.updateState({ value: this.state.city });
+			});
+	}
+
+	updateState(nextState) {
+		this.state = Object.assign({}, this.state, nextState);
+		this.render();
+		console.log('App: state updated', this.state);
 	}
 
 	render() {

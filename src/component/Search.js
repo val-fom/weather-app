@@ -3,7 +3,8 @@ require('./Search.scss')
 export default class Search {
 	constructor() {
 		this.state = {
-			isValid: true
+			isValid: true,
+			value: ''
 		};
 
 		this.host = document.createElement('div');
@@ -19,7 +20,7 @@ export default class Search {
 	updateState(nextState) {
 		this.state = Object.assign({}, this.state, nextState);
 		this.render();
-		console.log('state updated', this.state);
+		console.log('Search: state updated', this.state);
 	}
 
 	handleSubmit(ev) {
@@ -29,7 +30,17 @@ export default class Search {
 			this.host.addEventListener('input', this.handleInput);
 			this.updateState({ isValid: false });
 			this.stayFocused();
+		} else {
+			this.dispatchSearchEvent(city);
 		}
+	}
+
+	dispatchSearchEvent(city) {
+		const event = new CustomEvent('search', {
+			bubbles: true,
+			detail: { city: city }
+		});
+		this.host.dispatchEvent(event);
 	}
 
 	handleInput() {
@@ -49,7 +60,8 @@ export default class Search {
 			<form class="search" data-search>
 				<input required class="search__input" name="search"
 					data-is-valid = ${isValid}
-					placeholder="type city name and press enter">
+					placeholder="type city name and press enter"
+					value = "${this.state.value}">
 			</form>
 		`;
 		this.host.innerHTML = '';

@@ -84,4 +84,4 @@ addButton.onclick = () => {
 // const rootNode = document.body;
 // console.log(rootNode);
 
-console.log(WEATHER_APP);
+// console.log(WEATHER_APP);

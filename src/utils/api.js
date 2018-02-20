@@ -17,5 +17,7 @@ export const get = (apiType, units, city) => {
 const getWeather = city => get('weather', 'metric', city);
 const getForecast = city => get('forecast', 'metric', city);
 
-export const getAll = city =>
+const getAll = city =>
 	Promise.all([getWeather(city), getForecast(city)]);
+
+export default getAll;

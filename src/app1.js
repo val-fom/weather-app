@@ -1,4 +1,4 @@
-import { get } from './api.js'
+import { get } from './utils/api'
 import { units } from './main.js'
 
 export class App1 {

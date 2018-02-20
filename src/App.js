@@ -1,4 +1,4 @@
-import { getAll } from './api'
+import getAll from './utils/api'
 import Header from './component/Header'
 import Search from './component/Search'
 import History from './component/History'

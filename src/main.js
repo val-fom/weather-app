@@ -21,13 +21,13 @@ const forecast = new Forecast({
 	template: document.querySelector('[data-forecast] > template')
 });
 
-const history = new List({
-	outlet: document.querySelector('[data-history]'),
-	template: document.querySelector('[data-history] > template'),
-	localStorageKey: 'history',
-	clearButton: document.querySelector('[data-history-clear]')
-});
-history.init();
+// const history = new List({
+// 	outlet: document.querySelector('[data-history]'),
+// 	template: document.querySelector('[data-history] > template'),
+// 	localStorageKey: 'history',
+// 	clearButton: document.querySelector('[data-history-clear]')
+// });
+// history.init();
 
 const favourites = new List({
 	outlet: document.querySelector('[data-favourites]'),

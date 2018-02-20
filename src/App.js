@@ -4,7 +4,6 @@ import Search from './component/Search'
 import History from './component/History'
 import Favourites from './component/Favourites'
 
-
 export default class App {
 	constructor(host) {
 		this.state = {
@@ -31,13 +30,14 @@ export default class App {
 					forecast: res[1],
 					city: `${res[0].name},${res[0].sys.country}`
 				});
+				this.history.add( this.state.city )
 				this.search.updateState({ value: this.state.city });
 			});
 	}
 
 	updateState(nextState) {
 		this.state = Object.assign({}, this.state, nextState);
-		this.render();
+		// this.render();
 		console.log('App: state updated', this.state);
 	}
 

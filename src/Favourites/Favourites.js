@@ -16,12 +16,17 @@ export default class Favourites {
 		this.addButton = document.createElement('button');
 		this.addButton.classList.add('favourites__add-button');
 		this.addButton.addEventListener('click', () => {
-			if (this.state.city) this.add(this.state.city)
+			if (this.city) this.add(this.city);
 		});
+		this.addButton.innerHTML = '<i>+</i>';
+		this.host.appendChild(this.addButton);
 
 		this.clearButton = document.createElement('button');
 		this.clearButton.classList.add('favourites__clear-button');
 		this.clearButton.addEventListener('click', () => this.clear() );
+
+		this.clearButton.innerHTML = '<i>+</i>';
+		this.host.appendChild(this.clearButton);
 	}
 
 	render() {
@@ -34,12 +39,6 @@ export default class Favourites {
 			`;
 			this.ul.insertAdjacentHTML('beforeend', li);
 		}
-		this.addButton.innerHTML = '<i>+</i>';
-		this.host.appendChild(this.addButton);
-
-		this.clearButton.innerHTML = '<i>+</i>';
-		this.host.appendChild(this.clearButton);
-
 		return this.host;
 	}
 
@@ -52,6 +51,7 @@ export default class Favourites {
 	add(item) {
 		const list = this.state.list.slice();
 		let index = list.indexOf(item);
+		if (item === list[list.length - 1]) return;
 		if (~index) list.splice(index, 1);
 		list.push(item);
 		localStorage['favourites'] = JSON.stringify(list);
@@ -69,6 +69,7 @@ export default class Favourites {
 	}
 
 	handleClick(ev) {
+		if (ev.target.tagName !== 'A') return;
 		ev.preventDefault();
 		const city = ev.target.innerHTML;
 		this.dispatchSearchEvent(city);
@@ -80,6 +81,10 @@ export default class Favourites {
 			detail: { city: city }
 		});
 		this.host.dispatchEvent(event);
+	}
+
+	setCity({ city }) {
+		this.city = city;
 	}
 
 }

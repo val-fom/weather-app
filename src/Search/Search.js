@@ -68,4 +68,8 @@ export default class Search {
 		this.host.insertAdjacentHTML('beforeend', form);
 		return this.host;
 	}
+
+	setCity({ city }) {
+		this.updateState({ city: city });
+	}
 }

@@ -17,6 +17,8 @@ export default class History {
 		this.clearButton = document.createElement('button');
 		this.clearButton.classList.add('history__clear-button');
 		this.clearButton.addEventListener('click', () => this.clear() );
+		this.clearButton.innerHTML = '<i>+</i>';
+		this.host.appendChild(this.clearButton);
 	}
 
 	render() {
@@ -29,9 +31,6 @@ export default class History {
 			`;
 			this.ul.insertAdjacentHTML('beforeend', li);
 		}
-		this.clearButton.innerHTML = '<i>+</i>';
-		this.host.appendChild(this.clearButton);
-
 		return this.host;
 	}
 
@@ -61,6 +60,7 @@ export default class History {
 	}
 
 	handleClick(ev) {
+		if (ev.target.tagName !== 'A') return;
 		ev.preventDefault();
 		const city = ev.target.innerHTML;
 		this.dispatchSearchEvent(city);
@@ -72,5 +72,9 @@ export default class History {
 			detail: { city: city }
 		});
 		this.host.dispatchEvent(event);
+	}
+
+	setCity({ city }) {
+		this.add(city);
 	}
 }

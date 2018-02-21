@@ -30,9 +30,9 @@ export default class App {
 					forecast: res[1],
 					city: `${res[0].name},${res[0].sys.country}`
 				});
-				this.history.add( this.state.city )
-				this.search.updateState( this.state );
-				this.favourites.updateState( this.state );
+				this.search.setCity({ city: this.state.city });
+				this.history.setCity({ city: this.state.city });
+				this.favourites.setCity({ city: this.state.city });
 			});
 	}
 

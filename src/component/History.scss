@@ -1,6 +1,7 @@
 .history__container {
 	width: 300px;
 	margin: auto;
+	position: relative;
 }
 
 .history {
@@ -20,7 +21,7 @@
 		top: 0;
 		cursor: pointer;
 		pointer-events: none;
-		background: linear-gradient(90deg, rgba(255,255,255,0.001), 30%, white);
+		background: linear-gradient(90deg, rgba(255, 255, 255, 0.001), 30%, white);
 	}
 }
 
@@ -30,11 +31,22 @@
 	white-space: nowrap;
 }
 
-.history__city > a {
+.history__city>a {
 	padding: 0.3rem;
 	cursor: pointer;
 	line-height: 1.2em;
 	&:hover {
 		text-decoration: underline;
+	}
+}
+
+.history__clear-button {
+	position: absolute;
+	right: -0.9rem;
+	top: 0;
+	line-height: 1.5rem;
+	i {
+		display: block;
+		transform: rotate(45deg);
 	}
 }

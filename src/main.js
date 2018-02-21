@@ -29,13 +29,13 @@ const forecast = new Forecast({
 // });
 // history.init();
 
-const favourites = new List({
-	outlet: document.querySelector('[data-favourites]'),
-	template: document.querySelector('[data-favourites] > template'),
-	localStorageKey: 'favourites',
-	clearButton: document.querySelector('[data-favourites-clear]'),
-});
-favourites.init();
+// const favourites = new List({
+// 	outlet: document.querySelector('[data-favourites]'),
+// 	template: document.querySelector('[data-favourites] > template'),
+// 	localStorageKey: 'favourites',
+// 	clearButton: document.querySelector('[data-favourites-clear]'),
+// });
+// favourites.init();
 
 export const units = new Units({
 	localStorageKey: 'units',
@@ -60,8 +60,8 @@ update();
 
 // should move it somewhere
 // to separete component
-const form = document.querySelector('[data-search]');
-const input = form.querySelector('input');
+// const form = document.querySelector('[data-search]');
+// const input = form.querySelector('input');
 /*form.onsubmit = () => {
 	update(form.elements.search.value)
 	// update(form.elements.search.value.trim())
@@ -76,10 +76,10 @@ const input = form.querySelector('input');
 	return false;
 };*/
 // to list component
-const addButton = document.querySelector('[data-favourites-add]');
-addButton.onclick = () => {
-	favourites.add(WEATHER_APP.city);
-}
+// const addButton = document.querySelector('[data-favourites-add]');
+// addButton.onclick = () => {
+// 	favourites.add(WEATHER_APP.city);
+// }
 
 // const rootNode = document.body;
 // console.log(rootNode);

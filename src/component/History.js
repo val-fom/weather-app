@@ -12,7 +12,11 @@ export default class History {
 		this.host.appendChild(this.ul);
 
 		this.handleClick = this.handleClick.bind(this);
-		this.host.addEventListener('click', this.handleClick);
+		this.ul.addEventListener('click', this.handleClick);
+
+		this.clearButton = document.createElement('button');
+		this.clearButton.classList.add('history__clear-button');
+		this.clearButton.addEventListener('click', () => this.clear() );
 	}
 
 	render() {
@@ -25,6 +29,9 @@ export default class History {
 			`;
 			this.ul.insertAdjacentHTML('beforeend', li);
 		}
+		this.clearButton.innerHTML = '<i>+</i>';
+		this.host.appendChild(this.clearButton);
+
 		return this.host;
 	}
 

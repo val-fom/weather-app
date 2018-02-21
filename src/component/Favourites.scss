@@ -1,9 +1,10 @@
-.favorites__container {
+.favourites__container {
 	width: 300px;
 	margin: auto;
+	position: relative;
 }
 
-.favorites {
+.favourites {
 	width: 100%;
 	height: 1.5rem;
 	list-style: none;
@@ -17,7 +18,7 @@
 	border-top-right-radius: 6px;
 	overflow: hidden;
 	&::before {
-		content: 'click + to add the city to your favorites';
+		content: 'click + to add the city to your favourites';
 		width: 100%;
 		color: #999;
 		font-size: 0.7rem;
@@ -28,7 +29,7 @@
 	}
 }
 
-.favorites__city {
+.favourites__city {
 	font-size: 0.8rem;
 	line-height: 1.5rem;
 	white-space: nowrap;
@@ -42,11 +43,29 @@
 	}
 }
 
-.favorites__city > a {
+.favourites__city > a {
 	display: block;
 	transition: 0.2s;
 	cursor: pointer;
 	&:hover {
 		text-decoration: none;
+	}
+}
+
+.favourites__add-button {
+	position: absolute;
+	left: -0.9rem;
+	top: 0;
+	line-height: 1.5rem;
+}
+
+.favourites__clear-button {
+	position: absolute;
+	right: -0.9rem;
+	top: 0;
+	line-height: 1.5rem;
+	i {
+		display: block;
+		transform: rotate(45deg);
 	}
 }

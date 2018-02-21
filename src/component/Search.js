@@ -4,7 +4,7 @@ export default class Search {
 	constructor() {
 		this.state = {
 			isValid: true,
-			value: ''
+			city: ''
 		};
 
 		this.host = document.createElement('div');
@@ -61,7 +61,7 @@ export default class Search {
 				<input required class="search__input" name="search"
 					data-is-valid = ${isValid}
 					placeholder="type city name and press enter"
-					value = "${this.state.value}">
+					value = "${this.state.city}">
 			</form>
 		`;
 		this.host.innerHTML = '';

@@ -6,17 +6,17 @@ app.render();
 
 //****************** OLD *********************
 import { App1 } from './app1.js'
-import { Weather } from './component/weather.js'
-import { Forecast } from './component/forecast.js'
-import { List } from './component/list.js'
-import { Units } from './component/units.js'
+import { Weather1 } from './component/weather1.js'
+import { Forecast1 } from './component/forecast1.js'
+// import { List } from './component/list.js'
+import { Units1 } from './component/units1.js'
 
-const weather = new Weather({
+const weather = new Weather1({
 	outlet: document.querySelector('[data-weather]'),
 	template: document.querySelector('[data-weather] > template')
 });
 
-const forecast = new Forecast({
+const forecast = new Forecast1({
 	outlet: document.querySelector('[data-forecast]'),
 	template: document.querySelector('[data-forecast] > template')
 });
@@ -37,7 +37,7 @@ const forecast = new Forecast({
 // });
 // favourites.init();
 
-export const units = new Units({
+export const units = new Units1({
 	localStorageKey: 'units',
 	toggleButton: document.querySelector('[data-units-toggle]')
 });

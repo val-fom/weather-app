@@ -4,7 +4,6 @@ export default class Favourites {
 	constructor() {
 		this.state = {
 			list: this.getFromLocalStorage()
-			// list: ['Kyiv,UA', 'Lviv,UA']
 		}
 		this.host = document.createElement('div');
 		this.host.classList.add('favourites__container');
@@ -35,7 +34,7 @@ export default class Favourites {
 			`;
 			this.ul.insertAdjacentHTML('beforeend', li);
 		}
-		this.addButton.textContent = '+';
+		this.addButton.innerHTML = '<i>+</i>';
 		this.host.appendChild(this.addButton);
 
 		this.clearButton.innerHTML = '<i>+</i>';

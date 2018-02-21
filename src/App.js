@@ -1,8 +1,8 @@
 import getAll from './utils/api'
-import Header from './component/Header'
-import Search from './component/Search'
-import History from './component/History'
-import Favourites from './component/Favourites'
+import Header from './Header/Header'
+import Search from './Search/Search'
+import History from './History/History'
+import Favourites from './Favourites/Favourites'
 
 export default class App {
 	constructor(host) {

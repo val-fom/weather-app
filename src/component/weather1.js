@@ -8,7 +8,7 @@ export class Weather1 extends Component {
 	}
 
 	init(response) {
-		this._outlet.innerHTML = '';
+		// this._outlet.innerHTML = '';
 		// const node = document.importNode(this._template.content, true);
 		// const icons = this._getIcons(response.weather);
 

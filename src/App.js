@@ -39,7 +39,7 @@ export default class App {
 	updateState(nextState) {
 		this.state = { ...this.state, ...nextState };
 		// this.render();
-		console.log('App: state updated', this.state);
+		console.log(this.constructor.name + ': state updated', this.state);
 	}
 
 	render() {

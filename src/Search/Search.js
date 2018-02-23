@@ -20,7 +20,7 @@ export default class Search {
 	updateState(nextState) {
 		this.state = { ...this.state, ...nextState };
 		this.render();
-		console.log('Search: state updated', this.state);
+		console.log(this.constructor.name + ': state updated', this.state);
 	}
 
 	handleSubmit(ev) {

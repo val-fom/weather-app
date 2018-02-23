@@ -45,7 +45,7 @@ export default class Favourites {
 	updateState(nextState) {
 		this.state = { ...this.state, ...nextState };
 		this.render();
-		console.log('Favourites: state updated', this.state);
+		console.log(this.constructor.name + ': state updated', this.state);
 	}
 
 	add(item) {

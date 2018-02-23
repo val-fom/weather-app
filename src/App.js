@@ -3,6 +3,7 @@ import Header from './Header/Header'
 import Search from './Search/Search'
 import History from './History/History'
 import Favourites from './Favourites/Favourites'
+import Weather from './Weather/Weather'
 
 export default class App {
 	constructor(host) {
@@ -19,6 +20,7 @@ export default class App {
 		this.search = new Search();
 		this.history = new History();
 		this.favourites = new Favourites();
+		this.weather = new Weather();
 	}
 
 	handleSearch(ev) {
@@ -33,6 +35,7 @@ export default class App {
 				this.search.setCity({ city: this.state.city });
 				this.history.setCity({ city: this.state.city });
 				this.favourites.setCity({ city: this.state.city });
+				this.weather.setResponse({ response: this.state.weather });
 			});
 	}
 
@@ -51,5 +54,7 @@ export default class App {
 		this.host.appendChild(history);
 		const favourites = this.favourites.render();
 		this.host.appendChild(favourites);
+		const weather = this.weather.render();
+		this.host.appendChild(weather);
 	}
 }

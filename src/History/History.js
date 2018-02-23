@@ -16,7 +16,8 @@ export default class History {
 
 		this.clearButton = document.createElement('button');
 		this.clearButton.classList.add('history__clear-button');
-		this.clearButton.addEventListener('click', () => this.clear() );
+		this.clear = this.clear.bind(this);
+		this.clearButton.addEventListener('click', this.clear);
 		this.clearButton.innerHTML = '<i>+</i>';
 		this.host.appendChild(this.clearButton);
 	}

@@ -18,7 +18,7 @@ export default class Search {
 	}
 
 	updateState(nextState) {
-		this.state = Object.assign({}, this.state, nextState);
+		this.state = { ...this.state, ...nextState };
 		this.render();
 		console.log('Search: state updated', this.state);
 	}

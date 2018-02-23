@@ -36,7 +36,7 @@ export default class History {
 	}
 
 	updateState(nextState) {
-		this.state = Object.assign({}, this.state, nextState);
+		this.state = { ...this.state, ...nextState };
 		this.render();
 		console.log('History: state updated', this.state);
 	}

@@ -43,7 +43,7 @@ export default class Favourites {
 	}
 
 	updateState(nextState) {
-		this.state = Object.assign({}, this.state, nextState);
+		this.state = { ...this.state, ...nextState };
 		this.render();
 		console.log('Favourites: state updated', this.state);
 	}

@@ -37,7 +37,7 @@ export default class App {
 	}
 
 	updateState(nextState) {
-		this.state = Object.assign({}, this.state, nextState);
+		this.state = { ...this.state, ...nextState };
 		// this.render();
 		console.log('App: state updated', this.state);
 	}

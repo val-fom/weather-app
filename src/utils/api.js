@@ -14,10 +14,10 @@ export const get = (apiType, units, city) => {
 	});
 };
 
-const getWeather = city => get('weather', 'metric', city);
-const getForecast = city => get('forecast', 'metric', city);
+const getWeather = (city, units) => get('weather', units, city);
+const getForecast = (city, units) => get('forecast', units, city);
 
-const getAll = city =>
-	Promise.all([getWeather(city), getForecast(city)]);
+const getAll = (city, units) =>
+	Promise.all([getWeather(city, units), getForecast(city, units)]);
 
 export default getAll;

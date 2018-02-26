@@ -72,13 +72,13 @@ export default class Favourites {
 		if (ev.target.tagName !== 'A') return;
 		ev.preventDefault();
 		const city = ev.target.innerHTML;
-		this.dispatchSearchEvent(city);
+		this.dispatchRequestUpdateEvent({ city: city });
 	}
 
-	dispatchSearchEvent(city) {
-		const event = new CustomEvent('search', {
+	dispatchRequestUpdateEvent(detail) {
+		const event = new CustomEvent('requestUpdate', {
 			bubbles: true,
-			detail: { city: city }
+			detail: detail
 		});
 		this.host.dispatchEvent(event);
 	}

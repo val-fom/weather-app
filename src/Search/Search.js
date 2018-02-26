@@ -1,10 +1,10 @@
 require('./Search.scss')
 
 export default class Search {
-	constructor() {
+	constructor(props) {
+		this.props = props;
 		this.state = {
 			isValid: true,
-			city: ''
 		};
 
 		this.host = document.createElement('div');
@@ -23,6 +23,14 @@ export default class Search {
 		console.log(this.constructor.name + ': state updated', this.state);
 	}
 
+	onBeforeUpdate() {}
+
+	update(nextProps) {
+		this.onBeforeUpdate(nextProps);
+		console.log(this.constructor.name + ': props updated', this.props);
+		return this.render();
+	}
+
 	handleSubmit(ev) {
 		ev.preventDefault();
 		const city = ev.target.elements.search.value.trim();
@@ -31,14 +39,14 @@ export default class Search {
 			this.updateState({ isValid: false });
 			this.stayFocused();
 		} else {
-			this.dispatchSearchEvent(city);
+			this.dispatchRequestUpdateEvent({ city: city });
 		}
 	}
 
-	dispatchSearchEvent(city) {
-		const event = new CustomEvent('search', {
+	dispatchRequestUpdateEvent(detail) {
+		const event = new CustomEvent('requestUpdate', {
 			bubbles: true,
-			detail: { city: city }
+			detail: detail
 		});
 		this.host.dispatchEvent(event);
 	}
@@ -61,7 +69,7 @@ export default class Search {
 				<input required class="search__input" name="search"
 					data-is-valid = ${isValid}
 					placeholder="type city name and press enter"
-					value = "${this.state.city}">
+					value = "${this.props.city}">
 			</form>
 		`;
 		this.host.innerHTML = '';

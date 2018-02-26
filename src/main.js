@@ -9,7 +9,7 @@ app.render();
 // import { Weather1 } from './component/weather1.js'
 // import { Forecast1 } from './component/forecast1.js'
 // import { List } from './component/list.js'
-import { Units1 } from './component/units1.js'
+// import { Units1 } from './component/units1.js'
 
 // const weather = new Weather1({
 // 	outlet: document.querySelector('[data-weather]'),
@@ -37,11 +37,11 @@ import { Units1 } from './component/units1.js'
 // });
 // favourites.init();
 
-export const units = new Units1({
-	localStorageKey: 'units',
-	toggleButton: document.querySelector('[data-units-toggle]')
-});
-units.init();
+// export const units = new Units1({
+// 	localStorageKey: 'units',
+// 	toggleButton: document.querySelector('[data-units-toggle]')
+// });
+// units.init();
 
 // const WEATHER_APP = new App1();
 // const update = (city) => {

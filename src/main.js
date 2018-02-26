@@ -2,7 +2,7 @@ import App from './App.js'
 
 const app = new App(document.getElementById('root'));
 
-app.render();
+app.update();
 
 //****************** OLD *********************
 // import { App1 } from './app1.js'

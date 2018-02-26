@@ -1,5 +1,8 @@
 import getAll from './utils/api'
 import { _getCityFromUrl } from './utils/index'
+
+import Component from './Component'
+
 import Header from './Header/Header'
 import Search from './Search/Search'
 import History from './History/History'
@@ -8,19 +11,22 @@ import Weather from './Weather/Weather'
 import Forecast from './Forecast/Forecast'
 import Units from './Units/Units'
 
-export default class App {
+export default class App extends Component {
 	constructor(host) {
+		super();
+
 		this.state = {
 			weatherResponse: null,
 			forecastResponse: null,
 			city: _getCityFromUrl() || 'kyiv',
-			units: null,
+			units: localStorage.units || 'metric',
 		}
+
 		this.host = host;
 
-		this.header = new Header();
-
 		this.onSearchSubmit = this.onSearchSubmit.bind(this);
+
+		this.header = new Header();
 		this.search = new Search({
 			city: this.state.city,
 			onSubmit: this.onSearchSubmit,
@@ -34,7 +40,7 @@ export default class App {
 	}
 
 	onSearchSubmit(city) {
-		getAll(city)
+		getAll(city, this.state.units)
 			.then(res => {
 				this.updateState({
 					weatherResponse: res[0],
@@ -67,40 +73,13 @@ export default class App {
 	// 		});
 	// }
 
-	updateState(nextState) {
-		this.state = { ...this.state, ...nextState };
-		console.log(this.constructor.name + ': state updated', this.state);
-		this.render();
-	}
-
 	render() {
 		const { city, weatherResponse, forecastResponse } = this.state;
-		this.host.innerHTML = '';
-		this.host.appendChild(
-			this.search.update({
-				city
-			})
-		);
-		this.host.appendChild(
-			this.weather.update({
-				weatherResponse
-			})
-		);
 
-		// const header = this.header.render();
-		// this.host.appendChild(header);
-		// const search = this.search.render();
-		// this.host.appendChild(search);
-		// const history = this.history.render();
-		// this.host.appendChild(history);
-		// const favourites = this.favourites.render();
-		// this.host.appendChild(favourites);
-		// const weather = this.weather.render();
-		// this.host.appendChild(weather);
-		// const forecast = this.forecast.render();
-		// this.host.appendChild(forecast);
-		// const units = this.units.render();
-		// this.host.appendChild(units);
-		console.log('App.render()', 'this.state:', this.state);
+		return [
+			this.header.update(),
+			this.search.update({ city }),
+			this.weather.update({ city, weatherResponse }),
+		]
 	}
 }

@@ -1,17 +1,20 @@
 require('./header.scss')
 
-export default class Header {
+import Component from '../Component'
+
+export default class Header extends Component {
 	constructor() {
+		super();
+
 		this.host = document.createElement('div');
 		this.host.classList.add('header__container');
 	}
 
 	render() {
-		this.host.innerHTML = `
+		return `
 			<header class="header">
 				<h1 class="header__heading">Weather App</h1>
 			</header>
 		`;
-		return this.host;
 	}
 }

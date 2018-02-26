@@ -32,7 +32,10 @@ export default class App extends Component {
 			onSubmit: this.onSearchSubmit,
 		});
 
-		this.history = new History();
+		this.history = new History({
+			city: this.state.city,
+			onClick: this.onSearchSubmit,
+		});
 		this.favourites = new Favourites();
 		this.weather = new Weather();
 		this.forecast = new Forecast();
@@ -79,6 +82,7 @@ export default class App extends Component {
 		return [
 			this.header.update(),
 			this.search.update({ city }),
+			this.history.update({ city }),
 			this.weather.update({ city, weatherResponse }),
 		]
 	}

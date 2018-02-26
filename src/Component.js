@@ -13,10 +13,13 @@ class Component {
 	}
 
 	update(nextProps) {
+		this.beforeUpdate(nextProps);
 		this.props = { ...this.props, ...nextProps };
 		console.log(this.constructor.name + ': _props_ updated:', this.props);
 		return this._render();
 	}
+
+	beforeUpdate() {}
 
 	_render() {
 		const children = this.render();

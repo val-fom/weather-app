@@ -1,7 +1,11 @@
 require('./History.scss')
 
-export default class History {
-	constructor() {
+import Component from '../Component'
+
+export default class History extends Component {
+	constructor(props) {
+		super(props);
+
 		this.state = {
 			list: this.getFromLocalStorage()
 		}
@@ -32,13 +36,11 @@ export default class History {
 			`;
 			this.ul.insertAdjacentHTML('beforeend', li);
 		}
-		return this.host;
+		return [this.ul, this.clearButton];
 	}
 
-	updateState(nextState) {
-		this.state = { ...this.state, ...nextState };
-		this.render();
-		console.log(this.constructor.name + ': state updated', this.state);
+	beforeUpdate({ city }) {
+		this.add(city);
 	}
 
 	add(item) {
@@ -64,18 +66,6 @@ export default class History {
 		if (ev.target.tagName !== 'A') return;
 		ev.preventDefault();
 		const city = ev.target.innerHTML;
-		this.dispatchRequestUpdateEvent({ city: city });
-	}
-
-	dispatchRequestUpdateEvent(detail) {
-		const event = new CustomEvent('requestUpdate', {
-			bubbles: true,
-			detail: detail
-		});
-		this.host.dispatchEvent(event);
-	}
-
-	setCity({ city }) {
-		this.add(city);
+		this.props.onClick(city);
 	}
 }

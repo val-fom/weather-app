@@ -1,7 +1,11 @@
 require('./Units.scss')
 
-export default class Units {
-	constructor(conf) {
+import Component from '../Component'
+
+export default class Units extends Component {
+	constructor(props) {
+		super(props);
+
 		this.state = {
 			units: (localStorage.units || 'metric')
 		}
@@ -19,27 +23,13 @@ export default class Units {
 	render() {
 		this.button.textContent = (this.state.units === 'metric') ?
 			'\xB0C' : '\xB0F';
-		return this.host;
-	}
-
-	updateState(nextState) {
-		this.state = { ...this.state, ...nextState };
-		this.render();
-		console.log(this.constructor.name + ': state updated', this.state);
+		return this.button;
 	}
 
 	toggle() {
 		const units = (this.state.units === 'metric') ? 'imperial' : 'metric';
 		localStorage.units = units;
 		this.updateState({ units });
-		this.dispatchRequestUpdateEvent({ units })
-	}
-
-	dispatchRequestUpdateEvent(detail) {
-		const event = new CustomEvent('requestUpdate', {
-			bubbles: true,
-			detail: detail
-		});
-		this.host.dispatchEvent(event);
+		this.props.onToggle(units);
 	}
 }

@@ -25,6 +25,7 @@ export default class App extends Component {
 		this.host = host;
 
 		this.onSearchSubmit = this.onSearchSubmit.bind(this);
+		this.onUnitsToggle = this.onUnitsToggle.bind(this);
 
 		this.header = new Header();
 		this.search = new Search({
@@ -41,42 +42,28 @@ export default class App extends Component {
 		});
 		this.weather = new Weather();
 		this.forecast = new Forecast();
-		this.units = new Units();
+		this.units = new Units({
+			onToggle: this.onUnitsToggle,
+		});
 	}
 
-	onSearchSubmit(city) {
+	onSearchSubmit(city = this.state.city) {
 		getAll(city, this.state.units)
 			.then(res => {
 				this.updateState({
 					weatherResponse: res[0],
 					forecastResponse: res[1],
 					city: `${res[0].name},${res[0].sys.country}`,
-					// units: units
 				});
 			});
 	}
 
-	// handleUpdateRequest(ev) {
-	// 	if (ev.detail.city) this.updateState({ city: ev.detail.city })
-	// 	if (ev.detail.units) this.updateState({ units: ev.detail.units })
-	// 	console.log(this.state);
-	// 	const city = ev.detail.city || this.state.city;
-	// 	const units = ev.detail.units || this.state.units;
-	// 	const response = getAll(city, units)
-	// 		.then(res => {
-	// 			this.updateState({
-	// 				weather: res[0],
-	// 				forecast: res[1],
-	// 				city: `${res[0].name},${res[0].sys.country}`,
-	// 				units: units
-	// 			});
-	// 			this.search.setCity({ city: this.state.city });
-	// 			this.history.setCity({ city: this.state.city });
-	// 			this.favourites.setCity({ city: this.state.city });
-	// 			this.weather.setResponse({ response: this.state.weather });
-	// 			this.forecast.setResponse({ response: this.state.forecast });
-	// 		});
-	// }
+	onUnitsToggle(units) {
+		this.updateState({
+			units,
+		})
+		this.onSearchSubmit();
+	}
 
 	render() {
 		const { city, weatherResponse, forecastResponse } = this.state;
@@ -88,6 +75,7 @@ export default class App extends Component {
 			this.favourites.update({ city }),
 			this.weather.update({ city, weatherResponse }),
 			this.forecast.update({ city, forecastResponse }),
+			this.units.update(),
 		]
 	}
 }

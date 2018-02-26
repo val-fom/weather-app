@@ -87,6 +87,7 @@ export default class App extends Component {
 			this.history.update({ city }),
 			this.favourites.update({ city }),
 			this.weather.update({ city, weatherResponse }),
+			this.forecast.update({ city, forecastResponse }),
 		]
 	}
 }

@@ -1,7 +1,11 @@
 require('./Favourites.scss')
 
-export default class Favourites {
-	constructor() {
+import Component from '../Component'
+
+export default class Favourites extends Component {
+	constructor(props) {
+		super(props);
+
 		this.state = {
 			list: this.getFromLocalStorage()
 		}
@@ -16,7 +20,7 @@ export default class Favourites {
 		this.addButton = document.createElement('button');
 		this.addButton.classList.add('favourites__add-button');
 		this.addButton.addEventListener('click', () => {
-			if (this.city) this.add(this.city);
+			if (this.props) this.add(this.props.city);
 		});
 		this.addButton.innerHTML = '<i>+</i>';
 		this.host.appendChild(this.addButton);
@@ -39,13 +43,7 @@ export default class Favourites {
 			`;
 			this.ul.insertAdjacentHTML('beforeend', li);
 		}
-		return this.host;
-	}
-
-	updateState(nextState) {
-		this.state = { ...this.state, ...nextState };
-		this.render();
-		console.log(this.constructor.name + ': state updated', this.state);
+		return [this.ul, this.addButton, this.clearButton];
 	}
 
 	add(item) {
@@ -72,19 +70,6 @@ export default class Favourites {
 		if (ev.target.tagName !== 'A') return;
 		ev.preventDefault();
 		const city = ev.target.innerHTML;
-		this.dispatchRequestUpdateEvent({ city: city });
+		this.props.onClick(city);
 	}
-
-	dispatchRequestUpdateEvent(detail) {
-		const event = new CustomEvent('requestUpdate', {
-			bubbles: true,
-			detail: detail
-		});
-		this.host.dispatchEvent(event);
-	}
-
-	setCity({ city }) {
-		this.city = city;
-	}
-
 }

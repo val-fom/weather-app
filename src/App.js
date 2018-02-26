@@ -31,12 +31,14 @@ export default class App extends Component {
 			city: this.state.city,
 			onSubmit: this.onSearchSubmit,
 		});
-
 		this.history = new History({
 			city: this.state.city,
 			onClick: this.onSearchSubmit,
 		});
-		this.favourites = new Favourites();
+		this.favourites = new Favourites({
+			city: this.state.city,
+			onClick: this.onSearchSubmit,
+		});
 		this.weather = new Weather();
 		this.forecast = new Forecast();
 		this.units = new Units();
@@ -83,6 +85,7 @@ export default class App extends Component {
 			this.header.update(),
 			this.search.update({ city }),
 			this.history.update({ city }),
+			this.favourites.update({ city }),
 			this.weather.update({ city, weatherResponse }),
 		]
 	}

@@ -17,7 +17,8 @@ export default class Units {
 	}
 
 	render() {
-		this.button.textContent = (this.state.units === 'metric') ? '\xB0C' : '\xB0F';
+		this.button.textContent = (this.state.units === 'metric') ?
+			'\xB0C' : '\xB0F';
 		return this.host;
 	}
 

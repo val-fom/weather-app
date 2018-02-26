@@ -11,21 +11,20 @@ import Units from './Units/Units'
 export default class App {
 	constructor(host) {
 		this.state = {
-			weather: null,
-			forecast: null,
+			weatherResponse: null,
+			forecastResponse: null,
 			city: _getCityFromUrl() || 'kyiv',
 			units: null,
 		}
 		this.host = host;
-		this.handleUpdateRequest = this.handleUpdateRequest.bind(this);
-		this.host.addEventListener('requestUpdate', this.handleUpdateRequest);
 
 		this.header = new Header();
+
+		this.onSearchSubmit = this.onSearchSubmit.bind(this);
 		this.search = new Search({
-			city: 'Kyiv',
+			city: this.state.city,
 			onSubmit: this.onSearchSubmit,
 		});
-		this.onSearchSubmit = this.onSearchSubmit.bind(this);
 
 		this.history = new History();
 		this.favourites = new Favourites();
@@ -35,62 +34,73 @@ export default class App {
 	}
 
 	onSearchSubmit(city) {
-		this.updateState({ city });
-	}
-
-	handleUpdateRequest(ev) {
-		if (ev.detail.city) this.updateState({ city: ev.detail.city })
-		if (ev.detail.units) this.updateState({ units: ev.detail.units })
-		console.log(this.state);
-		const city = ev.detail.city || this.state.city;
-		const units = ev.detail.units || this.state.units;
-		const response = getAll(city, units)
+		getAll(city)
 			.then(res => {
 				this.updateState({
-					weather: res[0],
-					forecast: res[1],
+					weatherResponse: res[0],
+					forecastResponse: res[1],
 					city: `${res[0].name},${res[0].sys.country}`,
-					units: units
+					// units: units
 				});
-				this.search.setCity({ city: this.state.city });
-				this.history.setCity({ city: this.state.city });
-				this.favourites.setCity({ city: this.state.city });
-				this.weather.setResponse({ response: this.state.weather });
-				this.forecast.setResponse({ response: this.state.forecast });
 			});
 	}
 
+	// handleUpdateRequest(ev) {
+	// 	if (ev.detail.city) this.updateState({ city: ev.detail.city })
+	// 	if (ev.detail.units) this.updateState({ units: ev.detail.units })
+	// 	console.log(this.state);
+	// 	const city = ev.detail.city || this.state.city;
+	// 	const units = ev.detail.units || this.state.units;
+	// 	const response = getAll(city, units)
+	// 		.then(res => {
+	// 			this.updateState({
+	// 				weather: res[0],
+	// 				forecast: res[1],
+	// 				city: `${res[0].name},${res[0].sys.country}`,
+	// 				units: units
+	// 			});
+	// 			this.search.setCity({ city: this.state.city });
+	// 			this.history.setCity({ city: this.state.city });
+	// 			this.favourites.setCity({ city: this.state.city });
+	// 			this.weather.setResponse({ response: this.state.weather });
+	// 			this.forecast.setResponse({ response: this.state.forecast });
+	// 		});
+	// }
+
 	updateState(nextState) {
 		this.state = { ...this.state, ...nextState };
-		// this.render();
 		console.log(this.constructor.name + ': state updated', this.state);
-		return this.host;
+		this.render();
 	}
 
 	render() {
-		const { city } = this.state;
+		const { city, weatherResponse, forecastResponse } = this.state;
 		this.host.innerHTML = '';
 		this.host.appendChild(
 			this.search.update({
-				city,
-				onSubmit: this.onSearchSubmit
+				city
+			})
+		);
+		this.host.appendChild(
+			this.weather.update({
+				weatherResponse
 			})
 		);
 
-		const header = this.header.render();
-		this.host.appendChild(header);
-		const search = this.search.render();
-		this.host.appendChild(search);
-		const history = this.history.render();
-		this.host.appendChild(history);
-		const favourites = this.favourites.render();
-		this.host.appendChild(favourites);
-		const weather = this.weather.render();
-		this.host.appendChild(weather);
-		const forecast = this.forecast.render();
-		this.host.appendChild(forecast);
-		const units = this.units.render();
-		this.host.appendChild(units);
+		// const header = this.header.render();
+		// this.host.appendChild(header);
+		// const search = this.search.render();
+		// this.host.appendChild(search);
+		// const history = this.history.render();
+		// this.host.appendChild(history);
+		// const favourites = this.favourites.render();
+		// this.host.appendChild(favourites);
+		// const weather = this.weather.render();
+		// this.host.appendChild(weather);
+		// const forecast = this.forecast.render();
+		// this.host.appendChild(forecast);
+		// const units = this.units.render();
+		// this.host.appendChild(units);
 		console.log('App.render()', 'this.state:', this.state);
 	}
 }

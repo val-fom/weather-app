@@ -1,7 +1,8 @@
 export const getCityFromUrl = () => {
 	const url = new URL(window.location.href);
 	if (url.search.startsWith('?q=')) {
-		return url.search.slice(3);
+		const city = url.search.slice(3);
+		return decodeURI(city);
 	}
 }
 

@@ -1,6 +1,7 @@
 .search__container {
 	width: 300px;
 	margin: auto;
+	position: relative;
 }
 
 .search__input {
@@ -29,4 +30,10 @@
 
 [data-is-valid="false"] {
 	background-color: #ffd3d3;
+}
+
+.search__button {
+	position: absolute;
+	right: -1.6rem;
+	top: 0.1rem;
 }

@@ -10,6 +10,8 @@
 	display: flex;
 	border-left: 1px solid #222;
 	border-right: 1px solid #222;
+	overflow: hidden;
+	padding: 0 0.3rem;
 }
 
 .weather__city,
@@ -23,6 +25,7 @@
 	font-size: 1.5rem;
 	font-weight: bold;
 	margin: 0;
+	white-space: nowrap;
 }
 
 .weather__icon {

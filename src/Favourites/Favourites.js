@@ -23,11 +23,13 @@ export default class Favourites extends Component {
 			if (this.props) this.add(this.props.city);
 		});
 		this.addButton.innerHTML = '<i>+</i>';
+		this.addButton.title = 'add to favourites';
 		this.host.appendChild(this.addButton);
 
 		this.clearButton = document.createElement('button');
 		this.clearButton.classList.add('favourites__clear-button', 'button');
 		this.clearButton.addEventListener('click', () => this.clear() );
+		this.clearButton.title = 'clear favourites'
 
 		this.clearButton.innerHTML = '<i>+</i>';
 		this.host.appendChild(this.clearButton);

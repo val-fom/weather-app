@@ -52,6 +52,7 @@ export default class Search extends Component {
 					data-is-valid=${isValid}
 					placeholder="type city name and press enter"
 					value="${city}">
+				<button class="button search__button" title="search">s</button>
 			</form>
 		`;
 	}

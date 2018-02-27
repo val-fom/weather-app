@@ -23,6 +23,7 @@ export default class History extends Component {
 		this.clear = this.clear.bind(this);
 		this.clearButton.addEventListener('click', this.clear);
 		this.clearButton.innerHTML = '<i>+</i>';
+		this.clearButton.title = 'clear history'
 		this.host.appendChild(this.clearButton);
 	}
 

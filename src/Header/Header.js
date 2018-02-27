@@ -1,6 +1,6 @@
 require('./header.scss')
 
-import Component from '../Component'
+import { Component } from '../Framework'
 
 export default class Header extends Component {
 	constructor() {

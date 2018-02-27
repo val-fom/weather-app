@@ -1,7 +1,7 @@
 require('./Weather.scss')
 
-import Component from '../Component'
-import getIcons from '../utils/icons';
+import { Component } from '../Framework'
+import getIcons from '../utils/weatherIcons';
 
 export default class Weather extends Component {
 	constructor(props) {

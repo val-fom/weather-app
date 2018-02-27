@@ -1,8 +1,9 @@
 require('./Forecast.scss');
 
-import Component from '../Component'
+import { Component } from '../Framework';
 
-import getIcons from '../utils/icons';
+import getIcons from '../utils/weatherIcons';
+import { getHours } from '../utils';
 
 export default class Forecast extends Component {
 	constructor(props) {
@@ -14,6 +15,7 @@ export default class Forecast extends Component {
 		this.forecast.classList.add('forecast');
 		this.host.appendChild(this.forecast);
 	}
+
 	render() {
 		if (!this.props.forecastResponse) return '';
 
@@ -21,22 +23,18 @@ export default class Forecast extends Component {
 
 		this.forecast.innerHTML = '';
 		for (var i = forecastResponse.list.length - 1; i >= 0; i--) {
-			const hours = this._getHours(forecastResponse.list[i].dt);
+			const hours = getHours(forecastResponse.list[i].dt);
 			const icons = getIcons(forecastResponse.list[i].weather);
+			const temp = forecastResponse.list[i].main.temp.toFixed(0);
 			const html = `
 				<article class="forecast__three-hour">
 					<h4 class="forecast__time" data-time>${hours}</h4>
 					<div class="forecast__icon" data-icon>${icons}</div>
-					<div class="forecast__temp" data-temp>${forecastResponse.list[i].main.temp.toFixed(0)}\xB0</div>
+					<div class="forecast__temp" data-temp>${temp}\xB0</div>
 				</article>
 			`;
 			this.forecast.insertAdjacentHTML('beforeend', html);
 		}
 		return this.forecast;
-	}
-
-	_getHours(dt) {
-		const date = new Date(dt * 1000);
-		return date.getHours().toString().padStart(2, '0');
 	}
 }

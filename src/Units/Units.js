@@ -1,6 +1,6 @@
 require('./Units.scss')
 
-import Component from '../Component'
+import { Component } from '../Framework'
 
 export default class Units extends Component {
 	constructor(props) {
@@ -13,7 +13,7 @@ export default class Units extends Component {
 		this.host.classList.add('units__container');
 
 		this.button = document.createElement('button');
-		this.button.classList.add('units__button');
+		this.button.classList.add('units__button', 'button');
 		this.host.appendChild(this.button);
 
 		this.toggle = this.toggle.bind(this);

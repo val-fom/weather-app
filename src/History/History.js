@@ -1,6 +1,6 @@
 require('./History.scss')
 
-import Component from '../Component'
+import { Component } from '../Framework'
 
 export default class History extends Component {
 	constructor(props) {

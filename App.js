@@ -1,24 +1,26 @@
-import getAll from './utils/api'
-import { _getCityFromUrl } from './utils/index'
+require('./src/app.scss');
 
-import Component from './Component'
+import getAll from './src/utils/api';
+import { getCityFromUrl, setCityTitle, updateUrl } from './src/utils';
 
-import Header from './Header/Header'
-import Search from './Search/Search'
-import History from './History/History'
-import Favourites from './Favourites/Favourites'
-import Weather from './Weather/Weather'
-import Forecast from './Forecast/Forecast'
-import Units from './Units/Units'
+import { Component } from './src/Framework';
+
+import Header from './src/Header';
+import Search from './src/Search';
+import History from './src/History';
+import Favourites from './src/Favourites';
+import Weather from './src/Weather';
+import Forecast from './src/Forecast';
+import Units from './src/Units';
 
 export default class App extends Component {
-	constructor(host) {
+	constructor({ host }) {
 		super();
 
 		this.state = {
 			weatherResponse: null,
 			forecastResponse: null,
-			city: _getCityFromUrl() || 'kyiv',
+			city: getCityFromUrl() || 'Kyiv,UA',
 			units: localStorage.units || 'metric',
 		}
 
@@ -45,23 +47,28 @@ export default class App extends Component {
 		this.units = new Units({
 			onToggle: this.onUnitsToggle,
 		});
+
+		this.onSearchSubmit();
 	}
 
 	onSearchSubmit(city = this.state.city) {
 		getAll(city, this.state.units)
 			.then(res => {
+				const city = `${res[0].name},${res[0].sys.country}`;
 				this.updateState({
 					weatherResponse: res[0],
 					forecastResponse: res[1],
-					city: `${res[0].name},${res[0].sys.country}`,
+					city,
 				});
+				setCityTitle(city);
+				updateUrl(city);
 			});
 	}
 
 	onUnitsToggle(units) {
 		this.updateState({
 			units,
-		})
+		});
 		this.onSearchSubmit();
 	}
 
@@ -76,6 +83,6 @@ export default class App extends Component {
 			this.weather.update({ city, weatherResponse }),
 			this.forecast.update({ city, forecastResponse }),
 			this.units.update(),
-		]
+		];
 	}
 }

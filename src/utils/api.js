@@ -2,10 +2,10 @@ const KEY = '40c8d4e755a53b1d45a970fc3769eeeb';
 const BASE_API_URL = 'https://api.openweathermap.org/data/2.5/';
 const count = '&cnt=' + 8; // 24/3 hour forecast
 
-export const get = (apiType, units, city) => {
+const get = (apiType, units, city) => {
 	const url = BASE_API_URL + apiType + '?q=' + city +
-		'&APPID=' + KEY + '&units=' + units + count; // json place holder vvvvv
-// let url = 'https://my-json-server.typicode.com/val-fom/weather-app/weather';
+		'&APPID=' + KEY + '&units=' + units + count;
+
 	return fetch(url).then(response => {
 		if (response.ok) {
 			return response.json();
@@ -18,6 +18,6 @@ const getWeather = (city, units) => get('weather', units, city);
 const getForecast = (city, units) => get('forecast', units, city);
 
 const getAll = (city, units) =>
-	Promise.all([getWeather(city, units), getForecast(city, units)]);
+	Promise.all([ getWeather(city, units), getForecast(city, units) ]);
 
 export default getAll;

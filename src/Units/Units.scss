@@ -1,11 +1,19 @@
+.units__container {
+	width: 300px;
+	margin: 0.5rem auto 0;
+	display: flex;
+}
+
 .units__button {
 	// background-color: white;
-	// width: 1rem;
-	// height: 1rem;
+	// width: 2rem;
+	// height: 2rem;
+	// border: 1px solid #333;
+	// border-radius: 50%;
 	// position: absolute;
 	// right: 0;
 	// bottom: 0;
-	// padding: 0 0.2rem;
+	padding: 0 0.2rem;
 	// line-height: 1rem;
 	// border-top: 1px solid #333;
 	// border-left: 1px solid #333;

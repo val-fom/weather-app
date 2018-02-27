@@ -1,6 +1,6 @@
-require('./Favourites.scss')
+require('./Favourites.scss');
 
-import Component from '../Component'
+import { Component } from '../Framework';
 
 export default class Favourites extends Component {
 	constructor(props) {

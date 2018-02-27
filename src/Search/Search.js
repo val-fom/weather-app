@@ -1,4 +1,4 @@
-import Component from '../Component'
+import { Component } from '../Framework'
 
 require('./Search.scss')
 

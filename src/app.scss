@@ -34,7 +34,13 @@ section, header {
 }
 
 .button {
-	// border: 1px solid #333;
+	height: 1.5rem;
+	min-width: 1.5rem;
+	line-height: 1.5rem;
+	overflow: hidden;
+	cursor: pointer;
+	border-radius: 6px;
+	transition: 0.3s;
 	&:hover {
 		box-shadow: inset 0px 0px 8px 0px #aaa;
 	}

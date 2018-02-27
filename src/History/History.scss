@@ -31,7 +31,7 @@
 	white-space: nowrap;
 }
 
-.history__city>a {
+.history__city > a {
 	padding: 0.3rem;
 	cursor: pointer;
 	line-height: 1.2em;
@@ -42,19 +42,12 @@
 
 .history__clear-button {
 	position: absolute;
-	right: -0.9rem;
+	right: -1.6rem;
 	top: 0;
-	line-height: 1.5rem;
 	i {
 		display: block;
 		transform: rotate(45deg);
 		-webkit-font-smoothing: antialiased;
 		transition: ease-in-out 0.3s;
-	}
-	&:hover {
-		cursor: pointer;
-	}
-	&:hover > i {
-		// transform: rotate(225deg);
 	}
 }

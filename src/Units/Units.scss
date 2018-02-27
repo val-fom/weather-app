@@ -5,19 +5,10 @@
 }
 
 .units__button {
-	// background-color: white;
-	// width: 2rem;
-	// height: 2rem;
-	// border: 1px solid #333;
-	// border-radius: 50%;
-	// position: absolute;
-	// right: 0;
-	// bottom: 0;
 	padding: 0 0.2rem;
-	// line-height: 1rem;
-	// border-top: 1px solid #333;
-	// border-left: 1px solid #333;
-	// border-radius: 6px 0 6px 0;
-	transition: 0.2s;
-	cursor: pointer;
+	font-size: 0.9rem;
+}
+
+.units__button--accent {
+	font-size: 1.1rem;
 }

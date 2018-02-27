@@ -21,8 +21,9 @@ export default class Units extends Component {
 	}
 
 	render() {
-		this.button.textContent = (this.state.units === 'metric') ?
-			'\xB0C' : '\xB0F';
+		this.button.innerHTML = (this.state.units === 'metric') ?
+			'<span class="units__button--accent">\xB0C</span>/<span>\xB0F</span>' :
+			'<span>\xB0C</span>/<span class="units__button--accent">\xB0F</span>'
 		return this.button;
 	}
 

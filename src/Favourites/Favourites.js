@@ -18,7 +18,7 @@ export default class Favourites extends Component {
 		this.ul.addEventListener('click', this.handleClick);
 
 		this.addButton = document.createElement('button');
-		this.addButton.classList.add('favourites__add-button');
+		this.addButton.classList.add('favourites__add-button', 'button');
 		this.addButton.addEventListener('click', () => {
 			if (this.props) this.add(this.props.city);
 		});
@@ -26,7 +26,7 @@ export default class Favourites extends Component {
 		this.host.appendChild(this.addButton);
 
 		this.clearButton = document.createElement('button');
-		this.clearButton.classList.add('favourites__clear-button');
+		this.clearButton.classList.add('favourites__clear-button', 'button');
 		this.clearButton.addEventListener('click', () => this.clear() );
 
 		this.clearButton.innerHTML = '<i>+</i>';
@@ -37,7 +37,7 @@ export default class Favourites extends Component {
 		this.ul.innerHTML = '';
 		for (var i = this.state.list.length - 1; i >= 0; i--) {
 			const li = `
-				<li class="button favourites__city">
+				<li class="favourites__city">
 					<a href="#">${this.state.list[i]}</a>
 				</li>
 			`;

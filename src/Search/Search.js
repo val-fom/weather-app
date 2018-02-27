@@ -51,7 +51,7 @@ export default class Search extends Component {
 				<input required class="search__input" name="search"
 					data-is-valid=${isValid}
 					placeholder="type city name and press enter"
-					value=${city}>
+					value="${city}">
 			</form>
 		`;
 	}

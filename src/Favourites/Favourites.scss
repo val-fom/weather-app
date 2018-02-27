@@ -34,6 +34,7 @@
 	line-height: 1.5rem;
 	white-space: nowrap;
 	flex-grow: 1;
+	border-radius: 0;
 	border-right: 1px solid #333;
 	transition: 0.2s;
 	position: relative;
@@ -43,48 +44,35 @@
 	}
 }
 
-.favourites__city>a {
+.favourites__city > a {
 	display: block;
 	transition: 0.2s;
 	cursor: pointer;
 	&:hover {
 		text-decoration: none;
+		box-shadow: inset 0px 0px 8px 0px #aaa;
 	}
 }
 
 .favourites__add-button {
 	position: absolute;
-	left: -0.9rem;
+	left: -1.6rem;
 	top: 0;
-	line-height: 1.5rem;
 	i {
 		display: block;
 		-webkit-font-smoothing: antialiased;
 		transition: ease-in-out 0.3s;
-	}
-	&:hover {
-		cursor: pointer;
-	}
-	&:hover > i {
-		// transform: rotate(180deg);
 	}
 }
 
 .favourites__clear-button {
 	position: absolute;
-	right: -0.9rem;
+	right: -1.6rem;
 	top: 0;
-	line-height: 1.5rem;
 	i {
 		display: block;
 		transform: rotate(45deg);
 		-webkit-font-smoothing: antialiased;
 		transition: ease-in-out 0.3s;
-	}
-	&:hover {
-		cursor: pointer;
-	}
-	&:hover > i {
-		// transform: rotate(225deg);
 	}
 }

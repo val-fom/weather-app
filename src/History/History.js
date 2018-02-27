@@ -19,7 +19,7 @@ export default class History extends Component {
 		this.ul.addEventListener('click', this.handleClick);
 
 		this.clearButton = document.createElement('button');
-		this.clearButton.classList.add('history__clear-button');
+		this.clearButton.classList.add('history__clear-button', 'button');
 		this.clear = this.clear.bind(this);
 		this.clearButton.addEventListener('click', this.clear);
 		this.clearButton.innerHTML = '<i>+</i>';

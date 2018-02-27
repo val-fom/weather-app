@@ -14,6 +14,7 @@ export default class Units extends Component {
 
 		this.button = document.createElement('button');
 		this.button.classList.add('units__button', 'button');
+		this.button.title = 'hange units'
 		this.host.appendChild(this.button);
 
 		this.toggle = this.toggle.bind(this);
@@ -21,9 +22,8 @@ export default class Units extends Component {
 	}
 
 	render() {
-		this.button.innerHTML = (this.state.units === 'metric') ?
-			'<span class="units__button--accent">\xB0C</span>/<span>\xB0F</span>' :
-			'<span>\xB0C</span>/<span class="units__button--accent">\xB0F</span>'
+		this.button.textContent = (this.state.units === 'metric') ?
+			'C' : 'F';
 		return this.button;
 	}
 

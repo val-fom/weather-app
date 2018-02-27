@@ -1,14 +1,11 @@
 .units__container {
 	width: 300px;
-	margin: 1rem auto 0;
-	display: flex;
+	margin: auto;
+	position: relative;
 }
 
 .units__button {
-	padding: 0 0.2rem;
-	font-size: 0.9rem;
-}
-
-.units__button--accent {
-	font-size: 1.1rem;
+	position: absolute;
+	top: -1.5rem;
+	right: -1.6rem;
 }

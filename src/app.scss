@@ -1,5 +1,7 @@
 @import 'reset';
 @import '~weather-icons-sass/css/weather-icons.css';
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome.scss";
 
 html {
 	box-sizing: border-box;

@@ -52,7 +52,9 @@ export default class Search extends Component {
 					data-is-valid=${isValid}
 					placeholder="type city name and press enter"
 					value="${city}">
-				<button class="button search__button" title="search">s</button>
+				<button class="button search__button" title="search">
+					<i class="fa fa-search" aria-hidden="true"></i>
+				</button>
 			</form>
 		`;
 	}

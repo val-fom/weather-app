@@ -17,7 +17,9 @@ const get = (apiType, units, city) => {
 const getWeather = (city, units) => get('weather', units, city);
 const getForecast = (city, units) => get('forecast', units, city);
 
+export const findCity = (city, units) => get('find', units, city);
+
 const getAll = (city, units) =>
-	Promise.all([ getWeather(city, units), getForecast(city, units) ]);
+	Promise.all([ getWeather(city, units), getForecast(city, units), units ]);
 
 export default getAll;

@@ -4,12 +4,15 @@ class Component {
 		this.state = {};
 
 		this.host = null;
+
+		this.updateState = this.updateState.bind(this);
 	}
 
 	updateState(nextState) {
 		this.state = { ...this.state, ...nextState };
 		this._render();
 		console.log(this.constructor.name + ': _state_ updated:', this.state);
+		return this.state;
 	}
 
 	update(nextProps) {

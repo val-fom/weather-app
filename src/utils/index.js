@@ -1,7 +1,7 @@
 export const getCityFromUrl = () => {
-	const url = new URL(window.location.href);
-	if (url.search.startsWith('#/')) {
-		const city = url.search.slice(2);
+	const hash = window.location.hash;
+	if (hash.startsWith('#/')) {
+		const city = hash.slice(2);
 		return decodeURI(city);
 	}
 }

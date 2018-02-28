@@ -8,8 +8,8 @@ var inProduction = (process.env.NODE_ENV === 'production');
 module.exports = {
 	entry: {
 		app: [
-			'./src/main.js',
-			'./src/app.scss'
+			'./index.js',
+			// './src/app.scss'
 		]
 	},
 	output: {
@@ -54,7 +54,7 @@ module.exports = {
 			minimize: inProduction
 		}),
 		new HtmlWebpackPlugin({
-			template: 'src/index.html'
+			template: 'index.html'
 		}),
 	],
 	devServer: {

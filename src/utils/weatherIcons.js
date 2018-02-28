@@ -1,5 +1,4 @@
-export class Component {
-	_getIcons(source) {
+const getIcons = source => {
 		let icons = '';
 		for (var i = source.length - 1; i >= 0; i--) {
 			let timeOfDay = '';
@@ -13,11 +12,4 @@ export class Component {
 		return icons;
 	}
 
-	_requestUpdate(city) {
-		const event = new CustomEvent('needUpdate', {
-			bubbles: true,
-			detail: { city: city }
-		});
-		this._outlet.dispatchEvent(event);
-	}
-}
+export default getIcons;

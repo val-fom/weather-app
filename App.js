@@ -60,12 +60,13 @@ export default class App extends Component {
 
 	onSearchSubmit(city = this.state.city, units = this.state.units) {
 		getAll(city, units)
-			.then(res => {
-				const city = `${res[0].name},${res[0].sys.country}`;
+			.then(([weatherResponse, forecastResponse, units]) => {
+				const city = `${weatherResponse.name},` +
+					`${weatherResponse.sys.country}`;
 				this.updateState({
-					weatherResponse: res[0],
-					forecastResponse: res[1],
-					units: res[2],
+					weatherResponse,
+					forecastResponse,
+					units,
 					city,
 				});
 				setCityTitle(city);

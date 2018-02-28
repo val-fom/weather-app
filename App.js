@@ -1,6 +1,7 @@
 require('./src/app.scss');
 
 import getAll from './src/utils/api';
+import findCity from './src/utils/api';
 import { getCityFromUrl, setCityTitle, updateUrl } from './src/utils';
 
 import { Component } from './src/Framework';
@@ -49,6 +50,12 @@ export default class App extends Component {
 		});
 
 		this.onSearchSubmit();
+	}
+
+	onFindCity(city) {
+		findCity(city).then(list => {
+			console.table(list);
+		});
 	}
 
 	onSearchSubmit(city = this.state.city) {

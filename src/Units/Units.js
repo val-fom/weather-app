@@ -14,7 +14,7 @@ export default class Units extends Component {
 
 		this.button = document.createElement('button');
 		this.button.classList.add('units__button', 'button');
-		this.button.title = 'hange units'
+		this.button.title = 'change units'
 		this.host.appendChild(this.button);
 
 		this.toggle = this.toggle.bind(this);

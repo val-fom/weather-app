@@ -28,6 +28,13 @@ body, html {
 	color: #222;
 }
 
+.root {
+	width: 100%;
+	margin: auto;
+	padding-right: 30px;
+	padding-left: 5px;
+}
+
 .button {
 	height: 1.5rem;
 	min-width: 1.5rem;
@@ -37,6 +44,8 @@ body, html {
 	border-radius: 6px;
 	transition: 0.3s;
 	&:hover {
-		box-shadow: inset 0px 0px 8px 0px #aaa;
+		box-shadow: inset 0px 0px 8px 0px #aaa
 	}
 }
+
+@import "media-queries";

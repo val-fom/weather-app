@@ -2,7 +2,7 @@ require('./src/app.scss');
 
 import getAll from './src/utils/api';
 import findCity from './src/utils/api';
-import { getCityFromUrl, setCityTitle, updateUrl } from './src/utils';
+import { getCityFromUrl, setCityTitle, pushHistoryState } from './src/utils';
 
 import { Component } from './src/Framework';
 
@@ -29,6 +29,7 @@ export default class App extends Component {
 
 		this.onSearchSubmit = this.onSearchSubmit.bind(this);
 		this.onUnitsToggle = this.onUnitsToggle.bind(this);
+		this.onPopHistoryState = this.onPopHistoryState.bind(this);
 
 		this.header = new Header();
 		this.search = new Search({
@@ -49,37 +50,49 @@ export default class App extends Component {
 			onToggle: this.onUnitsToggle,
 		});
 
+		window.onpopstate = ev => {
+			if (ev.state) {
+				this.onPopHistoryState(ev.state.city, ev.state.units);
+			}
+		}
+
 		this.onSearchSubmit();
 	}
 
-	onFindCity(city) {
-		findCity(city).then(list => {
-			console.table(list);
-		});
-	}
-
-	onSearchSubmit(city = this.state.city, units = this.state.units) {
-		getAll(city, units)
-			.then(([weatherResponse, forecastResponse, units]) => {
-				const city = `${weatherResponse.name},` +
-					`${weatherResponse.sys.country}`;
-				this.updateState({
-					weatherResponse,
-					forecastResponse,
-					units,
-					city,
-				});
-				setCityTitle(city);
-				updateUrl(city);
-			});
+	onSearchSubmit(city) {
+		this.udateCityResponse(city)
+			.then(({ city, units }) => pushHistoryState({ city, units }));
 	}
 
 	onUnitsToggle(units) {
-		this.onSearchSubmit(undefined, units);
+		this.udateCityResponse(undefined, units)
+			.then(({ city, units }) => pushHistoryState({ city, units }));
+	}
+
+	onPopHistoryState(city, units) {
+		this.udateCityResponse(city, units);
+	}
+
+	udateCityResponse(city = this.state.city, units = this.state.units) {
+		return getAll(city, units)
+			.then(this.computeNextState)
+			.then(this.updateState);
+	}
+
+	computeNextState( [weatherResponse, forecastResponse, units] ) {
+		const city = `${weatherResponse.name},${weatherResponse.sys.country}`;
+		return {
+			weatherResponse,
+			forecastResponse,
+			units,
+			city,
+		}
 	}
 
 	render() {
 		const { city, weatherResponse, forecastResponse } = this.state;
+
+		setCityTitle(city);
 
 		return [
 			this.header.update(),

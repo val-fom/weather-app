@@ -1,13 +1,13 @@
 export const getCityFromUrl = () => {
 	const url = new URL(window.location.href);
-	if (url.search.startsWith('?q=')) {
-		const city = url.search.slice(3);
+	if (url.search.startsWith('#/')) {
+		const city = url.search.slice(2);
 		return decodeURI(city);
 	}
 }
 
-export const updateUrl = (city) => {
-	window.history.pushState(null, null, `?q=${city}`);
+export const pushHistoryState = ({ city, units }) => {
+	window.history.pushState({ city, units }, null, `#/${city}`);
 }
 
 export const setCityTitle = (city) => {

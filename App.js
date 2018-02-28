@@ -58,13 +58,14 @@ export default class App extends Component {
 		});
 	}
 
-	onSearchSubmit(city = this.state.city) {
-		getAll(city, this.state.units)
+	onSearchSubmit(city = this.state.city, units = this.state.units) {
+		getAll(city, units)
 			.then(res => {
 				const city = `${res[0].name},${res[0].sys.country}`;
 				this.updateState({
 					weatherResponse: res[0],
 					forecastResponse: res[1],
+					units: res[2],
 					city,
 				});
 				setCityTitle(city);
@@ -73,10 +74,7 @@ export default class App extends Component {
 	}
 
 	onUnitsToggle(units) {
-		this.updateState({
-			units,
-		});
-		this.onSearchSubmit();
+		this.onSearchSubmit(undefined, units);
 	}
 
 	render() {

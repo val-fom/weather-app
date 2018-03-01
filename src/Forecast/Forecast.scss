@@ -28,8 +28,9 @@
 
 .forecast {
 	width: 100%;
-	height: 3.5rem;
-	margin:  1rem 0;
+	margin-top:  1.6rem;
+	margin-bottom:  1.2rem;
+	padding: 0 0.1rem;
 	text-align: left;
 	font-size: 0.9rem;
 	display: flex;
@@ -46,5 +47,5 @@
 .forecast__time,
 .forecast__icon,
 .forecast__temp {
-	height: 1.3rem;
+	height: 1.5rem;
 }

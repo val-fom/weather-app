@@ -18,7 +18,7 @@ export default class Footer extends Component {
 		class="footer__link footer__link-gh">
 		${octicons['mark-github'].toSVG({ "width": 19.2 })}
 	</a>
-	<a href="https://openweathermap.org"
+	<a href="https://openweathermap.org/api"
 		class="footer__link footer__link-owm">
 		<img src="img/logo_OpenWeatherMap_orange.svg" alt="">
 	</a>

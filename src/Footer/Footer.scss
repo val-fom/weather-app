@@ -1,0 +1,42 @@
+.footer__container {
+	margin-top: auto;
+	flex: 1 0 auto;
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+.footer {
+	width: 100%;
+	margin: 1.5rem auto;
+	display: flex;
+	justify-content: center;
+}
+
+.footer__link {
+	padding-right: 0.2rem;
+	padding-left: 0.2rem;
+}
+
+.footer__link img {
+	width: 1.2rem;
+}
+
+.footer__link-gh {
+	
+}
+
+.footer__link-owm {
+
+}
+
+.octicon {
+  display: inline-block;
+  vertical-align: text-top;
+  fill: currentColor;
+}
+
+// .footer__link {
+// 	font-size: 2rem;
+// 	font-weight: bold;
+// 	margin: 2rem 0;
+// }

@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require("copy-webpack-plugin");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var inProduction = (process.env.NODE_ENV === 'production');
@@ -56,6 +57,10 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: 'index.html'
 		}),
+		new CopyWebpackPlugin([{
+			from: 'assets',
+			to: ''
+		}]),
 	],
 	devServer: {
 		contentBase: path.join(__dirname, "dist"),

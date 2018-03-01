@@ -1,4 +1,4 @@
-require('./header.scss')
+require('./Header.scss')
 
 import { Component } from '../Framework'
 

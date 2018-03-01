@@ -4,15 +4,33 @@
 	position: relative;
 }
 
-.forecast {
-	width: 100%;
-	height: 5rem;
-	margin: 0;
+.forecast__wrapper {
 	border-left: 1px solid #222;
 	border-right: 1px solid #222;
 	border-bottom: 1px solid #222;
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
+}
+
+.forecast__header {
+	font-size: 0.7rem;
+	display: flex;
+	align-items: center;
+	& > h2 {
+		margin: auto 0.3rem;
+	}
+	& > span {
+		flex: 1 1 auto;
+		background-color: #222;
+		height: 1px;
+	}
+}
+
+.forecast {
+	width: 100%;
+	margin-top:  1.6rem;
+	margin-bottom:  1.2rem;
+	padding: 0 0.1rem;
 	text-align: left;
 	font-size: 0.9rem;
 	display: flex;
@@ -29,5 +47,5 @@
 .forecast__time,
 .forecast__icon,
 .forecast__temp {
-	height: 1.2rem;
+	height: 1.5rem;
 }

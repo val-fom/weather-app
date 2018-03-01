@@ -11,9 +11,23 @@ export default class Forecast extends Component {
 
 		this.host = document.createElement('div');
 		this.host.classList.add('forecast__container');
+
+		this.wrapper = document.createElement('div');
+		this.wrapper.classList.add('forecast__wrapper');
+		this.host.appendChild(this.wrapper);
+
+		this.header = document.createElement('div');
+		this.header.classList.add('forecast__header');
+		this.header.innerHTML = `
+			<span></span>
+			<h2>24/3h forecast</h2>
+			<span></span>
+		`;
+		this.wrapper.appendChild(this.header);
+
 		this.forecast = document.createElement('div');
 		this.forecast.classList.add('forecast');
-		this.host.appendChild(this.forecast);
+		this.wrapper.appendChild(this.forecast);
 	}
 
 	render() {
@@ -35,6 +49,6 @@ export default class Forecast extends Component {
 			`;
 			this.forecast.insertAdjacentHTML('beforeend', html);
 		}
-		return this.forecast;
+		return this.wrapper;
 	}
 }

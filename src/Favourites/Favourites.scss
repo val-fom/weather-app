@@ -48,7 +48,9 @@
 	display: block;
 	transition: 0.2s;
 	cursor: pointer;
-	&:hover {
+	&:hover,
+	&:focus	{
+		outline: none;
 		text-decoration: none;
 		box-shadow: inset 0px 0px 8px 0px #aaa;
 	}
@@ -57,6 +59,7 @@
 .favourites__add-button {
 	position: absolute;
 	top: 2.2rem;
+	font-size: 1.2rem;
 	i {
 		display: block;
 		-webkit-font-smoothing: antialiased;
@@ -67,6 +70,7 @@
 .favourites__clear-button {
 	position: absolute;
 	top: 0.2rem;
+	font-size: 1.2rem;
 	i {
 		display: block;
 		transform: rotate(45deg);

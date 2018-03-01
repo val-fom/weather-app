@@ -35,7 +35,9 @@
 	padding: 0.3rem;
 	cursor: pointer;
 	line-height: 1.2em;
-	&:hover {
+	&:hover,
+	&:focus {
+		outline: none;
 		text-decoration: underline;
 	}
 }
@@ -43,6 +45,7 @@
 .history__clear-button {
 	position: absolute;
 	top: 0;
+	font-size: 1.2rem;
 	i {
 		display: block;
 		transform: rotate(45deg);

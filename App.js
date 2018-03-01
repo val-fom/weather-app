@@ -13,6 +13,7 @@ import Favourites from './src/Favourites';
 import Weather from './src/Weather';
 import Forecast from './src/Forecast';
 import Units from './src/Units';
+import Footer from './src/Footer';
 
 export default class App extends Component {
 	constructor({ host }) {
@@ -49,6 +50,7 @@ export default class App extends Component {
 		this.units = new Units({
 			onToggle: this.onUnitsToggle,
 		});
+		this.footer = new Footer();
 
 		window.onpopstate = ev => {
 			if (ev.state) {
@@ -102,6 +104,7 @@ export default class App extends Component {
 			this.weather.update({ city, weatherResponse }),
 			this.forecast.update({ city, forecastResponse }),
 			this.units.update(),
+			this.footer.update(),
 		];
 	}
 }

@@ -36,7 +36,7 @@
 
 @keyframes blink {
 	0% {
-		background-color: #ffd3d3;
+		background-color: $blink-color;
 	}
 	100% {
 		background-color: #fff;

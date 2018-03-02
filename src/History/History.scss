@@ -32,13 +32,18 @@
 }
 
 .history__city > a {
-	padding: 0.3rem;
+	padding: 0 0.3rem;
 	cursor: pointer;
 	line-height: 1.2em;
+	display: block;
+	transition: $transition;
 	&:hover,
 	&:focus {
 		outline: none;
 		text-decoration: underline;
+	}
+	&:active {
+		transform: translateY(1px);
 	}
 }
 

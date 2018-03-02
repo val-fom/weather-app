@@ -11,14 +11,14 @@ class Component {
 	updateState(nextState) {
 		this.state = { ...this.state, ...nextState };
 		this._render();
-		console.log(this.constructor.name + ': _state_ updated:', this.state);
+		// console.log(this.constructor.name + ': _state_ updated:', this.state);
 		return this.state;
 	}
 
 	update(nextProps) {
 		this.beforeUpdate(nextProps);
 		this.props = { ...this.props, ...nextProps };
-		console.log(this.constructor.name + ': _props_ updated:', this.props);
+		// console.log(this.constructor.name + ': _props_ updated:', this.props);
 		return this._render();
 	}
 

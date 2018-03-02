@@ -1,3 +1,5 @@
+@import '../variables';
+
 .forecast__container {
 	width: 100%;
 	margin: auto;
@@ -5,15 +7,15 @@
 }
 
 .forecast__wrapper {
-	border-left: 1px solid #222;
-	border-right: 1px solid #222;
-	border-bottom: 1px solid #222;
+	border-left: $border;
+	border-right: $border;
+	border-bottom: $border;
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 }
 
 .forecast__header {
-	font-size: 0.7rem;
+	font-size: 0.8rem;
 	display: flex;
 	align-items: center;
 	& > h2 {
@@ -21,8 +23,8 @@
 	}
 	& > span {
 		flex: 1 1 auto;
-		background-color: #222;
 		height: 1px;
+		border-bottom: $border;
 	}
 }
 
@@ -36,7 +38,6 @@
 	display: flex;
 	flex-wrap: wrap;
 	overflow: hidden;
-	transition: max-height 0.4s ease 0s;
 }
 
 .forecast__three-hour {

@@ -1,3 +1,5 @@
+@import '../variables';
+
 .history__container {
 	width: 100%;
 	margin: auto;
@@ -32,21 +34,28 @@
 }
 
 .history__city > a {
-	padding: 0.3rem;
+	padding: 0 0.3rem;
 	cursor: pointer;
 	line-height: 1.2em;
-	&:hover {
+	display: block;
+	transition: $transition;
+	&:hover,
+	&:focus {
+		outline: none;
 		text-decoration: underline;
+	}
+	&:active {
+		transform: translateY(1px);
 	}
 }
 
 .history__clear-button {
 	position: absolute;
 	top: 0;
+	font-size: 1.2rem;
 	i {
 		display: block;
 		transform: rotate(45deg);
 		-webkit-font-smoothing: antialiased;
-		transition: ease-in-out 0.3s;
 	}
 }

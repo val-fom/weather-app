@@ -22,8 +22,9 @@ export default class Search extends Component {
 		this.input.classList.add('search__input');
 		this.input.name = 'search';
 		this.input.placeholder = 'type city name and press enter';
-		this.input.onfocus = () => 
-			this.input.setSelectionRange(0, this.input.value.length);
+
+		this.input.addEventListener('mouseup', () =>
+			this.input.setSelectionRange(0, 999));
 
 		this.button = document.createElement('button');
 		this.button.classList.add('button', 'search__button');

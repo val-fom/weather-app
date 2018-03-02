@@ -40,7 +40,6 @@
 	transition: $transition;
 	position: relative;
 	background: white;
-	overflow: hidden;
 	&:last-child {
 		border-right: none;
 	}

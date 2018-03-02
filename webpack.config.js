@@ -10,7 +10,6 @@ module.exports = {
 	entry: {
 		app: [
 			'./index.js',
-			// './src/app.scss'
 		]
 	},
 	output: {

@@ -24,6 +24,7 @@ export default class App extends Component {
 			forecastResponse: null,
 			city: getCityFromUrl() || 'Kyiv,UA',
 			units: localStorage.units || 'metric',
+			isFound: true,
 		}
 
 		this.host = host;
@@ -36,6 +37,7 @@ export default class App extends Component {
 		this.search = new Search({
 			city: this.state.city,
 			onSubmit: this.onSearchSubmit,
+			isFound: true,
 		});
 		this.history = new History({
 			city: this.state.city,
@@ -63,7 +65,8 @@ export default class App extends Component {
 
 	onSearchSubmit(city) {
 		this.udateCityResponse(city)
-			.then(({ city, units }) => pushHistoryState({ city, units }));
+			.then(({ city, units }) => pushHistoryState({ city, units }))
+			.catch(console.error);
 	}
 
 	onUnitsToggle(units) {
@@ -77,8 +80,9 @@ export default class App extends Component {
 
 	udateCityResponse(city = this.state.city, units = this.state.units) {
 		return getAll(city, units)
-			.then(this.computeNextState)
-			.then(this.updateState);
+			.then(this.computeNextState, this.computeNotFoundState)
+			.then(this.updateState)
+			.catch(console.error);
 	}
 
 	computeNextState( [weatherResponse, forecastResponse, units] ) {
@@ -88,17 +92,23 @@ export default class App extends Component {
 			forecastResponse,
 			units,
 			city,
+			isFound: true
 		}
 	}
 
+	computeNotFoundState() {
+		console.error('App.state.isFound: false');
+		return { isFound: false };
+	}
+
 	render() {
-		const { city, weatherResponse, forecastResponse } = this.state;
+		const { city, weatherResponse, forecastResponse, isFound } = this.state;
 
 		setCityTitle(city);
 
 		return [
 			this.header.update(),
-			this.search.update({ city }),
+			this.search.update({ city, isFound }),
 			this.history.update({ city }),
 			this.favourites.update({ city }),
 			this.weather.update({ city, weatherResponse }),

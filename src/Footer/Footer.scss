@@ -1,3 +1,5 @@
+@import '../variables';
+
 .footer__container {
 	margin-top: auto;
 	flex: 1 0 auto;
@@ -19,7 +21,7 @@
 .footer__link {
 	padding: 0  0.2rem;
 	position: relative;
-	transition: 0.3s;
+	transition: $transition;
 	&:hover,
 	&:focus {
 		outline: none;
@@ -29,10 +31,10 @@
 		position: absolute;
 		color: transparent;
 		width: 4rem;
-		transition: 0.3s;
+		transition: $transition;
 	}
 	&:hover::before {
-		color: #222;
+		color: $main-color;
 	}
 	&:active {
 		transform: translateY(1px);

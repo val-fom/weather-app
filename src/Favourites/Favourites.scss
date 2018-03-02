@@ -1,3 +1,5 @@
+@import '../variables';
+
 .favourites__container {
 	width: 100%;
 	margin: auto;
@@ -12,8 +14,7 @@
 	position: relative;
 	display: flex;
 	background-color: white;
-	border: 1px solid #222;
-	// border-bottom: none;
+	border: $border;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
 	overflow: hidden;
@@ -35,8 +36,8 @@
 	white-space: nowrap;
 	flex-grow: 1;
 	border-radius: 0;
-	border-right: 1px solid #333;
-	transition: 0.2s;
+	border-right: $border;
+	transition: $transition;
 	position: relative;
 	background: white;
 	&:last-child {
@@ -46,7 +47,7 @@
 
 .favourites__city > a {
 	display: block;
-	transition: 0.2s;
+	transition: $transition;
 	cursor: pointer;
 	&:hover,
 	&:focus	{
@@ -63,7 +64,6 @@
 	i {
 		display: block;
 		-webkit-font-smoothing: antialiased;
-		transition: ease-in-out 0.3s;
 	}
 }
 
@@ -75,6 +75,5 @@
 		display: block;
 		transform: rotate(45deg);
 		-webkit-font-smoothing: antialiased;
-		transition: ease-in-out 0.3s;
 	}
 }

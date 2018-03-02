@@ -1,3 +1,5 @@
+@import '../variables';
+
 .weather__container {
 	width: 100%;
 	margin: auto;
@@ -7,8 +9,8 @@
 .weather {
 	width: 100%;
 	display: flex;
-	border-left: 1px solid #222;
-	border-right: 1px solid #222;
+	border-left: $border;
+	border-right: $border;
 	overflow: hidden;
 	padding: 0 0.3rem;
 }

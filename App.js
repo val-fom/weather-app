@@ -1,4 +1,4 @@
-require('./src/app.scss');
+require('./src/scss/app.scss');
 
 import getAll from './src/utils/api';
 import findCity from './src/utils/api';
